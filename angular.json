@@ -25,9 +25,27 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/home-assets/lib/bootstrap/css/bootstrap.min.css",
+              "src/assets/home-assets/lib/font-awesome/css/font-awesome.min.css",
+              "src/assets/home-assets/lib/animate/animate.min.css",
+              "src/assets/home-assets/lib/venobox/venobox.css",
+              "src/assets/home-assets/lib/owlcarousel/assets/owl.carousel.min.css",
+              "src/assets/home-assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/home-assets/lib/jquery/jquery.min.js",
+              "src/assets/home-assets/lib/jquery/jquery-migrate.min.js",
+              "src/assets/home-assets/lib/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/home-assets/lib/easing/easing.min.js",
+              "src/assets/home-assets/lib/superfish/hoverIntent.js",
+              "src/assets/home-assets/lib/superfish/superfish.min.js",
+              "src/assets/home-assets/lib/wow/wow.min.js",
+              "src/assets/home-assets/lib/venobox/venobox.min.js",
+              "src/assets/home-assets/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/home-assets/contactform/contactform.js",
+              "src/assets/home-assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
