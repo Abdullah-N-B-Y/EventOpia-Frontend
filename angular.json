@@ -31,7 +31,10 @@
               "src/assets/home-assets/lib/animate/animate.min.css",
               "src/assets/home-assets/lib/venobox/venobox.css",
               "src/assets/home-assets/lib/owlcarousel/assets/owl.carousel.min.css",
-              "src/assets/home-assets/css/style.css"
+              "src/assets/home-assets/css/style.css",
+              "src/assets/dashboard-assets/css/bootstrap.min.css",
+              "src/assets/dashboard-assets/css/paper-dashboard.css",
+              "src/assets/dashboard-assets/demo/demo.css"
             ],
             "scripts": [
               "src/assets/home-assets/lib/jquery/jquery.min.js",
@@ -44,7 +47,14 @@
               "src/assets/home-assets/lib/venobox/venobox.min.js",
               "src/assets/home-assets/lib/owlcarousel/owl.carousel.min.js",
               "src/assets/home-assets/contactform/contactform.js",
-              "src/assets/home-assets/js/main.js"
+              "src/assets/home-assets/js/main.js",
+              "src/assets/dashboard-assets/js/core/jquery.min.js",
+              "src/assets/dashboard-assets/js/core/popper.min.js",
+              "src/assets/dashboard-assets/js/core/bootstrap.min.js",
+              "src/assets/dashboard-assets/js/plugins/perfect-scrollbar.jquery.min.js",
+              "src/assets/dashboard-assets/js/plugins/chartjs.min.js",
+              "src/assets/dashboard-assets/js/plugins/bootstrap-notify.js",
+              "src/assets/dashboard-assets/demo/demo.js"
             ]
           },
           "configurations": {
