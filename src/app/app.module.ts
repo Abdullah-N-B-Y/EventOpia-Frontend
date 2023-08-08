@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AppRoutingModule,
     FormsModule,
     SharedModule,
-    DashboardModule
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
