@@ -1,20 +1,68 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/services/profile.service';
 import jwt_decode from 'jwt-decode';
+import { User } from 'src/app/shared/Data/User';
+import { Profile } from 'src/app/shared/Data/Profile';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
   constructor(public profile:ProfileService, private dailog:MatDialog){}
+  
+  user:User = {
+    id: 1,
+    username: 'test',
+    password: 'test password',
+    email: 'asd',
+    verificationCode: 'asd',
+    userStatus: 'asd',
+    bookings: [],
+    categories: [],
+    contactUsEntries: [],
+    events: [],
+    messageReceivers: [],
+    messageSenders: [],
+    notifications: [],
+    pages: [],
+    profiles: [],
+    role: null,
+    testimonials: [],
+    comments: []
+  };
+
+  userProfile:Profile = {
+    id: 0,
+    firstName:'test',
+    lastName:'test',
+    profilesettings: []
+  };
+
+  ngOnInit(): void {
+    this.profile.getUserById(1).subscribe((resp:any)=>{
+      this.user = resp;
+      console.log('111111111111123'+this.user.email);
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  test(){
+    this.profile.getUserById(1).subscribe((resp:any)=>{
+      this.user = resp;
+      console.log('111111111111123'+this.user.email);
+    },err=>{
+      console.log(err);
+    })
+  }
 
   profileForm: FormGroup = new FormGroup({
-    email : new FormControl('info@example.com',Validators.email),
+    email : new FormControl(this.user.email,Validators.email),
     firstName :new FormControl('First name'),
     lastName :new FormControl('Last name'),
     phoneNumber :new FormControl('+962 7********'),
@@ -22,6 +70,7 @@ export class ProfileComponent {
     gender : new FormControl('Male'),
     bio : new FormControl('loruem ipusom')
   });
+
   passwordForm: FormGroup = new FormGroup({
     oldPassowrd: new FormControl('********',Validators.minLength(8)),
     newPassword: new FormControl('********',Validators.minLength(8)),
@@ -48,6 +97,8 @@ export class ProfileComponent {
     }
   }
 
+  
+  }
   // @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
   // openDeleteDailog(){
   //   const dialogRef= this.dailog.open(this.callDelete);
@@ -62,4 +113,3 @@ export class ProfileComponent {
   //   })
   //  }
 
-}

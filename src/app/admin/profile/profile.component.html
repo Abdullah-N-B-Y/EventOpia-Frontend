@@ -121,19 +121,19 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" [disabled]="true" formControlName="email">
+                        <input type="text" class="form-control" [disabled]="true" [value]="user.email">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>First name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" [value]="userProfile.firstName">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Last name</label>
-                        <input type="email" class="form-control" formControlName="lastName">
+                        <input type="email" class="form-control" [value]="userProfile.lastName">
                       </div>
                     </div>
                   </div>
@@ -167,7 +167,7 @@
                   </div>
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()">Update Profile</button>
+                      <button type="submit" class="btn btn-primary btn-round" (click)="test()">Update Profile</button>
                     </div>
                   </div>
                 </form>
