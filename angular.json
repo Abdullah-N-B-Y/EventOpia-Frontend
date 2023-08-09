@@ -16,14 +16,9 @@
             "outputPath": "dist/event-opia-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.css",
               "src/assets/home-assets/lib/bootstrap/css/bootstrap.min.css",
@@ -34,7 +29,10 @@
               "src/assets/home-assets/css/style.css",
               "src/assets/dashboard-assets/css/bootstrap.min.css",
               "src/assets/dashboard-assets/css/paper-dashboard.css",
-              "src/assets/dashboard-assets/demo/demo.css"
+              "src/assets/dashboard-assets/demo/demo.css",
+              "src/styles.scss",
+              "src/assets/ui-kit-assets/sass/now-ui-kit.scss",
+              "src/assets/ui-kit-assets/css/demo.css"
             ],
             "scripts": [
               "src/assets/home-assets/lib/jquery/jquery.min.js",
@@ -54,7 +52,8 @@
               "src/assets/dashboard-assets/js/plugins/perfect-scrollbar.jquery.min.js",
               "src/assets/dashboard-assets/js/plugins/chartjs.min.js",
               "src/assets/dashboard-assets/js/plugins/bootstrap-notify.js",
-              "src/assets/dashboard-assets/demo/demo.js"
+              "src/assets/dashboard-assets/demo/demo.js",
+              "node_modules/rellax/rellax.min.js"
             ]
           },
           "configurations": {
@@ -105,18 +104,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
