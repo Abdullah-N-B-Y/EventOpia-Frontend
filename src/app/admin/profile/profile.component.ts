@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/services/profile.service';
 import jwt_decode from 'jwt-decode';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -23,12 +22,12 @@ export class ProfileComponent {
     gender : new FormControl('Male'),
     bio : new FormControl('loruem ipusom')
   });
-
   passwordForm: FormGroup = new FormGroup({
     oldPassowrd: new FormControl('********',Validators.minLength(8)),
     newPassword: new FormControl('********',Validators.minLength(8)),
     confirmPassword: new FormControl(),
   })
+  
   updateProfile(){
     this.profile.updateProfile(this.profileForm);
   }
