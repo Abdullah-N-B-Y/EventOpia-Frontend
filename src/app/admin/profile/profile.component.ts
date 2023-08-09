@@ -21,14 +21,27 @@ export class ProfileComponent {
     gender : new FormControl('Male'),
     bio : new FormControl('loruem ipusom')
   });
-  
+
+  passwordForm: FormGroup = new FormGroup({
+    oldPassowrd: new FormControl('********',Validators.minLength(8)),
+    newPassword: new FormControl('********',Validators.minLength(8)),
+    confirmPassword: new FormControl(),
+  })
   updateProfile(){
     this.profile.updateProfile(this.profileForm);
   }
   changePassword(){
-    //this.profile.changePassword()
+    this.profile.changePassword()
   }
 
+  confirmPassword(){
+    if(this.passwordForm.controls['newPassword'].value == this.passwordForm.controls['confirmPassword'].value){
+      this.passwordForm.controls['confirmPassword'].setErrors(null);
+    }
+    else{
+      this.passwordForm.controls['confirmPassword'].setErrors({misMatch:true});
+    }
+  }
 
   // @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
   // openDeleteDailog(){
