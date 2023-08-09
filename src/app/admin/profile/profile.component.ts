@@ -2,6 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/services/profile.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -21,12 +22,22 @@ export class ProfileComponent {
     gender : new FormControl('Male'),
     bio : new FormControl('loruem ipusom')
   });
-
+  passwordForm: FormGroup = new FormGroup({
+    oldPassowrd: new FormControl('********',Validators.minLength(8)),
+    newPassword: new FormControl('********',Validators.minLength(8)),
+    confirmPassword: new FormControl(),
+  })
+  
   updateProfile(){
     this.profile.updateProfile(this.profileForm);
   }
   changePassword(){
-    //this.profile.changePassword()
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const userId: string = decodedToken.sub;
+      this.profile.changePassword(parseInt(userId),this.passwordForm);
+    }
   }
 
 
