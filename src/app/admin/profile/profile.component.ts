@@ -2,6 +2,8 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/services/profile.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +33,12 @@ export class ProfileComponent {
     this.profile.updateProfile(this.profileForm);
   }
   changePassword(){
-    this.profile.changePassword()
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const userId: string = decodedToken.sub;
+      this.profile.changePassword(parseInt(userId),this.passwordForm);
+    }
   }
 
   confirmPassword(){
@@ -42,6 +49,7 @@ export class ProfileComponent {
       this.passwordForm.controls['confirmPassword'].setErrors({misMatch:true});
     }
   }
+
 
   // @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
   // openDeleteDailog(){
@@ -56,6 +64,5 @@ export class ProfileComponent {
   //      }
   //   })
   //  }
-   
 
 }
