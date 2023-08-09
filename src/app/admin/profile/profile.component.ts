@@ -39,7 +39,6 @@ export class ProfileComponent {
       this.profile.changePassword(parseInt(userId),this.passwordForm);
     }
   }
-
   confirmPassword(){
     if(this.passwordForm.controls['newPassword'].value == this.passwordForm.controls['confirmPassword'].value){
       this.passwordForm.controls['confirmPassword'].setErrors(null);
