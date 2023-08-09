@@ -50,7 +50,6 @@ export class ProfileComponent {
     }
   }
 
-
   // @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
   // openDeleteDailog(){
   //   const dialogRef= this.dailog.open(this.callDelete);
