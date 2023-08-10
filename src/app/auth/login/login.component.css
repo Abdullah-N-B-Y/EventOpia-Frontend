@@ -8,3 +8,8 @@
 .link {
   cursor: pointer;
 }
+
+.form-check-sign {
+    border-color: silver; /* Change the border color of the check sign */
+    background-color: silver; /* Change the background color of the check sign */
+}
