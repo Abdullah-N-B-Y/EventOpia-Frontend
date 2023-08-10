@@ -50,11 +50,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.validCredentials = true;
         this.loginSuccess = true;
-        sessionStorage.setItem('jwtToken', res.content);
-        console.log(
-          'in loginHttpResponse getting from session ' +
-            sessionStorage.getItem('jwtToken')
-        );
+        localStorage.setItem('jwtToken', res.content);
       },
       (err) => {
         this.validCredentials = false;
