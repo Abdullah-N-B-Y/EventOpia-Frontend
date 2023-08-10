@@ -12,7 +12,17 @@ import { AuthService } from './Services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+
 @NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AboutUsComponent,
+    ContactUsComponent
+  ],
   declarations: [AppComponent, HomeComponent, AboutUsComponent],
   imports: [
     BrowserModule,
@@ -20,6 +30,7 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
     FormsModule,
     SharedModule,
     AdminModule,
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
