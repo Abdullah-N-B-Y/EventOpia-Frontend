@@ -21,12 +21,14 @@ const routes: Routes = [
     loadChildren: () => DashboardModule,
   },
   {
-    path:'admin/profile',
-    component:ProfileComponent
+    path: 'admin/profile',
+    component: ProfileComponent,
   },
   {
-    path:'contact',
-    component:ContactUsComponent
+    path: 'contact',
+    component: ContactUsComponent,
+  },
+  {
     path: 'admin/profile',
     component: ProfileComponent,
   },

@@ -23,7 +23,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     AboutUsComponent,
     ContactUsComponent
   ],
-  declarations: [AppComponent, HomeComponent, AboutUsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
