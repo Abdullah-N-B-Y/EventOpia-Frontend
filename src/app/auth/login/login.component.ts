@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { LoginDTO } from 'src/app/shared/DTO/LoginDTO';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   stored_username: string | null = localStorage.getItem('username_Eventopia');
   stored_password: string | null = localStorage.getItem('password_Eventopia');
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   private passwordPattern: RegExp =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -76,18 +77,22 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  navigateToRegister() {
+    this.router.navigate(['/auth/register']);
+  }
+
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-page');
+    body?.classList?.add('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    navbar?.classList?.add('navbar-transparent');
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login-page');
+    body?.classList?.remove('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+    navbar?.classList?.remove('navbar-transparent');
   }
 }

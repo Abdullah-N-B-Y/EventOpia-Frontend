@@ -4,3 +4,7 @@
   margin-bottom: 10px; /* Add margin between alerts */
   font-size: 12px;
 }
+
+.link {
+  cursor: pointer;
+}

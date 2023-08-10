@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 
-
-
 @NgModule({
   declarations: [NavbarComponent, FooterComponent],
   imports: [
@@ -23,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    HttpClientModule,
   ],
 })
 export class SharedModule {}

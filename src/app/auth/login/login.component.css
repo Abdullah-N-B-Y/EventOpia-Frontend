@@ -1,6 +1,10 @@
 .alert {
-  border-radius: 30px; /* Adjust the border radius as needed */
-  padding: 10px; /* Add padding to the alert */
-  margin-bottom: 10px; /* Add margin between alerts */
+  border-radius: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
   font-size: 12px;
+}
+
+.link {
+  cursor: pointer;
 }
