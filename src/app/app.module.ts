@@ -9,18 +9,24 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { FormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     SharedModule,
-    AdminModule
+    AdminModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
