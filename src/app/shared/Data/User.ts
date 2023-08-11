@@ -8,6 +8,7 @@ import { Role } from './Role';
 import { Testimonial } from './Testimonial';
 
 export interface User {
+  [x: string]: any;
   id: number;
   username?: string;
   password?: string;
