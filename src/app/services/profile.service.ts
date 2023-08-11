@@ -22,13 +22,14 @@ export class ProfileService {
       console.log('2->'+err.status);
     })
   }
-  changePassword (id:number, body:any){
+  changePassword (body:any, id:number){
     this.http.put(endPointURL+`User/UpdatePassword/${id}`,body).subscribe((resp:any)=>{
-      console.log(resp);
+      console.log('here password'+body+' '+id);
     },err=>{
-      console.log(err.status);
+      console.log('here error'+err.messageReceivers);
     })
   }
+
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(endPointURL + `User/GetUserById/${id}`);
   }

@@ -65,24 +65,38 @@ export class ProfileComponent implements OnInit{
     }
   }
   
-  updatePassword:UpdatePasswordDTO={
+  passwordForm : FormGroup = new FormGroup({
+    oldPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    newPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    confirmPassword : new FormControl('')
+  });
+
+  passwordDTO:UpdatePasswordDTO = {
     OldPassword: null,
     NewPassword: null,
     ConfirmPassword: null
   }
-  
+
   updateProfile(){
     this.profile.updateProfile(this.userProfile);
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
-    if (token) {
-      this.profile.changePassword(parseInt(this.userId),this.updatePassword);
+    if (this.token1) {
+      this.passwordDTO.OldPassword = this.passwordForm.controls['oldPassword'].value;
+      this.passwordDTO.NewPassword = this.passwordForm.controls['newPassword'].value;
+      this.passwordDTO.ConfirmPassword = this.passwordForm.controls['confirmPassword'].value;
+      this.profile.changePassword(this.passwordDTO, this.userId);
     }
   }
-  confirmPassword():boolean{
-    return this.updatePassword.NewPassword == this.updatePassword.ConfirmPassword;
-  } 
+  checkReapetedPassword(){
+    if(this.passwordForm.controls['newPassword'].value === this.passwordForm.controls['confirmPassword'].value){
+      this.passwordForm.controls['confirmPassword'].setErrors(null);
+    }
+    else{
+      this.passwordForm.controls['confirmPassword'].setErrors({misMatch:true});
+    }
+  }
 
   @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
   openDeleteDailog(){
