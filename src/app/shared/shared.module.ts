@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatInputModule,
+    MatInputModule
   ],
   exports: [
     NavbarComponent,

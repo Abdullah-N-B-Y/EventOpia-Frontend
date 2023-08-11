@@ -1,9 +1,6 @@
 <div class="wrapper ">
-
     <app-sidebar></app-sidebar>
-
     <div class="main-panel">
-
         <app-navbar></app-navbar>
 
         <div class="content">
@@ -177,27 +174,19 @@
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Username">
+                        <input type="text" class="form-control" [disabled]="true"  [value]="user.username">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label>Password</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Password">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Password</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Confirm Password">
-                        <span class="text-danger" *ngIf="passwordForm.controls['confirmPassword'].hasError('misMatch')">Should match with password</span>
+                        <input type="text" class="form-control" [disabled]="true" [value]="user.password">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <!-- <button type="submit" class="btn btn-primary btn-round" (click)="openDeleteDailog()">Change password</button> -->
-                      <button type="submit" class="btn btn-primary btn-round" (click)="changePassword()">Change password</button>
+                      <button type="submit" class="btn btn-primary btn-round" (click)="openDeleteDailog()">Change password</button>
                     </div>
                   </div>
                 </form>
@@ -230,11 +219,28 @@
   </div>
 
 
-
-  <ng-template #callDeleteDailog>
-    <div style="padding:15px">
-    <h2>Are you sure you want to delete this item?</h2>
-    <button class="btn btn-primary m-1" mat-dialog-close="yes">Yes</button>
-    <button class="btn btn-danger m-1" mat-dialog-close="no">No</button> 
+<ng-template #callDeleteDailog>
+  <div style="padding:15px">
+    <div class="row">
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label>Old Password</label>
+          <input type="text" class="form-control" placeholder="********" [(ngModel)]="updatePassword.OldPassword">
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="text" class="form-control" placeholder="********" [(ngModel)]="updatePassword.NewPassword">
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+        <div class="form-group">
+          <label>Confirme Password</label>
+          <input type="text" class="form-control" placeholder="********" [(ngModel)]="updatePassword.ConfirmPassword">
+        </div>
+      </div>
     </div>
-  </ng-template>
+    <button class="btn btn-primary m-1" mat-dialog-close="change">Save</button>
+  </div>
+</ng-template>

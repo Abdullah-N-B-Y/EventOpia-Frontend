@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     DashboardModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule
   ]
 })
 export class AdminModule { }

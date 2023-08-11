@@ -13,6 +13,7 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     FormsModule,
     SharedModule,
     AdminModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
