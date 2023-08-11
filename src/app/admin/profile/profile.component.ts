@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -13,15 +13,9 @@ import { Profile } from 'src/app/shared/Data/Profile';
 })
 export class ProfileComponent implements OnInit{
 
-  constructor(public profile:ProfileService, private dailog:MatDialog){}
-  
   user:User = {
-    id: 1,
-    username: 'test',
-    password: 'test password',
-    email: 'asd',
-    verificationCode: 'asd',
-    userStatus: 'asd',
+    id: 0,
+    username:'',
     bookings: [],
     categories: [],
     contactUsEntries: [],
@@ -35,42 +29,43 @@ export class ProfileComponent implements OnInit{
     testimonials: [],
     comments: []
   };
-
-  userProfile:Profile = {
-    id: 0,
-    firstName:'test',
-    lastName:'test',
+  userProfile:Profile={
+    id: 1,
+    firstName:'',
     profilesettings: []
   };
+  email?:string = '';
 
+  token1?:any | string = sessionStorage.getItem('jwtToken');
+  decodedToken: User | null = null;
+
+  constructor(public profile:ProfileService, private dailog:MatDialog){ }
   ngOnInit(): void {
-    this.profile.getUserById(1).subscribe((resp:any)=>{
-      this.user = resp;
-      console.log('111111111111123'+this.user.email);
-    },err=>{
-      console.log(err);
-    })
+
+  if (this.token1) {
+    this.decodedToken = jwt_decode(this.token1) as User;
+
+    if (this.decodedToken) {
+      const userId = this.decodedToken['UserId']; // Use PascalCase here
+
+      this.profile.getUserById(userId).subscribe((pUser: User) => {
+        this.user = pUser;
+        this.email = pUser.email;
+      }, err => {
+        console.log(err.status);
+      });
+  
+      this.profile.getProfileByUserId(userId).subscribe((pProfile: Profile) => {
+        this.userProfile = pProfile;
+      }, err => {
+        console.log(err.status);
+      });
+    }
   }
-
-  test(){
-    this.profile.getUserById(1).subscribe((resp:any)=>{
-      this.user = resp;
-      console.log('111111111111123'+this.user.email);
-    },err=>{
-      console.log(err);
-    })
+  
+    
   }
-
-  profileForm: FormGroup = new FormGroup({
-    email : new FormControl(this.user.email,Validators.email),
-    firstName :new FormControl('First name'),
-    lastName :new FormControl('Last name'),
-    phoneNumber :new FormControl('+962 7********'),
-    dateOfBirth :new FormControl('DD/MM/YYYY'),
-    gender : new FormControl('Male'),
-    bio : new FormControl('loruem ipusom')
-  });
-
+  
   passwordForm: FormGroup = new FormGroup({
     oldPassowrd: new FormControl('********',Validators.minLength(8)),
     newPassword: new FormControl('********',Validators.minLength(8)),
@@ -78,7 +73,7 @@ export class ProfileComponent implements OnInit{
   })
   
   updateProfile(){
-    this.profile.updateProfile(this.profileForm);
+    this.profile.updateProfile(this.userProfile);
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
