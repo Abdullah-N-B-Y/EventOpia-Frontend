@@ -186,7 +186,7 @@
                   </div>
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-primary btn-round" (click)="openDeleteDailog()">Change password</button>
+                      <button type="submit" class="btn btn-primary btn-round" (click)="openChangePasswordDailog()">Change password</button>
                     </div>
                   </div>
                 </form>
@@ -219,7 +219,7 @@
   </div>
 
 
-<ng-template #callDeleteDailog>
+<ng-template #changePasswordDailog>
   <form [formGroup]="passwordForm">
   <div style="padding:15px">
     <div class="row">
@@ -247,7 +247,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary m-1" mat-dialog-close="change" [disabled]="!passwordForm.valid" (click)="changePassword()">Save</button>
+    <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!passwordForm.valid" (click)="openChangePasswordDailog()">Save</button>
   </div>
   </form>
 </ng-template>

@@ -98,16 +98,16 @@ export class ProfileComponent implements OnInit{
     }
   }
 
-  @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
-  openDeleteDailog(){
-    const dialogRef= this.dailog.open(this.callDelete);
+
+  @ViewChild('changePasswordDailog') changePasswordDailog!:TemplateRef<any>
+  openChangePasswordDailog(){
+    const dialogRef= this.dailog.open(this.changePasswordDailog);
     dialogRef.afterClosed().subscribe((result)=>{
        if(result!=undefined)
        {
-          if(result=='yes')
-            console.log("Thank you yes");
-          else if (result=='no')
-            console.log("Thank you no");  
+          if(result=='save'){
+            this.changePassword();
+          }
        }
     })
    }
