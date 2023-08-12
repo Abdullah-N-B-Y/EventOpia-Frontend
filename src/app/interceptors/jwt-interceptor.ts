@@ -15,8 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // Get the JWT token from where you have stored it (e.g., localStorage, sessionStorage)
-    const jwtToken = sessionStorage.getItem('jwtToken'); // Change to your actual storage method
+    const jwtToken = localStorage.getItem('jwtToken');
 
     if (jwtToken) {
       // Clone the request and add the Authorization header
@@ -27,12 +26,11 @@ export class JwtInterceptor implements HttpInterceptor {
       });
 
       // Pass the modified request to the next handler
-      // return next.handle(modifiedRequest);
-      console.log('Modified Request:', modifiedRequest);
+      // return next.handle(modifiedRequest)
 
       return next.handle(modifiedRequest).pipe(
         tap((event) => {
-          console.log('After Interceptor:', event);
+          console.log('After Interceptor & Token Found:', event);
         })
       );
     }
@@ -41,7 +39,7 @@ export class JwtInterceptor implements HttpInterceptor {
     // return next.handle(request);
     return next.handle(request).pipe(
       tap((event) => {
-        console.log('After Interceptor:', event);
+        console.log('After Interceptor & Token Not Found:', event);
       })
     );
   }

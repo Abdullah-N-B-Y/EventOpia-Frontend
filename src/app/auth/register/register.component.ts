@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/Services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginDTO } from 'src/app/shared/DTO/LoginDTO';
 import { RegisterDTO } from 'src/app/shared/DTO/RegisterDTO';
 
@@ -19,7 +20,7 @@ export class RegisterComponent {
   usernameAlreadyExists: boolean = false;
   emailAlreadyExists: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   private passwordPattern: RegExp =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -44,7 +45,8 @@ export class RegisterComponent {
   });
 
   register(): void {
-    this.showValidations = true
+    this.showValidations = true;
+    this.registerSuccess = false;
     this.usernameAlreadyExists = false;
     this.emailAlreadyExists = false;
     if (!this.registerForm.valid) return;
@@ -76,18 +78,22 @@ export class RegisterComponent {
     );
   }
 
+  navigateToLogin() {
+    this.router.navigate(['/auth/login']);
+  }
+
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-page');
+    body?.classList?.add('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    navbar?.classList?.add('navbar-transparent');
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login-page');
+    body?.classList?.remove('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+    navbar?.classList?.remove('navbar-transparent');
   }
 }

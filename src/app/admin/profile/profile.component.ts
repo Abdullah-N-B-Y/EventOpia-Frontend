@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ProfileService } from 'src/app/services/profile.service';
+import { ProfileService } from 'src/app/Services/profile.service';
 import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/shared/Data/User';
 import { Profile } from 'src/app/shared/Data/Profile';

@@ -4,3 +4,10 @@
   margin-bottom: 10px; /* Add margin between alerts */
   font-size: 12px;
 }
+
+.link {
+  cursor: pointer;
+}
+.button-color{
+  background-color: #F82249 !important;
+}

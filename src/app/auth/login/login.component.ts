@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/Services/auth.service';
+import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginDTO } from 'src/app/shared/DTO/LoginDTO';
 
 @Component({
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   stored_username: string | null = localStorage.getItem('username_Eventopia');
   stored_password: string | null = localStorage.getItem('password_Eventopia');
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   private passwordPattern: RegExp =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -39,6 +41,8 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.showValidations = true;
+    this.validCredentials = true;
+    this.loginSuccess = false;
     if (!this.loginForm.valid) return;
 
     let loginDTO: LoginDTO = {
@@ -50,28 +54,26 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.validCredentials = true;
         this.loginSuccess = true;
-        sessionStorage.setItem('jwtToken', res.content);
-        console.log(
-          'in loginHttpResponse getting from session ' +
-            sessionStorage.getItem('jwtToken')
-        );
+        localStorage.setItem('jwtToken', res.content);
+        if (this.loginForm.get('rememberMe')?.value === true)
+          this.rememberMeOn();
       },
       (err) => {
         this.validCredentials = false;
         console.log(err);
       }
     );
+  }
 
-    if (this.loginForm.get('rememberMe')?.value === true) {
-      localStorage.setItem(
-        'username_Eventopia',
-        this.loginForm.get('username')?.value
-      );
-      localStorage.setItem(
-        'password_Eventopia',
-        this.loginForm.get('password')?.value
-      );
-    }
+  private rememberMeOn() {
+    localStorage.setItem(
+      'username_Eventopia',
+      this.loginForm.get('username')?.value
+    );
+    localStorage.setItem(
+      'password_Eventopia',
+      this.loginForm.get('password')?.value
+    );
   }
 
   clearRememberMeItems() {
@@ -80,18 +82,22 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  navigateToRegister() {
+    this.router.navigate(['/auth/register']);
+  }
+
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-page');
+    body?.classList?.add('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    navbar?.classList?.add('navbar-transparent');
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login-page');
+    body?.classList?.remove('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+    navbar?.classList?.remove('navbar-transparent');
   }
 }

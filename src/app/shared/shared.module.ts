@@ -7,8 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.module';
 
-
-
 @NgModule({
   declarations: [NavbarComponent, FooterComponent],
   imports: [
@@ -25,7 +23,8 @@ import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.modul
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-
+    HttpClientModule,
+    DynamicDialogesModule,
   ],
 })
 export class SharedModule {}

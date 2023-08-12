@@ -1,5 +1,15 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.modal-backdrop {
+  z-index: -1 !important;
+}
+.btn-primary {
+  background-color: #f82249 !important;
+}
 
+.close{
+  color: #f82249 ;
+}
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
