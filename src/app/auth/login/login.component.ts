@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
+import jwtDecode from 'jwt-decode';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginDTO } from 'src/app/shared/DTO/LoginDTO';
 
 @Component({
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.showValidations = true;
+    this.validCredentials = true;
+    this.loginSuccess = false;
     if (!this.loginForm.valid) return;
 
     let loginDTO: LoginDTO = {
@@ -52,23 +55,25 @@ export class LoginComponent implements OnInit {
         this.validCredentials = true;
         this.loginSuccess = true;
         localStorage.setItem('jwtToken', res.content);
+        if (this.loginForm.get('rememberMe')?.value === true)
+          this.rememberMeOn();
       },
       (err) => {
         this.validCredentials = false;
         console.log(err);
       }
     );
+  }
 
-    if (this.loginForm.get('rememberMe')?.value === true) {
-      localStorage.setItem(
-        'username_Eventopia',
-        this.loginForm.get('username')?.value
-      );
-      localStorage.setItem(
-        'password_Eventopia',
-        this.loginForm.get('password')?.value
-      );
-    }
+  private rememberMeOn() {
+    localStorage.setItem(
+      'username_Eventopia',
+      this.loginForm.get('username')?.value
+    );
+    localStorage.setItem(
+      'password_Eventopia',
+      this.loginForm.get('password')?.value
+    );
   }
 
   clearRememberMeItems() {

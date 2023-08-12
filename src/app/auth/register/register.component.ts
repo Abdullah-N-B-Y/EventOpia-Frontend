@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginDTO } from 'src/app/shared/DTO/LoginDTO';
 import { RegisterDTO } from 'src/app/shared/DTO/RegisterDTO';
 
@@ -46,6 +46,7 @@ export class RegisterComponent {
 
   register(): void {
     this.showValidations = true;
+    this.registerSuccess = false;
     this.usernameAlreadyExists = false;
     this.emailAlreadyExists = false;
     if (!this.registerForm.valid) return;

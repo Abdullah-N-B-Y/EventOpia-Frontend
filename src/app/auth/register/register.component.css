@@ -8,3 +8,6 @@
 .link {
   cursor: pointer;
 }
+.button-color{
+  background-color: #F82249 !important;
+}
