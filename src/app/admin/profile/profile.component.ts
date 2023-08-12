@@ -6,6 +6,8 @@ import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/shared/Data/User';
 import { Profile } from 'src/app/shared/Data/Profile';
 import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
+import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
+import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +43,7 @@ export class ProfileComponent implements OnInit{
   decodedToken: User | null = null;
   userId:any | number;
 
-  constructor(public profile:ProfileService, private dailog:MatDialog){ }
+  constructor(public profile:ProfileService, private dialog:MatDialog){ }
   ngOnInit(): void {
     if (this.token1) {
       this.decodedToken = jwt_decode(this.token1) as User;
@@ -86,9 +88,25 @@ export class ProfileComponent implements OnInit{
       this.passwordDTO.OldPassword = this.passwordForm.controls['oldPassword'].value;
       this.passwordDTO.NewPassword = this.passwordForm.controls['newPassword'].value;
       this.passwordDTO.ConfirmPassword = this.passwordForm.controls['confirmPassword'].value;
-      this.profile.changePassword(this.passwordDTO, this.userId);
+      this.profile.changePassword(this.passwordDTO, this.userId).subscribe((success: boolean) => {
+        if(success)
+        {
+          const dialogRef = this.dialog.open(SucceededDialogComponent);
+          setTimeout(() => {
+            dialogRef.close();
+          }, 3000);
+        }
+        else
+        {
+          const dialogRef = this.dialog.open(FailedDialogComponent);
+          setTimeout(() => {
+            dialogRef.close();
+          }, 3000);
+        }
+      });
     }
   }
+
   checkReapetedPassword(){
     if(this.passwordForm.controls['newPassword'].value === this.passwordForm.controls['confirmPassword'].value){
       this.passwordForm.controls['confirmPassword'].setErrors(null);
@@ -98,10 +116,9 @@ export class ProfileComponent implements OnInit{
     }
   }
 
-
   @ViewChild('changePasswordDailog') changePasswordDailog!:TemplateRef<any>
   openChangePasswordDailog(){
-    const dialogRef= this.dailog.open(this.changePasswordDailog);
+    const dialogRef= this.dialog.open(this.changePasswordDailog);
     dialogRef.afterClosed().subscribe((result)=>{
        if(result!=undefined)
        {
@@ -111,4 +128,5 @@ export class ProfileComponent implements OnInit{
        }
     })
    }
+ 
 }

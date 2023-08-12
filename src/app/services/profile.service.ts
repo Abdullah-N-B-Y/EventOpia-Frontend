@@ -4,8 +4,8 @@ import { endPointURL } from 'src/constants/constants';
 import { User } from '../shared/Data/User';
 import { Observable } from 'rxjs/internal/Observable';
 import { Profile } from '../shared/Data/Profile';
-import { catchError, throwError } from 'rxjs';
-
+import { catchError, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +22,17 @@ export class ProfileService {
       console.log('2->'+err.status);
     })
   }
-  changePassword (body:any, id:number){
-    this.http.put(endPointURL+`User/UpdatePassword/${id}`,body).subscribe((resp:any)=>{
-      console.log('here password'+body+' '+id);
-    },err=>{
-      console.log('here error'+err.messageReceivers);
-    })
+  changePassword(body: any, id: number): Observable<boolean> {
+    return this.http.put(endPointURL + `User/UpdatePassword/${id}`, body).pipe(
+      map((resp: any) => {
+        console.log('Password changed successfully', resp);
+        return true;
+      }),
+      catchError((err) => {
+        console.error('Error changing password', err.messageReceivers);
+        return of(false);
+      })
+    );
   }
 
   getUserById(id: number): Observable<User> {
