@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
@@ -18,6 +19,14 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => DashboardModule,
+  },
+  {
+    path: 'admin/profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent,
   },
   {
     path: 'admin/profile',

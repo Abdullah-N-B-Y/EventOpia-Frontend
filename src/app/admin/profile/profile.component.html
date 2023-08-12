@@ -1,9 +1,6 @@
 <div class="wrapper ">
-
     <app-sidebar></app-sidebar>
-
     <div class="main-panel">
-
         <app-navbar></app-navbar>
 
         <div class="content">
@@ -17,10 +14,10 @@
                 <div class="author">
                   <a href="#">
                     <img class="avatar border-gray" src="../../../assets/dashboard-assets/img/mike.jpg" alt="...">
-                    <h5 class="title">*Name</h5>
+                    <h5 class="title">{{userProfile.firstName}} {{userProfile.lastName}}</h5>
                   </a>
                   <p class="description">
-                    *Rate
+                    {{userProfile.rate}}
                   </p>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
@@ -29,7 +26,7 @@
                   <span class="fa fa-star"></span>
                 </div>
                 <p class="description text-center">
-                  *Bio
+                  {{userProfile.bio}}
                 </p>
               </div>
               <div class="card-footer">
@@ -116,24 +113,24 @@
                 <h5 class="card-title">Edit Profile</h5>
               </div>
               <div class="card-body">
-                <form [formGroup]="profileForm">
+                <form >
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" [disabled]="true" formControlName="email">
+                        <input type="text" class="form-control" [disabled]="true" [value]="email">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>First name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" [(ngModel)]="userProfile.firstName" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Last name</label>
-                        <input type="email" class="form-control" formControlName="lastName">
+                        <input type="email" class="form-control" [(ngModel)]="userProfile.lastName" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                   </div>
@@ -141,19 +138,19 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Phone number</label>
-                        <input type="text" class="form-control" formControlName="phoneNumber">
+                        <input type="text" class="form-control" [(ngModel)]="userProfile.phoneNumber" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>Date of birth</label>
-                        <input type="text" class="form-control" [disabled]="true" formControlName="dateOfBirth">
+                        <input type="text" class="form-control" [disabled]="true" [(ngModel)]="userProfile.dateOfBirth" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">gender</label>
-                        <input type="email" class="form-control" [disabled]="true" formControlName="gender">
+                        <input type="email" class="form-control" [disabled]="true" [value]="userProfile.gender">
                       </div>
                     </div>
                   </div>
@@ -161,7 +158,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Bio</label>
-                        <textarea class="form-control textarea" formControlName="bio"></textarea>
+                        <textarea class="form-control textarea" [(ngModel)]="userProfile.bio" [ngModelOptions]="{standalone: true}"></textarea>
                       </div>
                     </div>
                   </div>
@@ -172,25 +169,24 @@
                   </div>
                 </form>
                 <br>
-                <form>
+                <form >
                   <div class="row">
-                    <div class="col-md-6 pr-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Username" value="*Username">
+                        <input type="text" class="form-control" [disabled]="true"  [value]="user.username">
                       </div>
                     </div>
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label>Password</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Password" value="*Password">
+                        <input type="text" class="form-control" [disabled]="true" value="********">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <!-- <button type="submit" class="btn btn-primary btn-round" (click)="openDeleteDailog()">Change password</button> -->
-                      <button type="submit" class="btn btn-primary btn-round" (click)="changePassword()">Change password</button>
+                      <button type="submit" class="btn btn-primary btn-round" (click)="openChangePasswordDailog()">Change password</button>
                     </div>
                   </div>
                 </form>
@@ -223,11 +219,35 @@
   </div>
 
 
-
-  <ng-template #callDeleteDailog>
-    <div style="padding:15px">
-    <h2>Are you sure you want to delete this item?</h2>
-    <button class="btn btn-primary m-1" mat-dialog-close="yes">Yes</button>
-    <button class="btn btn-danger m-1" mat-dialog-close="no">No</button> 
+<ng-template #changePasswordDailog>
+  <form [formGroup]="passwordForm">
+  <div style="padding:15px">
+    <div class="row">
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label>Old Password</label>
+          <input type="password" class="form-control" placeholder="********" formControlName="oldPassword">
+          <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('required')">Old password is required</span>
+          <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('minlength')">Password is invalid</span>
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" class="form-control" placeholder="********" formControlName="newPassword">
+          <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('required')">New password is required</span>
+          <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('minlength')">New password is weak</span>
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+        <div class="form-group">
+          <label>Confirme Password</label>
+          <input type="password" class="form-control" placeholder="********" formControlName="confirmPassword" (change)="checkReapetedPassword()">
+          <span class="text-danger" *ngIf="passwordForm.controls['confirmPassword'].hasError('misMatch')">Not matched</span>
+        </div>
+      </div>
     </div>
-  </ng-template>
+    <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!passwordForm.valid" (click)="openChangePasswordDailog()">Save</button>
+  </div>
+  </form>
+</ng-template>

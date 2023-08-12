@@ -20,6 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
               "src/assets/home-assets/lib/bootstrap/css/bootstrap.min.css",
               "src/assets/home-assets/lib/font-awesome/css/font-awesome.min.css",
@@ -30,6 +31,13 @@
               "src/assets/dashboard-assets/css/bootstrap.min.css",
               "src/assets/dashboard-assets/css/paper-dashboard.css",
               "src/assets/dashboard-assets/demo/demo.css",
+              "src/assets/contactus-assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/contactus-assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
+              "src/assets/contactus-assets/vendor/animate/animate.css",
+              "src/assets/contactus-assets/vendor/css-hamburgers/hamburgers.min.css",
+              "src/assets/contactus-assets/vendor/select2/select2.min.css",
+              "src/assets/contactus-assets/css/util.css",
+              "src/assets/contactus-assets/css/main.css",
               "src/styles.scss",
               "src/assets/ui-kit-assets/sass/now-ui-kit.scss",
               "src/assets/ui-kit-assets/css/demo.css"
@@ -53,6 +61,12 @@
               "src/assets/dashboard-assets/js/plugins/chartjs.min.js",
               "src/assets/dashboard-assets/js/plugins/bootstrap-notify.js",
               "src/assets/dashboard-assets/demo/demo.js",
+              "src/assets/contactus-assets/js/main.js",
+              "src/assets/contactus-assets/vendor/tilt/tilt.jquery.min.js",
+              "src/assets/contactus-assets/vendor/select2/select2.min.js",
+              "src/assets/contactus-assets/vendor/bootstrap/js/bootstrap.min.js",
+              "src/assets/contactus-assets/vendor/bootstrap/js/popper.js",
+              "src/assets/contactus-assets/vendor/jquery/jquery-3.2.1.min.js",
               "node_modules/rellax/rellax.min.js"
             ]
           },
@@ -107,7 +121,10 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }
