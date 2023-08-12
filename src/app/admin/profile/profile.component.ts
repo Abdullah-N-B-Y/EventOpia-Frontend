@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit{
     profilesettings: []
   };
 
+  rate:any;
   dateOfBirth:string='';
   email?:string = '';
 
@@ -64,6 +65,7 @@ export class ProfileComponent implements OnInit{
         this.profile.getProfileByUserId(this.userId).subscribe((pProfile: Profile) => {
           this.userProfile = pProfile;
           
+          this.rate = pProfile.rate;
           if (this.userProfile && this.userProfile.dateOfBirth) {
             const parsedDate = new Date(this.userProfile.dateOfBirth);
             
@@ -162,4 +164,9 @@ export class ProfileComponent implements OnInit{
     })
    }
  
+
+   getStarArray(): number[] {
+    return Array.from({ length: 5 }, (_, i) => i);
+  }
+
 }
