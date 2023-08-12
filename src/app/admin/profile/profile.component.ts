@@ -6,6 +6,8 @@ import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/shared/Data/User';
 import { Profile } from 'src/app/shared/Data/Profile';
 import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
+import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
+import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +43,7 @@ export class ProfileComponent implements OnInit{
   decodedToken: User | null = null;
   userId:any | number;
 
-  constructor(public profile:ProfileService, private dailog:MatDialog){ }
+  constructor(public profile:ProfileService, private dialog:MatDialog){ }
   ngOnInit(): void {
     if (this.token1) {
       this.decodedToken = jwt_decode(this.token1) as User;
@@ -65,36 +67,66 @@ export class ProfileComponent implements OnInit{
     }
   }
   
-  updatePassword:UpdatePasswordDTO={
+  passwordForm : FormGroup = new FormGroup({
+    oldPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    newPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    confirmPassword : new FormControl('')
+  });
+
+  passwordDTO:UpdatePasswordDTO = {
     OldPassword: null,
     NewPassword: null,
     ConfirmPassword: null
   }
-  
+
   updateProfile(){
     this.profile.updateProfile(this.userProfile);
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
-    if (token) {
-      this.profile.changePassword(parseInt(this.userId),this.updatePassword);
+    if (this.token1) {
+      this.passwordDTO.OldPassword = this.passwordForm.controls['oldPassword'].value;
+      this.passwordDTO.NewPassword = this.passwordForm.controls['newPassword'].value;
+      this.passwordDTO.ConfirmPassword = this.passwordForm.controls['confirmPassword'].value;
+      this.profile.changePassword(this.passwordDTO, this.userId).subscribe((success: boolean) => {
+        if(success)
+        {
+          const dialogRef = this.dialog.open(SucceededDialogComponent);
+          setTimeout(() => {
+            dialogRef.close();
+          }, 3000);
+        }
+        else
+        {
+          const dialogRef = this.dialog.open(FailedDialogComponent);
+          setTimeout(() => {
+            dialogRef.close();
+          }, 3000);
+        }
+      });
     }
   }
-  confirmPassword():boolean{
-    return this.updatePassword.NewPassword == this.updatePassword.ConfirmPassword;
-  } 
 
-  @ViewChild('callDeleteDailog') callDelete!:TemplateRef<any>
-  openDeleteDailog(){
-    const dialogRef= this.dailog.open(this.callDelete);
+  checkReapetedPassword(){
+    if(this.passwordForm.controls['newPassword'].value === this.passwordForm.controls['confirmPassword'].value){
+      this.passwordForm.controls['confirmPassword'].setErrors(null);
+    }
+    else{
+      this.passwordForm.controls['confirmPassword'].setErrors({misMatch:true});
+    }
+  }
+
+  @ViewChild('changePasswordDailog') changePasswordDailog!:TemplateRef<any>
+  openChangePasswordDailog(){
+    const dialogRef= this.dialog.open(this.changePasswordDailog);
     dialogRef.afterClosed().subscribe((result)=>{
        if(result!=undefined)
        {
-          if(result=='yes')
-            console.log("Thank you yes");
-          else if (result=='no')
-            console.log("Thank you no");  
+          if(result=='save'){
+            this.changePassword();
+          }
        }
     })
    }
+ 
 }

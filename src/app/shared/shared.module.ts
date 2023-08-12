@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
+import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.module';
 
 
 
@@ -15,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    DynamicDialogesModule
   ],
   exports: [
     NavbarComponent,
@@ -23,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+
   ],
 })
 export class SharedModule {}
