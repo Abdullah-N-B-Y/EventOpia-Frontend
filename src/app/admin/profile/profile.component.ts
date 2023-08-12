@@ -98,7 +98,22 @@ export class ProfileComponent implements OnInit{
   }
 
   updateProfile(){
-    this.profile.updateProfile(this.userProfile);
+    this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
+      if(success)
+      {
+        const dialogRef = this.dialog.open(SucceededDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+      else
+      {
+        const dialogRef = this.dialog.open(FailedDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+    });
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
