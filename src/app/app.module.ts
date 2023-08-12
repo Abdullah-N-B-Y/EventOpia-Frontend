@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
-import { AuthService } from './Services/auth.service';
+import { AuthService } from './services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 

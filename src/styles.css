@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.modal-backdrop {
+  z-index: -1 !important;
+}
+.btn-primary {
+  background-color: #f82249 !important;
+}
+
+.close{
+  color: #f82249 ;
+}
