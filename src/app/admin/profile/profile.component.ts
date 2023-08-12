@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit{
     profilesettings: []
   };
 
+  rate:any;
   dateOfBirth:string='';
   email?:string = '';
 
@@ -64,6 +65,7 @@ export class ProfileComponent implements OnInit{
         this.profile.getProfileByUserId(this.userId).subscribe((pProfile: Profile) => {
           this.userProfile = pProfile;
           
+          this.rate = pProfile.rate;
           if (this.userProfile && this.userProfile.dateOfBirth) {
             const parsedDate = new Date(this.userProfile.dateOfBirth);
             
@@ -98,7 +100,22 @@ export class ProfileComponent implements OnInit{
   }
 
   updateProfile(){
-    this.profile.updateProfile(this.userProfile);
+    this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
+      if(success)
+      {
+        const dialogRef = this.dialog.open(SucceededDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+      else
+      {
+        const dialogRef = this.dialog.open(FailedDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+    });
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
@@ -147,4 +164,9 @@ export class ProfileComponent implements OnInit{
     })
    }
  
+
+   getStarArray(): number[] {
+    return Array.from({ length: 5 }, (_, i) => i);
+  }
+
 }
