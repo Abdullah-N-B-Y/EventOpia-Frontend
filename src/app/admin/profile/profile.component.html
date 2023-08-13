@@ -16,15 +16,11 @@
                     <img class="avatar border-gray" src="../../../assets/dashboard-assets/img/mike.jpg" alt="...">
                     <h5 class="title">{{userProfile.firstName}} {{userProfile.lastName}}</h5>
                   </a>
-                  <p class="description">
-                    {{userProfile.rate}}
-                  </p>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
+                  <div class="star-rating">
+                    <span class="fa fa-star" *ngFor="let starIndex of getStarArray()" [ngClass]="{'checked': starIndex < rate}"></span>
+                  </div>
                 </div>
+                <br>
                 <p class="description text-center">
                   {{userProfile.bio}}
                 </p>
@@ -144,7 +140,7 @@
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label>Date of birth</label>
-                        <input type="text" class="form-control" [disabled]="true" [(ngModel)]="userProfile.dateOfBirth" [ngModelOptions]="{standalone: true}">
+                        <input type="text" class="form-control" [disabled]="true" [(ngModel)]="dateOfBirth" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">

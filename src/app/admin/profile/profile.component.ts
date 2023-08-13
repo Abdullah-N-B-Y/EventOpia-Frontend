@@ -1,13 +1,14 @@
 import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ProfileService } from 'src/app/Services/profile.service';
 import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/shared/Data/User';
 import { Profile } from 'src/app/shared/Data/Profile';
 import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
 import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
 import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
+import { ProfileService } from 'src/app/services/profile.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -37,9 +38,12 @@ export class ProfileComponent implements OnInit{
     firstName:'',
     profilesettings: []
   };
+
+  rate:any;
+  dateOfBirth:string='';
   email?:string = '';
 
-  token1?:any | string = sessionStorage.getItem('jwtToken');
+  token1?:any | string = localStorage.getItem('jwtToken');
   decodedToken: User | null = null;
   userId:any | number;
 
@@ -60,6 +64,22 @@ export class ProfileComponent implements OnInit{
     
         this.profile.getProfileByUserId(this.userId).subscribe((pProfile: Profile) => {
           this.userProfile = pProfile;
+          
+          this.rate = pProfile.rate;
+          if (this.userProfile && this.userProfile.dateOfBirth) {
+            const parsedDate = new Date(this.userProfile.dateOfBirth);
+            
+            if (!isNaN(parsedDate.getTime())) {
+                const year = parsedDate.getFullYear();
+                const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0');
+                const day = parsedDate.getDate().toString().padStart(2, '0');
+        
+                const formattedDate = `${year}-${month}-${day}`;
+                this.dateOfBirth = formattedDate;
+            } else {
+                console.log("Invalid date format.");
+            }
+          }
         }, err => {
           console.log(err.status);
         });
@@ -80,7 +100,22 @@ export class ProfileComponent implements OnInit{
   }
 
   updateProfile(){
-    this.profile.updateProfile(this.userProfile);
+    this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
+      if(success)
+      {
+        const dialogRef = this.dialog.open(SucceededDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+      else
+      {
+        const dialogRef = this.dialog.open(FailedDialogComponent);
+        setTimeout(() => {
+          dialogRef.close();
+        }, 3000);
+      }
+    });
   }
   changePassword(){
     const token = localStorage.getItem('jwtToken');
@@ -129,4 +164,9 @@ export class ProfileComponent implements OnInit{
     })
    }
  
+
+   getStarArray(): number[] {
+    return Array.from({ length: 5 }, (_, i) => i);
+  }
+
 }

@@ -14,13 +14,17 @@ export class ProfileService {
 
   constructor(private http:HttpClient) { }
 
-  updateProfile (body:any){
-    this.http.put('https://localhost:7189/api/Profile/UpdateProfile',body).subscribe((resp:any)=>{
-
-    },err=>{
-
-      console.log('2->'+err.status);
-    })
+  updateProfile (body:any): Observable<boolean> {
+      return this.http.put('https://localhost:7189/api/Profile/UpdateProfile',body).pipe(
+        map((resp: any) => {
+          console.log('Password changed successfully', resp);
+          return true;
+        }),
+        catchError((err) => {
+          console.error('Error changing password', err.messageReceivers);
+          return of(false);
+        })
+      );
   }
   changePassword(body: any, id: number): Observable<boolean> {
     return this.http.put(endPointURL + `User/UpdatePassword/${id}`, body).pipe(
