@@ -15,6 +15,7 @@ export class ProfileService {
     constructor(private http: HttpClient) {}
 
     updateProfile(profile: Profile): Observable<boolean> {
+        console.log('here 2');
         let formData: FormData = new FormData();
         formData = createFormDataFromObject(profile);
 

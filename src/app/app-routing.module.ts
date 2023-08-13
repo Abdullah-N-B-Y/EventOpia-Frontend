@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { ProfileComponent } from './admin/profile/profile.component';
-import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
+import { ProfileComponent } from './admin/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -17,20 +17,12 @@ const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path: 'admin',
-    loadChildren: () => DashboardModule,
-  },
-  {
-    path: 'admin/profile',
-    component: ProfileComponent,
-  },
-  {
     path: 'contact',
     component: ContactUsComponent,
   },
   {
-    path: 'admin/profile',
-    component: ProfileComponent,
+    path: 'admin',
+    loadChildren: () => AdminModule
   },
   {
     path: 'auth',

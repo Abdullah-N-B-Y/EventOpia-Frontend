@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AdminRoutingModule } from './admin-routing.module';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    HomeDashboardComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DashboardModule,
     SharedModule,
-    MatDialogModule,
-    BrowserAnimationsModule
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
