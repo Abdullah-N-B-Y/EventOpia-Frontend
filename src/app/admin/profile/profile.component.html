@@ -10,10 +10,21 @@
               <div class="image">
                 <img src="../../../assets/dashboard-assets/img/damir-bosnjak.jpg" alt="...">
               </div>
+              <br>
+              <br>
+              <br>
               <div class="card-body">
                 <div class="author">
                   <a href="#">
-                    <img class="avatar border-gray" src="../../../assets/dashboard-assets/img/mike.jpg" alt="...">
+                    <!-- Display the user's profile image -->
+                    <img class="avatar border-gray" 
+                         src="{{profileImagePath}}{{userId}}" 
+                         alt="Profile Image"
+                         (click)="uploadImageInput.click()">
+                         
+                    <!-- Hidden file input triggered by the image click -->
+                    <input type="file" #uploadImageInput (change)="handleFileInput($event)" accept="image/*" style="display: none;">
+                  
                     <h5 class="title">{{userProfile.firstName}} {{userProfile.lastName}}</h5>
                   </a>
                   <div class="star-rating">
@@ -109,7 +120,7 @@
                 <h5 class="card-title">Edit Profile</h5>
               </div>
               <div class="card-body">
-                <form >
+                <form>
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">

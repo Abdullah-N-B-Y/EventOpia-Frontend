@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endPointURL } from 'src/constants/constants';
 import { User } from '../shared/Data/User';
@@ -59,4 +59,12 @@ export class ProfileService {
         );
     });
   }
+
+  updateProfileImage(image: File):Observable<Object>{
+    const formDate = new FormData();
+    formDate.append(image.name,image);
+    const headers = new HttpHeaders().append('Content-Disposition','multipart/form-data');
+    return this.http.post(endPointURL+'Profile/UploadImage',formDate,{headers})
+  }
+
 }

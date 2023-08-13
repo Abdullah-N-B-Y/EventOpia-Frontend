@@ -37,16 +37,16 @@ export class ForgotPasswordModalComponent {
     this.email = this.emailForm.get('email')?.value;
     console.log('em: ' + this.email);
     this.stageNo = '2';
-    // this.userSevice.forgotPassword(this.email).subscribe(
-    //   () => {
-    //     this.showValidations = false;
-    //     this.stageNo = '2';
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.emailExists = false;
-    //   }
-    // );
+    this.userSevice.forgotPassword(this.email).subscribe(
+      () => {
+        this.showValidations = false;
+        this.stageNo = '2';
+      },
+      (err) => {
+        console.log(err);
+        this.emailExists = false;
+      }
+    );
   }
 
   codeForm: FormGroup = new FormGroup({
@@ -65,16 +65,16 @@ export class ForgotPasswordModalComponent {
     const code: string = this.codeForm.get('code')?.value;
     console.log('code: ' + code);
     this.stageNo = '3';
-    // this.userSevice.checkPasswordResetToken(this.email, code).subscribe(
-    //   () => {
-    //     this.showValidations = false;
-    //     this.stageNo = '3';
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.isCodeValid = false;
-    //   }
-    // );
+    this.userSevice.checkPasswordResetToken(this.email, code).subscribe(
+      () => {
+        this.showValidations = false;
+        this.stageNo = '3';
+      },
+      (err) => {
+        console.log(err);
+        this.isCodeValid = false;
+      }
+    );
   }
 
   private passwordPattern: RegExp =
@@ -96,15 +96,15 @@ export class ForgotPasswordModalComponent {
     const password: string = this.passwordForm.get('password')?.value;
     console.log('password: ' + password);
     this.stageNo = '4';
-    // this.userSevice.resetForgottenPassword(this.email, password).subscribe(
-    //   () => {
-    //     this.showValidations = false;
-    //     this.stageNo = '4';
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    this.userSevice.resetForgottenPassword(this.email, password).subscribe(
+      () => {
+        this.showValidations = false;
+        this.stageNo = '4';
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   open(content: any, type: string, modalDimension: string | undefined) {
