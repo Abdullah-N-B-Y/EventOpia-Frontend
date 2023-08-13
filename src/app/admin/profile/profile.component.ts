@@ -105,6 +105,7 @@ export class ProfileComponent implements OnInit{
 
   updateProfile(){
     this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
+      console.log('here 1');
       if(success)
       {
         const dialogRef = this.dialog.open(SucceededDialogComponent);
@@ -121,6 +122,7 @@ export class ProfileComponent implements OnInit{
       }
     });
   }
+  
   changePassword(){
     const token = localStorage.getItem('jwtToken');
     if (this.token1) {
