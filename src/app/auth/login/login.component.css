@@ -1,23 +1,31 @@
 .alert {
-  border-radius: 30px;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 12px;
+    border-radius: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
 }
 
 .link {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .form-check-sign {
-  border-color: silver; 
-  background-color: silver; 
+    border-color: silver;
+    background-color: silver;
 }
 .btn-primary {
-  background-color: #f82249 !important;
+    background-color: #f82249 !important;
 }
 
-.close{
-  color: #f82249 ;
+.close {
+    color: #f82249;
 }
 
+.custom-input:focus {
+    border-color: #f82249 !important; /* You can also use 'inherit' or any color you want */
+    border-style: solid !important;
+    outline: none; /* Optionally remove the outline on focus */
+}
+.dialog-title {
+    color: #f82249;
+}
