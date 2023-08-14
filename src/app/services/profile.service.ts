@@ -17,11 +17,11 @@ export class ProfileService {
   updateProfile (body:any): Observable<boolean> {
       return this.http.put('https://localhost:7189/api/Profile/UpdateProfile',body).pipe(
         map((resp: any) => {
-          console.log('Password changed successfully', resp);
+          console.log('profile changed successfully', resp);
           return true;
         }),
         catchError((err:any) => {
-          console.error('Error changing password', err.messageReceivers);
+          console.error('Error changing profile', err.messageReceivers);
           return of(false);
         })
       );

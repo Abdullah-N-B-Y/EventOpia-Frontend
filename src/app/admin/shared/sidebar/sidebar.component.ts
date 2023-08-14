@@ -12,8 +12,8 @@ export class SidebarComponent {
   openDashboard(){
     this.router.navigate(['admin/home']);
   }
-  openManageEvents(){
-    this.router.navigate(['admin/manageevents']);
+  openManageCategories(){
+    this.router.navigate(['admin/manageCategories']);
   }
   openAcceptEvents(){
     this.router.navigate(['admin/acceptevents']);
@@ -22,7 +22,7 @@ export class SidebarComponent {
     this.router.navigate(['admin/home']);
   }
   openReports(){
-    this.router.navigate(['admin/reports']);
+    this.router.navigate(['admin/report']);
   }
   openManagePages(){
     this.router.navigate(['admin/managepages']);

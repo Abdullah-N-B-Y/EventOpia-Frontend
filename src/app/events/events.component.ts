@@ -55,7 +55,7 @@ export class EventsComponent implements OnInit {
     constructor(
         private eventService: EventService,
         private matDialog: MatDialog,
-        private categoryService: CategoryService,
+        public categoryService: CategoryService,
         private toastr: ToastrService
     ) {}
 
@@ -131,13 +131,11 @@ export class EventsComponent implements OnInit {
         categoryId: new FormControl('', [Validators.required, Validators.min(1)]),
         eventImage: new FormControl(null, [Validators.required]),
     });
-    categories: Category[] = [];
     newEventCoords!: google.maps.LatLng;
     newEventImage: File | undefined;
     @ViewChild('addEventDialog') addEventDialog!: TemplateRef<any>;
 
     openAddEventDialog() {
-        this.getAllCategories();
         const dialogConfig = new MatDialogConfig();
         dialogConfig.width = '500px'; // Set the desired width here
         const dialogRef = this.matDialog.open(this.addEventDialog, dialogConfig);
@@ -196,16 +194,6 @@ export class EventsComponent implements OnInit {
 
     onFileChange(event: any): void {
         this.newEventImage = event.target.files[0];
-    }
-    private getAllCategories() {
-        this.categoryService.getAllCategories().subscribe(
-            (res: Category[]) => {
-                this.categories = res;
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
     }
 }
 

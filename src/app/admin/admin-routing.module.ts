@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileComponent } from './profile/profile.component';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
-import { ManageEventsComponent } from './manage-events/manage-events.component';
+import { ReportComponent } from './report/report.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,12 @@ const routes: Routes = [
     component:HomeDashboardComponent
   },
   {
-    path:'manageevents',
-    component: ManageEventsComponent
+    path:'manageCategories',
+    component: ManageCategoriesComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
   }
 ];
 
