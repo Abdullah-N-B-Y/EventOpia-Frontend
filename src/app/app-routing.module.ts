@@ -6,6 +6,7 @@ import { ProfileComponent } from './admin/profile/profile.component';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthModule } from './auth/auth.module';
+import { EventsComponent } from './events/events.component';
 
 const routes: Routes = [
   {
@@ -29,12 +30,12 @@ const routes: Routes = [
     component: ContactUsComponent,
   },
   {
-    path: 'admin/profile',
-    component: ProfileComponent,
-  },
-  {
     path: 'auth',
     loadChildren: () => AuthModule,
+  },
+  {
+    path: 'events',
+    component: EventsComponent
   },
 ];
 

@@ -8,23 +8,24 @@ import { MatInputModule } from '@angular/material/input';
 import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.module';
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatInputModule,
-    DynamicDialogesModule
-  ],
-  exports: [
-    NavbarComponent,
-    FooterComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    HttpClientModule,
-    DynamicDialogesModule,
-  ],
+    declarations: [NavbarComponent, FooterComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatInputModule,
+        DynamicDialogesModule,
+        
+    ],
+    exports: [
+        NavbarComponent,
+        FooterComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        HttpClientModule,
+        DynamicDialogesModule,
+    ],
 })
 export class SharedModule {}

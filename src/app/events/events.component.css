@@ -1,0 +1,43 @@
+.btn-primary {
+  background-color: #f82249 !important;
+}
+
+.close{
+  color: #f82249 ;
+}
+
+.secondary-color{
+  color: #9195a2;
+}
+
+.autocomplete {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  padding: 8px;
+}
+
+.info-content {
+  overflow-y: auto; /* Add vertical scroll if content exceeds the height */
+}
+
+.rounded-textarea {
+  border-radius: 10px; /* Adjust the value to control the roundness */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+}
+
+input:focus {
+  border-color: #f82249 !important; /* You can also use 'inherit' or any color you want */
+  border-style: solid !important;
+  outline: none; /* Optionally remove the outline on focus */
+}
+
+textarea:focus {
+  border-color: #f82249 !important; /* You can also use 'inherit' or any color you want */
+  border-style: solid !important;
+  outline: none; /* Optionally remove the outline on focus */
+}
+textarea {
+  padding: 10px; /* Adjust the value to your desired padding */
+}

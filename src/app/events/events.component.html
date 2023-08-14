@@ -1,0 +1,234 @@
+<app-navbar></app-navbar>
+<section id="venue">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h2>Events</h2>
+            <p>Events in your area</p>
+            <div class="row d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)="enterAddMode()">Add your own event</button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center" style="height: 90vh">
+            <div class="col-lg-10">
+                <google-map
+                    height="100%"
+                    width="100%"
+                    [center]="center"
+                    [zoom]="zoom"
+                    (mapClick)="isAddingEvent ? addEvent($event) : moveMap($event)"
+                    (mapMousemove)="move($event)">
+                    <map-marker
+                        #marker="mapMarker"
+                        *ngFor="let eventOnMap of eventsOnMap"
+                        [position]="eventOnMap.markerPosition"
+                        (mapClick)="openInfoWindow(marker, eventOnMap.event)"></map-marker>
+                    <map-info-window>
+                        <div class="card w-100 h-100 info-content" id="myElement">
+                            <img [src]="getDataURL(focusedEvent.retrievedImageFile)" class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">
+                                            {{ focusedEvent.name }}
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title secondary-color">
+                                            {{ focusedEvent.startDate | date : 'MMM d' }}
+                                            -
+                                            {{ focusedEvent.endDate | date : 'MMM d' }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">
+                                            {{ focusedEvent.categoryName }}
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title secondary-color">
+                                            {{ focusedEvent.address }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">
+                                            Capacity:
+                                            {{ focusedEvent.eventCapacity }}
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title secondary-color">${{ focusedEvent.attendingCost }}</h5>
+                                    </div>
+                                </div>
+
+                                <p class="card-text text-center">
+                                    {{ focusedEvent.eventDescription }}
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary custom-button">View event details</button>
+                                    <button class="btn btn-primary custom-button">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </map-info-window>
+                </google-map>
+
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>
+
+<ng-template #addEventDialog>
+    <form [formGroup]="eventForm" style="padding: 15px">
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="name" class="font-weight-bold">Name:</label>
+                <input type="text" id="name" class="form-control" formControlName="name" />
+                <div *ngIf="eventForm.get('name')?.invalid && (eventForm.get('name')?.dirty || eventForm.get('name')?.touched)">
+                    <div class="text-danger" *ngIf="eventForm.controls['name'].hasError('required')">Name is required.</div>
+                    <div class="text-danger" *ngIf="eventForm.controls['name'].hasError('maxLength')">
+                        Name cannot exceed 100 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="attendingCost" class="font-weight-bold">Attending Cost:</label>
+                <input type="number" id="attendingCost" class="form-control" formControlName="attendingCost" />
+                <div
+                    *ngIf="
+                        eventForm.get('attendingCost')?.invalid &&
+                        (eventForm.get('attendingCost')?.dirty || eventForm.get('attendingCost')?.touched)
+                    ">
+                    <div class="text-danger" *ngIf="eventForm.controls['attendingCost'].hasError('required')">
+                        Attending Cost is required.
+                    </div>
+                    <div class="text-danger" *ngIf="eventForm.controls['attendingCost'].hasError('min')">
+                        Attending Cost must be a non-negative number.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="startDate" class="font-weight-bold">Start Date:</label>
+                <input type="date" id="startDate" class="form-control" formControlName="startDate" />
+                <div
+                    *ngIf="
+                        eventForm.get('startDate')?.invalid && (eventForm.get('startDate')?.dirty || eventForm.get('startDate')?.touched)
+                    ">
+                    <div *ngIf="eventForm.controls['startDate'].hasError('required')">Start Date is required.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="endDate" class="font-weight-bold">End Date:</label>
+                <input type="date" id="endDate" class="form-control" formControlName="endDate" />
+                <div *ngIf="eventForm.get('endDate')?.invalid && (eventForm.get('endDate')?.dirty || eventForm.get('endDate')?.touched)">
+                    <div class="text-danger" *ngIf="eventForm.controls['endDate'].hasError('required')">End Date is required.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="eventDescription" class="font-weight-bold">Event Description:</label>
+                <textarea id="eventDescription" class="form-control rounded-textarea" formControlName="eventDescription"></textarea>
+                <div
+                    *ngIf="
+                        eventForm.get('eventDescription')?.invalid &&
+                        (eventForm.get('eventDescription')?.dirty || eventForm.get('eventDescription')?.touched)
+                    ">
+                    <div class="text-danger" *ngIf="eventForm.controls['eventDescription'].hasError('required')">
+                        Event Description is required.
+                    </div>
+                    <div class="text-danger" *ngIf="eventForm.controls['eventDescription'].hasError('maxLength')">
+                        Event Description cannot exceed 500 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="eventCapacity" class="font-weight-bold">Event Capacity:</label>
+                <input type="number" id="eventCapacity" class="form-control" formControlName="eventCapacity" />
+                <div
+                    *ngIf="
+                        eventForm.get('eventCapacity')?.invalid &&
+                        (eventForm.get('eventCapacity')?.dirty || eventForm.get('eventCapacity')?.touched)
+                    ">
+                    <div class="text-danger" *ngIf="eventForm.controls['eventCapacity'].hasError('required')">
+                        Event Capacity is required.
+                    </div>
+                    <div class="text-danger" *ngIf="eventForm.controls['eventCapacity'].hasError('min')">
+                        Event Capacity must be a non-negative number.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="address" class="font-weight-bold">Address:</label>
+                <input type="text" id="address" class="form-control" formControlName="address" />
+                <div *ngIf="eventForm.get('address')?.invalid && (eventForm.get('address')?.dirty || eventForm.get('address')?.touched)">
+                    <div class="text-danger" *ngIf="eventForm.controls['address'].hasError('required')">Address is required.</div>
+                    <div class="text-danger" *ngIf="eventForm.controls['address'].hasError('maxLength')">
+                        Address cannot exceed 100 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="categoryId" class="font-weight-bold">Category:</label>
+                <select id="categoryId" class="form-control" formControlName="categoryId">
+                    <option value="" disabled selected>Select a category</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                </select>
+                <div
+                    *ngIf="
+                        eventForm.get('categoryId')?.invalid && (eventForm.get('categoryId')?.dirty || eventForm.get('categoryId')?.touched)
+                    ">
+                    <div class="text-danger" *ngIf="eventForm.controls['categoryId'].hasError('required')">Category is required.</div>
+                    <div class="text-danger" *ngIf="eventForm.controls['categoryId'].hasError('min')">Category must be selected.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="eventImage" class="font-weight-bold">Event Image:</label>
+                <input
+                    name="eventImage"
+                    class="form-control"
+                    formControlName="eventImage"
+                    type="file"
+                    (change)="onFileChange($event)"
+                    accept="image/*" />
+                <div
+                    *ngIf="
+                        eventForm.get('eventImage')?.invalid && (eventForm.get('eventImage')?.dirty || eventForm.get('eventImage')?.touched)
+                    ">
+                    <div class="text-danger" *ngIf="eventForm.controls['eventImage'].hasError('required')">Event Image is required.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!eventForm.valid" (click)="onAddEventSubmit()">
+                Save
+            </button>
+        </div>
+    </form>
+</ng-template>

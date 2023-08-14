@@ -40,7 +40,8 @@
               "src/assets/contactus-assets/css/main.css",
               "src/styles.scss",
               "src/assets/ui-kit-assets/sass/now-ui-kit.scss",
-              "src/assets/ui-kit-assets/css/demo.css"
+              "src/assets/ui-kit-assets/css/demo.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "src/assets/home-assets/lib/jquery/jquery.min.js",
