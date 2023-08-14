@@ -20,7 +20,7 @@ export class ProfileService {
           console.log('Password changed successfully', resp);
           return true;
         }),
-        catchError((err) => {
+        catchError((err:any) => {
           console.error('Error changing password', err.messageReceivers);
           return of(false);
         })
@@ -32,7 +32,7 @@ export class ProfileService {
         console.log('Password changed successfully', resp);
         return true;
       }),
-      catchError((err) => {
+      catchError((err:any) => {
         console.error('Error changing password', err.messageReceivers);
         return of(false);
       })

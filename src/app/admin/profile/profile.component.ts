@@ -158,11 +158,11 @@ export class ProfileComponent implements OnInit{
   @ViewChild('changePasswordDailog') changePasswordDailog!:TemplateRef<any>
   openChangePasswordDailog(){
     const dialogRef= this.dialog.open(this.changePasswordDailog);
-    dialogRef.afterClosed().subscribe((result)=>{
+    dialogRef.afterClosed().subscribe((result:any)=>{
        if(result!=undefined)
        {
           if(result=='save'){
-            this.changePassword();
+            //this.changePassword();
           }
        }
     })
