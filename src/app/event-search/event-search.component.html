@@ -1,4 +1,5 @@
-<form (ngSubmit)="searchEvents()" #searchForm="ngForm">
+<h2>Search by Date:</h2>
+<form (ngSubmit)="searchEvents()">
   <label for="startDate">Start Date:</label>
   <input type="date" id="startDate" name="startDate" [value]="startDate" required>
 
@@ -8,14 +9,18 @@
   <button type="submit" [disabled]="!searchForm.form.valid">Search</button>
 </form>
 
-
 <div *ngIf="searchForm.submitted && searchForm.invalid" class="error-message">
   Please provide valid start and end dates.
 </div>
 
-<div *ngIf="events.length > 0">
-  <h2>Search Results:</h2>
-  <ul>
-    <li *ngFor="let event of events">{{ event.name }} - {{ event.date }}</li>
-  </ul>
-</div>
+<h2>Search by Name:</h2>
+<form (ngSubmit)="searchEventsByName()">
+  <label for="searchName">Event Name:</label>
+  <input type="text" id="searchName" name="searchName" [value]="searchName" required>
+
+  <button type="submit" [disabled]="!searchName">Search</button>
+</form>
+
+<ul>
+  <li *ngFor="let event of events">{{ event.name }} - {{ event.date }}</li>
+</ul>

@@ -10,6 +10,7 @@ export class EventSearchComponent implements OnInit {
   startDate!: Date;
   endDate!: Date;
   events: any[] = [];
+  searchName: string = '';
 
   constructor(private searchbydateService: SearchbydateService) {}
 
@@ -19,8 +20,18 @@ export class EventSearchComponent implements OnInit {
 
   searchEvents() {
     if (this.startDate && this.endDate) {
-      const dates = { startDate: this.startDate, endDate: this.endDate };
-      this.searchbydateService.searchEventsBetweenDates(this.startDate.toISOString(), this.endDate.toISOString())
+      const startDateISO = this.startDate.toISOString();
+      const endDateISO = this.endDate.toISOString();
+      this.searchbydateService.searchEventsBetweenDates(startDateISO, endDateISO)
+        .subscribe((result) => {
+          this.events = result;
+        });
+    }
+  }
+
+  searchEventsByName() {
+    if (this.searchName) {
+      this.searchbydateService.searchEventsByName(this.searchName)
         .subscribe((result) => {
           this.events = result;
         });

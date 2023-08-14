@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { createFormDataFromObject } from '../shared/utilities/createFormDataFromObject';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +10,31 @@ export class SearchbydateService {
   constructor(private http: HttpClient) { }
 
   searchEventsBetweenDates(startDate: string, endDate: string): Observable<any> {
-    const dates = { startDate: startDate,endDate: endDate };
-    let date : FormData = new FormData();
-    
-    date = createFormDataFromObject(dates)
-    return this.http.post('https://localhost:7189/api/Event/SearchEventsBetweenDates', date);
+    const data = {
+      startDate: startDate,
+      endDate: endDate
+    };
+
+    let formData: FormData = this.createFormDataFromObject(data);
+
+    return this.http.post('https://localhost:7189/api/Event/SearchEventsBetweenDates', formData);
+  }
+
+  searchEventsByName(name: string): Observable<any> {
+    const data = {
+      name: name
+    };
+
+    let formData: FormData = this.createFormDataFromObject(data);
+
+    return this.http.post('https://localhost:7189/api/Event/SearchEventsByName', formData);
+  }
+
+  private createFormDataFromObject(data: any): FormData {
+    let formData = new FormData();
+    for (const key of Object.keys(data)) {
+      formData.append(key, data[key]);
+    }
+    return formData;
   }
 }
