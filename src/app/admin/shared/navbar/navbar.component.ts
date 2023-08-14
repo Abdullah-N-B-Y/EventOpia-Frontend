@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private router: Router){}
-  goToProfile(){
+  openProfile(){
     this.router.navigate(['admin/profile']);
   }
 }

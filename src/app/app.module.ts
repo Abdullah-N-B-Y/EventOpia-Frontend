@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent],
@@ -25,12 +26,13 @@ import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
         AppRoutingModule,
         FormsModule,
         SharedModule,
-        AdminModule,
         HttpClientModule,
         BrowserAnimationsModule,
         GoogleMapsModule,
         ToastrModule.forRoot(),
         ToastNoAnimationModule.forRoot(),
+        AdminModule,
+        MatDialogModule,
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent],

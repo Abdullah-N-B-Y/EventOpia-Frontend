@@ -55,8 +55,10 @@ export class LoginComponent implements OnInit {
         this.validCredentials = true;
         this.loginSuccess = true;
         localStorage.setItem('jwtToken', res.content);
+        console.log('res is here'+res.content);
         if (this.loginForm.get('rememberMe')?.value === true)
           this.rememberMeOn();
+        
       },
       (err) => {
         this.validCredentials = false;
