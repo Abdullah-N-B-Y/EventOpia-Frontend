@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { ManageEventsComponent } from './manage-events/manage-events.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    HomeDashboardComponent
+    HomeDashboardComponent,
+    ManageEventsComponent
   ],
   imports: [
     CommonModule,

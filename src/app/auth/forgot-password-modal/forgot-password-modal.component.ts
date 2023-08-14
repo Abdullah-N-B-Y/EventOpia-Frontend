@@ -35,6 +35,8 @@ export class ForgotPasswordModalComponent {
     if (!this.emailForm.valid) return;
 
     this.email = this.emailForm.get('email')?.value;
+    console.log('em: ' + this.email);
+    this.stageNo = '2';
     this.userSevice.forgotPassword(this.email).subscribe(
       () => {
         this.showValidations = false;
@@ -61,6 +63,8 @@ export class ForgotPasswordModalComponent {
     if (!this.codeForm.valid) return;
 
     const code: string = this.codeForm.get('code')?.value;
+    console.log('code: ' + code);
+    this.stageNo = '3';
     this.userSevice.checkPasswordResetToken(this.email, code).subscribe(
       () => {
         this.showValidations = false;
@@ -90,6 +94,8 @@ export class ForgotPasswordModalComponent {
     if (!this.passwordForm.valid) return;
 
     const password: string = this.passwordForm.get('password')?.value;
+    console.log('password: ' + password);
+    this.stageNo = '4';
     this.userSevice.resetForgottenPassword(this.email, password).subscribe(
       () => {
         this.showValidations = false;

@@ -8,6 +8,8 @@ import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
 import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
 import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
 import { ProfileService } from 'src/app/services/profile.service';
+import { HttpClient } from '@angular/common/http';
+import { profileImagePath } from 'src/constants/constants';
 
 
 @Component({
@@ -42,12 +44,13 @@ export class ProfileComponent implements OnInit{
   rate:any;
   dateOfBirth:string='';
   email?:string = '';
+  profileImagePath:string='';
 
   token1?:any | string = localStorage.getItem('jwtToken');
   decodedToken: User | null = null;
   userId:any | number;
 
-  constructor(public profile:ProfileService, private dialog:MatDialog){ }
+  constructor(public profile:ProfileService, private dialog:MatDialog, private http:HttpClient, ){ }
   ngOnInit(): void {
     if (this.token1) {
       this.decodedToken = jwt_decode(this.token1) as User;
@@ -80,6 +83,7 @@ export class ProfileComponent implements OnInit{
                 console.log("Invalid date format.");
             }
           }
+          this.profileImagePath = profileImagePath;
         }, err => {
           console.log(err.status);
         });
@@ -101,7 +105,6 @@ export class ProfileComponent implements OnInit{
 
   updateProfile(){
     this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
-      console.log('here 1');
       if(success)
       {
         const dialogRef = this.dialog.open(SucceededDialogComponent);
@@ -118,7 +121,6 @@ export class ProfileComponent implements OnInit{
       }
     });
   }
-  
   changePassword(){
     const token = localStorage.getItem('jwtToken');
     if (this.token1) {
@@ -171,4 +173,15 @@ export class ProfileComponent implements OnInit{
     return Array.from({ length: 5 }, (_, i) => i);
   }
 
+  file:any;
+  handleFileInput(e: any){
+    this.file = e.target.files[0];
+    let formData = new FormData();
+    formData.append('file',this.file);
+    this.profile.updateProfileImage(this.userId,formData);
+    this.profile.getProfileImage(this.userId).subscribe((res => {
+      this.file = res;
+      console.log(res)
+    }))
+  }
 }
