@@ -8,27 +8,33 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventsComponent } from './events/events.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutUsComponent,
-    ContactUsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    SharedModule,
-    AdminModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        SharedModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        ToastrModule.forRoot(),
+        ToastNoAnimationModule.forRoot(),
+        AdminModule,
+        MatDialogModule,
+    ],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

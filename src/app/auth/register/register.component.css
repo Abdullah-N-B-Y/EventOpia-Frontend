@@ -1,0 +1,21 @@
+.alert {
+  border-radius: 30px; /* Adjust the border radius as needed */
+  padding: 10px; /* Add padding to the alert */
+  margin-bottom: 10px; /* Add margin between alerts */
+  font-size: 12px;
+}
+
+.link {
+  cursor: pointer;
+}
+.button-color{
+  background-color: #F82249 !important;
+}
+
+.btn-primary {
+  background-color: #f82249 !important;
+}
+
+.close{
+  color: #f82249 ;
+}

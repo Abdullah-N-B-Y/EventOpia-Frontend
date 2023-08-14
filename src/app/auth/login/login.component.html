@@ -1,0 +1,178 @@
+<div class="page-header" filter-color="red">
+  <div
+    class="page-header-image"
+    style="background-image: url(../../../assets/ui-kit-assets/img/login-background.jpg)"
+  ></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <form class="form" [formGroup]="loginForm">
+          <div class="header header-primary text-center">
+            <div class="logo-container">
+              <img
+                src="../../../assets/ui-kit-assets/img/now-logo.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="content">
+            <div class="alert alert-success" role="alert" *ngIf="loginSuccess">
+              Login Success
+            </div>
+            <div
+              class="alert alert-warning"
+              role="alert"
+              *ngIf="!validCredentials"
+            >
+              Username or password are invalid
+            </div>
+            <div
+              class="input-group form-group-no-border input-lg"
+              [ngClass]="{ 'input-group-focus': focus === true }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text custom-input">
+                  <i class="now-ui-icons users_circle-08"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                placeholder="Username..."
+                (focus)="focus = true"
+                (blur)="focus = false"
+              />
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              [ngSwitch]="true"
+              *ngIf="showValidations"
+              [hidden]="
+                !loginForm.controls['username'].hasError('required') &&
+                !loginForm.controls['username'].hasError('minlength') &&
+                !loginForm.controls['username'].hasError('maxlength')
+              "
+            >
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['username'].hasError('required')
+                "
+              >
+                - Username is required<br />
+              </div>
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['username'].hasError('minlength')
+                "
+              >
+                - Username length must be 3 or higher<br />
+              </div>
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['username'].hasError('maxlength')
+                "
+              >
+                - Username length must be 50 or lower<br />
+              </div>
+            </div>
+
+            <div
+              class="input-group form-group-no-border input-lg mt-2"
+              [ngClass]="{ 'input-group-focus': focus1 === true }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="now-ui-icons objects_key-25"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Password..."
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+              />
+            </div>
+            <div
+              div
+              class="alert alert-danger"
+              [ngSwitch]="true"
+              *ngIf="showValidations"
+              [hidden]="
+                !loginForm.controls['password'].hasError('pattern') &&
+                !loginForm.controls['password'].hasError('minlength') &&
+                !loginForm.controls['password'].hasError('maxlength') &&
+                !loginForm.controls['password'].hasError('required')
+              "
+            >
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['password'].hasError('pattern')
+                "
+              >
+                - Password must contain at least one lowercase letter, one
+                uppercase letter, one digit, and one special character<br />
+              </div>
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['password'].hasError('minlength')
+                "
+              >
+                - Password length must be 8 or higher<br />
+              </div>
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['password'].hasError('maxlength')
+                "
+              >
+                - Password length must be 50 or lower<br />
+              </div>
+              <div
+                *ngSwitchCase="
+                  loginForm.controls['password'].hasError('required')
+                "
+              >
+                - Password is required<br />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check">
+                    <label class="form-check-label d-flex align-items-center">
+                        <input class="form-check-input" type="checkbox" formControlName="rememberMe">
+                        <span class="form-check-sign"></span>
+                        Remember Me
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                   <button class="btn btn-link" (click)="clearRememberMeItems()">Clear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer text-center">
+            <button
+              type="submit"
+              class="btn btn-primary btn-round btn-lg btn-block"
+              (click)="login()"
+            >
+              Login
+            </button>
+          </div>
+          <div class="text-center">
+            <h6>
+              <div class="link" (click)="navigateToRegister()">Create Account</div>
+            </h6>
+          </div>
+          <app-forgot-password-modal></app-forgot-password-modal>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

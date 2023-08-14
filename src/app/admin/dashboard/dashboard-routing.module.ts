@@ -18,6 +18,7 @@ const routes: Routes = [
     component: ReportComponent
   },
 ];
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
