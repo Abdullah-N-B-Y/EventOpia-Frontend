@@ -13,4 +13,11 @@
   border-color: silver; 
   background-color: silver; 
 }
+.btn-primary {
+  background-color: #f82249 !important;
+}
+
+.close{
+  color: #f82249 ;
+}
 

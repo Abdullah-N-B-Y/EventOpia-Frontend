@@ -8,59 +8,44 @@
       </a>
       <a href="https://www.creative-tim.com" class="simple-text logo-normal">
         Creative Tim
-        <!-- <div class="logo-image-big">
-          <img src="../assets/img/logo-big.png">
-        </div> -->
       </a>
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="active ">
-          <a href="./dashboard.html">
+          <a (click)="openDashboard()" style="cursor: pointer;">
             <i class="nc-icon nc-bank"></i>
             <p>Dashboard</p>
           </a>
         </li>
         <li>
-          <a href="./icons.html">
-            <i class="nc-icon nc-diamond"></i>
-            <p>Icons</p>
-          </a>
-        </li>
-        <li>
-          <a href="./map.html">
+          <a (click)="openManageEvents()" style="cursor: pointer;">
             <i class="nc-icon nc-pin-3"></i>
-            <p>Maps</p>
+            <p>Manage events</p>
           </a>
         </li>
         <li>
-          <a href="./notifications.html">
+          <a (click)="openAcceptEvents()" style="cursor: pointer;">
             <i class="nc-icon nc-bell-55"></i>
             <p>Notifications</p>
           </a>
         </li>
         <li>
-          <a href="./user.html">
+          <a (click)="openViewRegisteredUsers()" style="cursor: pointer;">
             <i class="nc-icon nc-single-02"></i>
-            <p>User Profile</p>
+            <p>Users</p>
           </a>
         </li>
         <li>
-          <a href="./tables.html">
+          <a (click)="openReports()" style="cursor: pointer;">
             <i class="nc-icon nc-tile-56"></i>
-            <p>Table List</p>
+            <p>Reports</p>
           </a>
         </li>
         <li>
-          <a href="./typography.html">
-            <i class="nc-icon nc-caps-small"></i>
-            <p>Typography</p>
-          </a>
-        </li>
-        <li class="active-pro">
-          <a href="./upgrade.html">
-            <i class="nc-icon nc-spaceship"></i>
-            <p>Upgrade to PRO</p>
+          <a (click)="openManagePages()" style="cursor: pointer;">
+            <i class="nc-icon nc-tile-56"></i>
+            <p>Manage Pages</p>
           </a>
         </li>
       </ul>

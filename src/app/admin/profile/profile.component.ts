@@ -105,7 +105,6 @@ export class ProfileComponent implements OnInit{
 
   updateProfile(){
     this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
-      console.log('here 1');
       if(success)
       {
         const dialogRef = this.dialog.open(SucceededDialogComponent);
@@ -122,7 +121,6 @@ export class ProfileComponent implements OnInit{
       }
     });
   }
-  
   changePassword(){
     const token = localStorage.getItem('jwtToken');
     if (this.token1) {
@@ -176,17 +174,14 @@ export class ProfileComponent implements OnInit{
   }
 
   file:any;
-  res:any;
   handleFileInput(e: any){
     this.file = e.target.files[0];
     let formData = new FormData();
     formData.append('file',this.file);
-    this.http.post(`https://localhost:7189/api/Profile/UploadImage/${this.userId}`,formData).toPromise().then(
-      res => {
-        console.log(res); 
-      },err=>{
-        console.log(err)
-      }
-    )
+    this.profile.updateProfileImage(this.userId,formData);
+    this.profile.getProfileImage(this.userId).subscribe((res => {
+      this.file = res;
+      console.log(res)
+    }))
   }
 }

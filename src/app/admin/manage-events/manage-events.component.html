@@ -1,0 +1,45 @@
+<div class="wrapper ">
+    
+    <app-sidebar></app-sidebar>
+
+    <div class="main-panel">
+      
+      <app-navbar></app-navbar>
+      
+      <div class="content">
+<section id="speakers" class="wow fadeInUp">
+    <div class="container">
+    <div class="section-header">
+        <h2>Events</h2>
+        <p>Here you will find our events</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let event of eventService.events">
+            <div class="speaker">
+                <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
+                <img src="../../assets/home-assets/img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
+                <div class="details">
+                    <h3><a href="speaker-details.html">Brenden Legros</a></h3>
+                    <p>Quas alias incidunt</p>
+                    <div class="social">
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-google-plus"></i></a>
+                        <a href=""><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="justify-content: center;margin-top: -30px;">
+                <a (click)="editEvent($event)" class="btn btn-primary col-3">Edit</a>
+                <a (click)="deleteEvent($event)" class="btn btn-danger col-3">Delete</a>
+                <a (click)="detailsEvent($event)" class="btn btn-primary col-3">Details</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+      </div>
+    </div>
+</div>

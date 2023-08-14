@@ -1,13 +1,7 @@
 .modal-backdrop {
   z-index: -1 !important;
 }
-.btn-primary {
-  background-color: #f82249 !important;
-}
 
-.close{
-  color: #f82249 ;
-}
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
