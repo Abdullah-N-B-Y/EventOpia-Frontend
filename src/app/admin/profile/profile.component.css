@@ -1,3 +1,6 @@
 .checked {
     color: orange;
 }
+.avatar:hover {
+    cursor: pointer;
+}

@@ -7,8 +7,8 @@ import { SearchbydateService } from '../Services/searchbydate.service';
   styleUrls: ['./event-search.component.css']
 })
 export class EventSearchComponent implements OnInit {
-  startDate!: string;
-  endDate!: string;
+  startDate!: Date;
+  endDate!: Date;
   events: any[] = [];
 
   constructor(private searchbydateService: SearchbydateService) {}
@@ -20,7 +20,7 @@ export class EventSearchComponent implements OnInit {
   searchEvents() {
     if (this.startDate && this.endDate) {
       const dates = { startDate: this.startDate, endDate: this.endDate };
-      this.searchbydateService.searchEventsBetweenDates(dates.startDate, dates.endDate)
+      this.searchbydateService.searchEventsBetweenDates(this.startDate.toISOString(), this.endDate.toISOString())
         .subscribe((result) => {
           this.events = result;
         });

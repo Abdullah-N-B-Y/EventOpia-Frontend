@@ -1,27 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { FormsModule } from '@angular/forms';
+import { ReportComponent } from './report/report.component';
+import { NgChartsModule } from 'ng2-charts';import { AdminRoutingModule } from './admin-routing.module';
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { ManageEventsComponent } from './manage-events/manage-events.component';
 
 
 @NgModule({
-  declarations: [
-    ProfileComponent
-  ],
+  declarations: [ProfileComponent,
+    HomeDashboardComponent,
+    ManageEventsComponent, StatisticsComponent, ReportComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DashboardModule,
     SharedModule,
-    MatDialogModule,
-    BrowserAnimationsModule
-  ]
+    AdminRoutingModule,
+    FormsModule,
+    NgChartsModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

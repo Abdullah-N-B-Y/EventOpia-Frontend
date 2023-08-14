@@ -1,9 +1,9 @@
 <form (ngSubmit)="searchEvents()" #searchForm="ngForm">
   <label for="startDate">Start Date:</label>
-  <input type="date" id="startDate" name="startDate" [(ngModel)]="startDate" required>
+  <input type="date" id="startDate" name="startDate" [value]="startDate" required>
 
   <label for="endDate">End Date:</label>
-  <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate" required>
+  <input type="date" id="endDate" name="endDate" [value]="endDate" required>
 
   <button type="submit" [disabled]="!searchForm.form.valid">Search</button>
 </form>
