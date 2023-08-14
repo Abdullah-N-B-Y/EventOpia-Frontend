@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { EventsComponent } from './events/events.component';
 import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './admin-guard.guard';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => AdminModule
+    loadChildren: () => AdminModule,
+    canActivate: [AdminGuard]
   },
   {
     path: 'auth',
