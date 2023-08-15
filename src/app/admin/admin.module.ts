@@ -12,6 +12,7 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
+import { ManagePageComponent } from './manage-page/manage-page.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchEventsComponent } from './search-events/search-events.component';
     ManageCategoriesComponent,
     ManageUsersComponent,
     AcceptEventComponent,
-    SearchEventsComponent
+    SearchEventsComponent,
+    ManagePageComponent
   ],
   imports: [
     CommonModule,

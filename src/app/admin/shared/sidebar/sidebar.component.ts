@@ -25,6 +25,6 @@ export class SidebarComponent {
     this.router.navigate(['admin/report']);
   }
   openManagePages(){
-    this.router.navigate(['admin/managepages']);
+    this.router.navigate(['admin/managePages']);
   }
 }
