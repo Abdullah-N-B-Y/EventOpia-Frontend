@@ -10,6 +10,7 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AcceptEventComponent } from './accept-event/accept-event.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     StatisticsComponent,
     ReportComponent,
     ManageCategoriesComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    AcceptEventComponent
   ],
   imports: [
     CommonModule,

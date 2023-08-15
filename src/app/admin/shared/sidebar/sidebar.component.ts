@@ -16,7 +16,7 @@ export class SidebarComponent {
     this.router.navigate(['admin/manageCategories']);
   }
   openAcceptEvents(){
-    this.router.navigate(['admin/acceptevents']);
+    this.router.navigate(['admin/EventAcceptance']);
   }
   manageUsers(){
     this.router.navigate(['admin/manageUsers']);
