@@ -9,6 +9,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
     HomeDashboardComponent,
     StatisticsComponent,
     ReportComponent,
-    ManageCategoriesComponent
+    ManageCategoriesComponent,
+    ManageUsersComponent
   ],
   imports: [
     CommonModule,
