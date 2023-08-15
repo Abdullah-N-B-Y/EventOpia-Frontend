@@ -41,4 +41,21 @@ export class AdminService {
       }
     );
   }
+
+  acceptanceEvent(id:number, status: string): void {
+    const headers = {
+      'Content-Type': 'application/json',
+      'id': id.toString(),
+      'status':status
+    };
+  
+    this.http.put<File>(`${endPointURL}Admin/EventAcceptation/${id}/${status}`, '', { headers }).subscribe(
+      response => {
+        
+      },
+      error => {
+        console.log('err=> '+error.message)
+      }
+    );
+  }
 }

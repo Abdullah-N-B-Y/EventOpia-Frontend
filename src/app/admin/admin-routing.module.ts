@@ -7,6 +7,7 @@ import { ReportComponent } from './report/report.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AcceptEventComponent } from './accept-event/accept-event.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'manageUsers',
     component:ManageUsersComponent
+  },
+  {
+    path:'EventAcceptance',
+    component:AcceptEventComponent
   }
 ];
 
