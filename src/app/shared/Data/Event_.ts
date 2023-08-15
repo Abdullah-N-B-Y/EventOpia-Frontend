@@ -5,7 +5,7 @@ import { User } from './User';
 export interface Event_ {
     id?: number;
     name: string;
-    attendingCost?: number | null;
+    attendingCost: number;
     startDate?: Date | null;
     endDate?: Date | null;
     status?: string;
