@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchbydateService } from '../Services/searchbydate.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SearchbydateService } from '../services/searchbydate.service';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-event-search',
@@ -7,22 +9,38 @@ import { SearchbydateService } from '../Services/searchbydate.service';
   styleUrls: ['./event-search.component.css']
 })
 export class EventSearchComponent implements OnInit {
-  startDate!: Date;
-  endDate!: Date;
+  searchForm!: FormGroup;
   events: any[] = [];
   searchName: string = '';
 
-  constructor(private searchbydateService: SearchbydateService) {}
+  constructor(
+    private searchbydateService: SearchbydateService,
+    private formBuilder: FormBuilder,
+    private eventService : EventService
+  ) {}
 
   ngOnInit(): void {
-    this.searchEvents();
+    this.searchForm = this.formBuilder.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    });
+
+    this.loadAllEvents(); 
+  }
+
+ 
+  loadAllEvents() {
+    this.searchbydateService.getAllActiveEventsWithDetails()
+      .subscribe((result: any) => {
+        this.events = result;
+      });
   }
 
   searchEvents() {
-    if (this.startDate && this.endDate) {
-      const startDateISO = this.startDate.toISOString();
-      const endDateISO = this.endDate.toISOString();
-      this.searchbydateService.searchEventsBetweenDates(startDateISO, endDateISO)
+    if (this.searchForm.valid) {
+      const startDate = this.searchForm.value.startDate;
+      const endDate = this.searchForm.value.endDate;
+      this.searchbydateService.searchEventsBetweenDates(startDate, endDate)
         .subscribe((result) => {
           this.events = result;
         });

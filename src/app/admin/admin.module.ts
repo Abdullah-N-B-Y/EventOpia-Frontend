@@ -5,7 +5,6 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { FormsModule } from '@angular/forms';
 import { ReportComponent } from './report/report.component';
 import { NgChartsModule } from 'ng2-charts';import { AdminRoutingModule } from './admin-routing.module';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';

@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchbydateService {
-
+  getAllActiveEventsWithDetails() {
+    throw new Error('Method not implemented.');
+  }
+  
   constructor(private http: HttpClient) { }
 
   searchEventsBetweenDates(startDate: string, endDate: string): Observable<any> {
@@ -28,6 +31,10 @@ export class SearchbydateService {
     let formData: FormData = this.createFormDataFromObject(data);
 
     return this.http.post('https://localhost:7189/api/Event/SearchEventsByName', formData);
+  }
+
+  getAllEvents(): Observable<any> {
+    return this.http.get<any>('https://localhost:7189/api/Event/GetAllEvents');
   }
 
   private createFormDataFromObject(data: any): FormData {

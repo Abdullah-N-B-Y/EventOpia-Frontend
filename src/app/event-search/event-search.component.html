@@ -1,26 +1,29 @@
-<h2>Search by Date:</h2>
-<form (ngSubmit)="searchEvents()">
-  <label for="startDate">Start Date:</label>
-  <input type="date" id="startDate" name="startDate" [value]="startDate" required>
+<div class="search-container">
+  <div class="search-form">
+    <h5>Search by Date:</h5>
+    <form (ngSubmit)="searchEvents()" [formGroup]="searchForm">
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" formControlName="startDate" required>
+      <br/>
 
-  <label for="endDate">End Date:</label>
-  <input type="date" id="endDate" name="endDate" [value]="endDate" required>
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" name="endDate" formControlName="endDate" required>
+      <button type="submit" class="search-button">Search</button>
+    </form>
+  </div>
 
-  <button type="submit" [disabled]="!searchForm.form.valid">Search</button>
-</form>
-
-<div *ngIf="searchForm.submitted && searchForm.invalid" class="error-message">
-  Please provide valid start and end dates.
+  <div class="search-form">
+    <h5>Search by Name:</h5>
+    <form (ngSubmit)="searchEventsByName()">
+      <label for="searchName">Event Name:</label>
+      <div class="name-input-container">
+        <input type="text" id="searchName" name="searchName" [(ngModel)]="searchName" required>
+        <button type="submit" class="search-button" [disabled]="!searchName">Search</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<h2>Search by Name:</h2>
-<form (ngSubmit)="searchEventsByName()">
-  <label for="searchName">Event Name:</label>
-  <input type="text" id="searchName" name="searchName" [value]="searchName" required>
-
-  <button type="submit" [disabled]="!searchName">Search</button>
-</form>
-
-<ul>
+<ul class="event-list">
   <li *ngFor="let event of events">{{ event.name }} - {{ event.date }}</li>
 </ul>

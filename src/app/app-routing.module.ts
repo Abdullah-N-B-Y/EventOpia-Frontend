@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'events',
     component: EventsComponent
   },
+  {
+    path: 'search',
+    component: EventSearchComponent
+  },
 ];
 
 @NgModule({

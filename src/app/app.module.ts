@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,9 +18,10 @@ import { EventsComponent } from './events/events.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EventSearchComponent } from './event-search/event-search.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent],
+    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent,EventSearchComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         ToastNoAnimationModule.forRoot(),
         AdminModule,
         MatDialogModule,
+        ReactiveFormsModule
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent],
