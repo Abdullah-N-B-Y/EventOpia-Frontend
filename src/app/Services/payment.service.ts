@@ -14,4 +14,8 @@ export class PaymentService {
     payForRegisterEvent(paymentDetailsDTO: PaymentDetailsDTO): Observable<any> {
         return this.http.post<any>(this.serviceURL + 'PayForEventRegister', paymentDetailsDTO);
     }
+
+    payForCreateEvent(paymentDetailsDTO: PaymentDetailsDTO): Observable<any> {
+        return this.http.post<any>(this.serviceURL + 'PayForNewEvent', paymentDetailsDTO);
+    }
 }

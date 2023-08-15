@@ -40,4 +40,19 @@ export class EventService {
             })
         );
     }
+
+    getAllEventsByCreatorId(id: number): Observable<Event_[]>{
+        return this.http.get<Event_[]>(this.serviceURL + `GetAllEventsByCreatorId/${id}`);
+    }
+
+    updateEvent(event: Event_) {
+        let formData: FormData = new FormData();
+        formData = createFormDataFromObject(event);
+        return this.http.put<boolean>(this.serviceURL + 'UpdateEvent', formData).pipe(
+            catchError((err) => {
+                console.log(err);
+                throw err;
+            })
+        );
+    }
 }
