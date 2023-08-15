@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [NavbarComponent, FooterComponent],
@@ -16,7 +16,6 @@ import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.modul
         HttpClientModule,
         MatInputModule,
         DynamicDialogesModule,
-        
     ],
     exports: [
         NavbarComponent,

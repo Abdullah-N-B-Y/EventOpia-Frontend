@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { ReportComponent } from './report/report.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'report',
     component: ReportComponent
+  },
+  {
+    path: 'statistic',
+    component: StatisticsComponent
   }
 ];
 

@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit{
   decodedToken: User | null = null;
   userId:any | number;
 
-  constructor(public profile:ProfileService, private dialog:MatDialog, private http:HttpClient, ){ }
+  constructor(public profile:ProfileService, private dialog:MatDialog){ }
   ngOnInit(): void {
     if (this.token1) {
       this.decodedToken = jwt_decode(this.token1) as User;
@@ -158,7 +158,7 @@ export class ProfileComponent implements OnInit{
   @ViewChild('changePasswordDailog') changePasswordDailog!:TemplateRef<any>
   openChangePasswordDailog(){
     const dialogRef= this.dialog.open(this.changePasswordDailog);
-    dialogRef.afterClosed().subscribe((result:any)=>{
+    dialogRef.afterClosed().subscribe((result: string | undefined)=>{
        if(result!=undefined)
        {
           if(result=='save'){
@@ -179,7 +179,7 @@ export class ProfileComponent implements OnInit{
     let formData = new FormData();
     formData.append('file',this.file);
     this.profile.updateProfileImage(this.userId,formData);
-    this.profile.getProfileImage(this.userId).subscribe((res => {
+    this.profile.getProfileImage(this.userId).subscribe(((res: any) => {
       this.file = res;
       console.log(res)
     }))
