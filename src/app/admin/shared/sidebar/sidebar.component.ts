@@ -18,8 +18,8 @@ export class SidebarComponent {
   openAcceptEvents(){
     this.router.navigate(['admin/acceptevents']);
   }
-  openViewRegisteredUsers(){
-    this.router.navigate(['admin/home']);
+  manageUsers(){
+    this.router.navigate(['admin/manageUsers']);
   }
   openReports(){
     this.router.navigate(['admin/report']);
