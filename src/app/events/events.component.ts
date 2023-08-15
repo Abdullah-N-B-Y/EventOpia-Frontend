@@ -144,6 +144,7 @@ export class EventsComponent implements OnInit {
     @ViewChild('addEventDialog') addEventDialog!: TemplateRef<any>;
 
     openAddEventDialog() {
+        this.getAllCategories();
         const dialogConfig = new MatDialogConfig();
         dialogConfig.width = '500px'; // Set the desired width here
         const dialogRef = this.matDialog.open(this.addEventDialog, dialogConfig);
@@ -203,6 +204,7 @@ export class EventsComponent implements OnInit {
     onFileChange(event: any): void {
         this.newEventImage = event.target.files[0];
     }
+    categories: Category[] = [];
     private getAllCategories() {
         this.categoryService.getAllCategories().subscribe(
             (res: Category[]) => {
@@ -231,7 +233,6 @@ export class EventsComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
             if (result != undefined) {
                 if (result == 'save') {
-                    
                 }
             }
         });
@@ -253,30 +254,32 @@ export class EventsComponent implements OnInit {
             userId: userId,
             eventId: this.focusedEvent.id,
             paymentAmount: this.focusedEvent.attendingCost,
-            bank: bank 
+            bank: bank,
         };
         console.log('new payment: ');
         console.log(paymentDetailsDTO);
         this.paymentService.payForRegisterEvent(paymentDetailsDTO).subscribe(
             (res: any) => {
-                this.toastr.success("Payment Successful, an invoice was sent to you");
+                this.toastr.success('Payment Successful, an invoice was sent to you');
                 let booking: Booking = {
-                    bookingDate : new Date,
-                    userId: userId, 
-                    eventId:this.focusedEvent.id
-                }
-                this.bookingService.registerForEvent(booking).subscribe((res: any) => {
-                    console.log('registrations successful');
-                }, (err) => {
-                    console.log('booking error', err);
-                });
+                    bookingDate: new Date(),
+                    userId: userId,
+                    eventId: this.focusedEvent.id,
+                };
+                this.bookingService.registerForEvent(booking).subscribe(
+                    (res: any) => {
+                        console.log('registrations successful');
+                    },
+                    (err) => {
+                        console.log('booking error', err);
+                    }
+                );
             },
             (err) => {
                 console.log('in paymentService - payForRegisterEvent ', err);
                 this.toastr.error('Payment failed');
             }
         );
-            
     }
 }
 

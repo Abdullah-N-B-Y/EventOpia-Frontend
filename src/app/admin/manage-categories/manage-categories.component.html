@@ -12,7 +12,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-6" *ngFor="let category of categoryService.categories">
+        <div class="col-lg-4 col-md-6" *ngFor="let category of categories">
             <div class="speaker">
                 <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
                 <img src="data:image/png;base64,{{category.retrievedImageFile}}" alt="Speaker 1" class="img-fluid">

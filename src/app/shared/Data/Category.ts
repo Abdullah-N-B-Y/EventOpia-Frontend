@@ -1,7 +1,7 @@
 import { User } from './User';
 
 export interface Category {
-  id?: number;
+  id: number;
   name?: string;
   imagePath?: string;
   description?: string;

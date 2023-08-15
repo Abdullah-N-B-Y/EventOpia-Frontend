@@ -200,7 +200,7 @@
                 <label for="categoryId" class="font-weight-bold">Category:</label>
                 <select id="categoryId" class="form-control" formControlName="categoryId">
                     <option value="" disabled selected>Select a category</option>
-                    <option *ngFor="let category of categoryService.categories" [value]="category.id">{{ category.name }}</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                 </select>
                 <div
                     *ngIf="
