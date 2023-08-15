@@ -7,21 +7,28 @@ import { ReportComponent } from './report/report.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
-import { ManageEventsComponent } from './manage-events/manage-events.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AcceptEventComponent } from './accept-event/accept-event.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent,
+  declarations: [
+    ProfileComponent,
     HomeDashboardComponent,
-    ManageEventsComponent, StatisticsComponent, ReportComponent],
+    StatisticsComponent,
+    ReportComponent,
+    ManageCategoriesComponent,
+    ManageUsersComponent,
+    AcceptEventComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
     AdminRoutingModule,
-    FormsModule,
     NgChartsModule,
   ],
 })

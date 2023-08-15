@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, map, of } from 'rxjs';
 import { endPointURL } from 'src/constants/constants';
+import { User } from '../shared/Data/User';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +48,29 @@ export class UserService {
       `${this.serviceURL}ResetForgottenPassword/${email}`,
       `\"${newPassword}\"`,
       httpOptions
+    );
+  }
+
+  getUserById(id:number): Observable<Object>{
+    return this.http.get(this.serviceURL + `GetUserById/${id}`).pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err:any) => {
+        return of(false);
+      })
+    );
+  }
+
+  users:any = [{}]
+  GetAllRegisteredUsersDetails(): void {
+    this.http.get<User[]>(this.serviceURL + 'GetAllRegisteredUsersDetails').subscribe(
+      (res: User[]) => {
+          this.users = res;
+      },
+      (err) => {
+          console.log(err);
+      }
     );
   }
 }

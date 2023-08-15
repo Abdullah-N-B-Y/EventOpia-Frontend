@@ -139,13 +139,11 @@ export class EventsComponent implements OnInit {
         categoryId: new FormControl('', [Validators.required, Validators.min(1)]),
         eventImage: new FormControl(null, [Validators.required]),
     });
-    categories: Category[] = [];
     newEventCoords!: google.maps.LatLng;
     newEventImage: File | undefined;
     @ViewChild('addEventDialog') addEventDialog!: TemplateRef<any>;
 
     openAddEventDialog() {
-        this.getAllCategories();
         const dialogConfig = new MatDialogConfig();
         dialogConfig.width = '500px'; // Set the desired width here
         const dialogRef = this.matDialog.open(this.addEventDialog, dialogConfig);

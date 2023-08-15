@@ -1,0 +1,39 @@
+
+<div class="wrapper "> 
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">  
+        <app-navbar></app-navbar>
+        <div class="content">
+            <section id="schedule" class="section-with-bg">
+                <div class="container wow fadeInUp">
+                    <div class="section-header">
+                        <h2>System users</h2>
+                        <p>Here is our users</p>
+                    </div>
+                    <div class="tab-content row justify-content-center" *ngFor="let user of userService.users">
+                        <div role="tabpanel" class="col-lg-12 tab-pane fade show active">
+                            <div class="row schedule-item">
+                                <div class="col-md-4">
+                                    <div class="speaker">
+                                        <img src="data:image/png;base64,{{user.retrievedImageFile}}" alt="{{user.firstName}}">
+                                    </div>
+                                    <h4>{{user.firstName}} {{user.lastName}}
+                                        <p>{{user.userStatus}}</p>
+                                    </h4>
+                                    <p>{{user.email}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>{{user.phoneNumber}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-danger" [disabled]="user.userStatus === 'Banned'" (click)="banUser(user.username)">Ban</button>
+                                    <button class="btn btn-primary" [disabled]="user.userStatus !== 'Banned'" (click)="unbanUser(user.username)">Unban</button>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

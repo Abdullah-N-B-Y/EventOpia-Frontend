@@ -162,7 +162,7 @@ export class ProfileComponent implements OnInit{
        if(result!=undefined)
        {
           if(result=='save'){
-            this.changePassword();
+            //this.changePassword();
           }
        }
     })
