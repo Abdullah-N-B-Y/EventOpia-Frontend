@@ -8,6 +8,7 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
+import { ManagePageComponent } from './manage-page/manage-page.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path:'EventAcceptance',
     component:AcceptEventComponent
+  },
+  {
+    path:'managePages',
+    component:ManagePageComponent
   }
 ];
 
