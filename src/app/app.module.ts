@@ -20,21 +20,29 @@ import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        SharedModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        GoogleMapsModule,
-        ToastrModule.forRoot(),
-        ToastNoAnimationModule.forRoot(),
-        AdminModule,
-        MatDialogModule,
-    ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    EventsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    SharedModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    GoogleMapsModule,
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot(),
+    AdminModule,
+    MatDialogModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
