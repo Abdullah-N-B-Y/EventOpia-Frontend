@@ -16,9 +16,10 @@ import { EventsComponent } from './events/events.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent],
+    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent, MyEventsComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

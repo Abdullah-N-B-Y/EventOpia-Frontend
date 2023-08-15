@@ -9,7 +9,7 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class AcceptEventComponent implements OnInit{
   events:any;
-  constructor(private adminService:AdminService,public eventService:EventService){}
+  constructor(private adminService:AdminService, public eventService:EventService){}
   
   ngOnInit(): void {
     this.eventService.getAllEvents().subscribe((res: any)=>{

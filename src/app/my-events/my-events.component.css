@@ -1,0 +1,17 @@
+input:focus {
+  border-color: #f82249 !important; /* You can also use 'inherit' or any color you want */
+  border-style: solid !important;
+  outline: none; /* Optionally remove the outline on focus */
+}
+
+.dialog-title {
+    color: #f82249;
+}
+
+.btn-primary {
+  background-color: #f82249 !important;
+}
+
+.close{
+  color: #f82249 ;
+}

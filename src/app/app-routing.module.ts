@@ -7,6 +7,7 @@ import { EventsComponent } from './events/events.component';
 import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventsComponent
+  },
+  {
+    path: 'my-events',
+    component: MyEventsComponent
   },
 ];
 

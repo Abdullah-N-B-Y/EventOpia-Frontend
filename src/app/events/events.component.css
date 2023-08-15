@@ -33,6 +33,12 @@ input:focus {
   outline: none; /* Optionally remove the outline on focus */
 }
 
+.custom-input:focus {
+  border-color: white !important; /* You can also use 'inherit' or any color you want */
+  border-style: solid !important;
+  outline: none; /* Optionally remove the outline on focus */
+}
+
 textarea:focus {
   border-color: #f82249 !important; /* You can also use 'inherit' or any color you want */
   border-style: solid !important;

@@ -15,7 +15,6 @@ import { PaymentService } from '../services/payment.service';
 import { BookingService } from '../services/booking.service';
 import { Booking } from '../shared/Data/Booking';
 
-
 interface eventOnMap {
     event: EventWithDetailsDTO;
     markerPosition: google.maps.LatLngLiteral;
@@ -28,7 +27,7 @@ interface eventOnMap {
 })
 export class EventsComponent implements OnInit {
     isAddingEvent: boolean = false;
-    events: EventWithDetailsDTO[] | undefined;
+    events: EventWithDetailsDTO[] = [];
     lat: number = 31.1;
     lng: number = 35.9284;
     display: any;
@@ -72,27 +71,8 @@ export class EventsComponent implements OnInit {
             (eventList: EventWithDetailsDTO[]) => {
                 console.log('eventList form backend');
                 console.log(eventList);
-                eventList.forEach((event) => {
-                    if (event !== null && event.latitude !== undefined && event.longitude !== undefined) {
-                        this.eventsOnMap.push({
-                            event: event,
-                            markerPosition: {
-                                lat: event.latitude,
-                                lng: event.longitude,
-                            },
-                        });
-                    } else {
-                        console.log('eventsOnMap: ' + this.eventsOnMap);
-                        console.log('event: ' + event);
-                        console.log('event.latitude: ' + event.latitude);
-                        console.log('event.longitude: ' + event.longitude);
-                    }
-                    let i = this.eventsOnMap.length - 1;
-                    this.lat = this.eventsOnMap[i].markerPosition.lat;
-                    this.lng = this.eventsOnMap[i].markerPosition.lng;
-                    console.log('lattitude: ' + this.lat);
-                    console.log('longitude: ' + this.lng);
-                });
+                this.events = eventList;
+                this.updateEventsOnMap();
             },
             (err) => {
                 console.log(err);
@@ -281,6 +261,29 @@ export class EventsComponent implements OnInit {
             }
         );
     }
+
+    searchName: string = '';
+    updateEventsOnMap() {
+        console.log('eventsOnMap length= ' + this.eventsOnMap.length);
+        console.log('events length= ' + this.events.length);
+        this.eventsOnMap = [];
+        this.events.forEach((event) => {
+            if (event !== null && event.latitude !== undefined && event.longitude !== undefined) {
+                if (event.name.includes(this.searchName)) {
+                    this.eventsOnMap.push({
+                        event: event,
+                        markerPosition: {
+                            lat: event.latitude,
+                            lng: event.longitude,
+                        },
+                    });
+                }
+            }
+        });
+    }
+    onSearchNameChange() {
+        console.log('eventsOnMap length= ' + this.eventsOnMap.length);
+        console.log('events length= ' + this.events.length);
+        this.updateEventsOnMap();
+    }
 }
-
-
