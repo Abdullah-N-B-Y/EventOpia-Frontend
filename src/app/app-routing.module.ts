@@ -7,14 +7,10 @@ import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
 import { UserModule } from './user/user.module';
-import { TestimonialComponent } from './testimonial/testimonial.component';
 import { UserGuard } from './user-guard.guard';
 import { EventsComponent } from './user/events/events.component';
 import { MyEventsComponent } from './user/my-events/my-events.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { UserGuard } from './user-guard.guard';
-import { EventsComponent } from './user/events/events.component';
-import { MyEventsComponent } from './user/my-events/my-events.component';
 
 const routes: Routes = [
     {
@@ -49,8 +45,8 @@ const routes: Routes = [
     {
         path: 'user',
         loadChildren: () => UserModule,
-      canActivate: [UserGuard]
-  },
+        canActivate: [UserGuard],
+    },
     {
         path: 'testimonial',
         component: TestimonialComponent,
