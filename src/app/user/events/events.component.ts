@@ -1,19 +1,19 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { EventService } from '../services/event.service';
-import { EventWithDetailsDTO } from '../shared/DTO/EventWithDetailsDTO';
+import { EventService } from '../../services/event.service';
+import { EventWithDetailsDTO } from '../../shared/DTO/EventWithDetailsDTO';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoryService } from '../services/category.service';
-import { Category } from '../shared/Data/Category';
-import { Event_ } from '../shared/Data/Event_';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../shared/Data/Category';
+import { Event_ } from '../../shared/Data/Event_';
 import jwt_decode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
-import { Bank } from '../shared/Data/Bank';
-import { PaymentDetailsDTO } from '../shared/DTO/PaymentDetailsDTO ';
-import { PaymentService } from '../services/payment.service';
-import { BookingService } from '../services/booking.service';
-import { Booking } from '../shared/Data/Booking';
+import { Bank } from '../../shared/Data/Bank';
+import { PaymentDetailsDTO } from '../../shared/DTO/PaymentDetailsDTO ';
+import { PaymentService } from '../../services/payment.service';
+import { BookingService } from '../../services/booking.service';
+import { Booking } from '../../shared/Data/Booking';
 
 interface eventOnMap {
     event: EventWithDetailsDTO;

@@ -5,8 +5,8 @@
             <div class="card card-login card-plain">
                 <form class="form" [formGroup]="loginForm">
                     <div class="header header-primary text-center">
-                        <div class="logo-container">
-                            <img src="../../../assets/ui-kit-assets/img/now-logo.png" alt="" />
+                        <div class="logo mb-3">
+                            <img src="../../assets/home-assets/img/logo3.png" alt="" />
                         </div>
                     </div>
                     <div class="content">
@@ -102,6 +102,11 @@
                     <div class="text-center">
                         <h6>
                             <div class="link" (click)="navigateToRegister()">Create Account</div>
+                        </h6>
+                    </div>
+                    <div class="text-center">
+                        <h6>
+                            <div class="link" (click)="continueAsGuest()">Continue as guest</div>
                         </h6>
                     </div>
                     <app-forgot-password-modal></app-forgot-password-modal>

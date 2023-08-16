@@ -13,6 +13,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
+import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ManagePageComponent } from './manage-page/manage-page.component';
     ManageUsersComponent,
     AcceptEventComponent,
     SearchEventsComponent,
-    ManagePageComponent
+    ManagePageComponent,
+    ContactEntriesComponent
   ],
   imports: [
     CommonModule,

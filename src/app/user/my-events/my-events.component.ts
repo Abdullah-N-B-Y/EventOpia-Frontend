@@ -1,12 +1,12 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { Event_ } from '../shared/Data/Event_';
+import { EventService } from '../../services/event.service';
+import { Event_ } from '../../shared/Data/Event_';
 import { ToastrService } from 'ngx-toastr';
-import { PaymentService } from '../services/payment.service';
+import { PaymentService } from '../../services/payment.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { PaymentDetailsDTO } from '../shared/DTO/PaymentDetailsDTO ';
-import { Bank } from '../shared/Data/Bank';
+import { PaymentDetailsDTO } from '../../shared/DTO/PaymentDetailsDTO ';
+import { Bank } from '../../shared/Data/Bank';
 
 @Component({
     selector: 'app-my-events',
@@ -28,8 +28,8 @@ export class MyEventsComponent implements OnInit {
         if (userIdString) {
             let userId: number = parseInt(userIdString, 10);
             this.eventService.getAllEventsByCreatorId(userId).subscribe(
-              (res: Event_[]) => {
-                console.log(res);
+                (res: Event_[]) => {
+                    console.log(res);
                     this.myEvents = res;
                 },
                 (err) => {
@@ -83,16 +83,16 @@ export class MyEventsComponent implements OnInit {
         console.log(paymentDetailsDTO);
         this.paymentService.payForCreateEvent(paymentDetailsDTO).subscribe(
             (res: any) => {
-            this.toastr.success('Payment Successful, an invoice was sent to you');
-            this.focusedEvent.status = 'paid';
-            this.eventService.updateEvent(this.focusedEvent).subscribe(
-                (res) => {
-                    console.log('update event has succeeded:', res);
-                },
-                (err) => {
-                    console.log('update event error:', err);
-                }
-            );
+                this.toastr.success('Payment Successful, an invoice was sent to you');
+                this.focusedEvent.status = 'paid';
+                this.eventService.updateEvent(this.focusedEvent).subscribe(
+                    (res) => {
+                        console.log('update event has succeeded:', res);
+                    },
+                    (err) => {
+                        console.log('update event error:', err);
+                    }
+                );
             },
             (err) => {
                 console.log('in paymentService - payForRegisterEvent ', err);

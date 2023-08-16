@@ -10,44 +10,49 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
+import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
 const routes: Routes = [
-  {
-    path:'profile',
-    component:ProfileComponent
-  },
-  {
-    path: 'home',
-    component:HomeDashboardComponent
-  },
-  {
-    path:'manageCategories',
-    component: ManageCategoriesComponent
-  },
-  {
-    path: 'report',
-    component: ReportComponent
-  },
-  {
-    path: 'statistic',
-    component: StatisticsComponent
-  },
-  {
-    path:'manageUsers',
-    component:ManageUsersComponent
-  },
-  {
-    path:'EventAcceptance',
-    component:AcceptEventComponent
-  },
-  {
-    path: 'search-events',
-    component: SearchEventsComponent
-  },
-  {
-    path:'managePages',
-    component:ManagePageComponent
-  }
+    {
+        path: 'profile',
+        component: ProfileComponent,
+    },
+    {
+        path: 'home',
+        component: StatisticsComponent,
+    },
+    {
+        path: 'manageCategories',
+        component: ManageCategoriesComponent,
+    },
+    {
+        path: 'report',
+        component: ReportComponent,
+    },
+    {
+        path: 'statistic',
+        component: StatisticsComponent,
+    },
+    {
+        path: 'manageUsers',
+        component: ManageUsersComponent,
+    },
+    {
+        path: 'EventAcceptance',
+        component: AcceptEventComponent,
+    },
+    {
+        path: 'search-events',
+        component: SearchEventsComponent,
+    },
+    {
+        path: 'managePages',
+        component: ManagePageComponent,
+    },
+    {
+        path: 'contact-entries',
+        component: ContactEntriesComponent
+    },
 ];
 
 @NgModule({

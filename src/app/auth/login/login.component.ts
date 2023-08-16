@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
 
                 let hasProfile: boolean;
                 this.profileService.getProfileByUserId(parseInt(userId, 10)).subscribe((res) => {
-                    if (roleId === '1') this.router.navigate(['/admin/home']);
+                    if (roleId === '1') this.router.navigate(['/admin/statistic']);
                     else if (roleId === '2') this.router.navigate(['/user/home']);
                 }, err => {
                     if (err.status === 404)
@@ -166,6 +166,10 @@ export class LoginComponent implements OnInit {
 
     onFileChange(event: any): void {
         this.newProfileImage = event.target.files[0];
+    }
+
+    continueAsGuest() {
+        this.router.navigate(['']);
     }
 
     ngOnInit() {

@@ -12,7 +12,8 @@ export class UserHomeComponent implements OnInit{
 
   constructor(private homePage: PageService){}
   page: Page = {
-    id: 1
+    id: 1,
+    retrievedImageFile: ''
   };
   ngOnInit(): void {
     this.homePage.getPageById(1).subscribe(

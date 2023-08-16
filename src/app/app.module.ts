@@ -12,14 +12,14 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventsComponent } from './events/events.component';
+import { EventsComponent } from './user/events/events.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MyEventsComponent } from './my-events/my-events.component';
+import { MyEventsComponent } from './user/my-events/my-events.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent, EventsComponent, MyEventsComponent],
+    declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -29,7 +29,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
         GoogleMapsModule,
         ToastrModule.forRoot(),
         ToastNoAnimationModule.forRoot(),
-        MatDialogModule
+        MatDialogModule,
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent],

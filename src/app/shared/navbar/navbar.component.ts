@@ -2,40 +2,51 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+    constructor(private router: Router) {}
+    token?: any = localStorage.getItem('jwtToken');
+    roleId?: any = localStorage.getItem('UserId');
+    openProfile() {
+        this.token == null
+            ? this.router.navigate(['auth/login'])
+            : this.roleId === '1'
+            ? this.router.navigate(['admin/profile'])
+            : this.router.navigate(['user/profile']);
+    }
 
-  constructor(private router: Router){}
-  token?:any | string = localStorage.getItem('jwtToken');
-  openProfile(){
-    this.token==null ? this.router.navigate(['auth/login']) : this.router.navigate(['admin/profile']);
-  }
+    openHome() {
+        this.router.navigate(['']);
+    }
 
-  openHome(){
-    this.router.navigate(['']);
-  }
+    openAbout() {
+        this.router.navigate(['about']);
+    }
 
-  openAbout(){
-    this.router.navigate(['about']);
-  }
+    openTestimonial() {
+        this.router.navigate(['testimonial']);
+    }
 
-  openTestimonial(){
-    this.router.navigate(['testimonial']);
-  }
+    openContact() {
+        this.router.navigate(['contact']);
+    }
 
-  openContact(){
-    this.router.navigate(['contact']);
-  }
+    openEvents() {
+        this.router.navigate(['user/events']);
+    }
 
-  openEvents(){
-    this.router.navigate(['events']);
-  }
+    openMyEvents() {
+        this.router.navigate(['user/my-events']);
+    }
 
-  openMyEvents(){
-    this.router.navigate(['my-events']);
-  }
-  
+    logout() {
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('UserId');
+        localStorage.removeItem('Username');
+        localStorage.removeItem('RoleId');
+        this.router.navigate(['auth/login']);
+    }
 }
