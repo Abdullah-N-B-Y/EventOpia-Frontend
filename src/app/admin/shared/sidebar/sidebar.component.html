@@ -1,6 +1,6 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-      <a href="https://www.creative-tim.com" class="simple-text logo">
+      <a class="simple-text logo">
         <div class="logo-image-small">
           <img src="../../../../assets/home-assets/img/logo3.png">
         </div>
@@ -55,6 +55,12 @@
           <a (click)="openContactEntries()" style="cursor: pointer;">
             <i class="nc-icon nc-tile-56"></i>
             <p>Contact Us Entries</p>
+          </a>
+        </li>
+        <li [ngClass]="{'active': activeItem === 'testimonialStatus'}">
+          <a (click)="openTestimonialStatus()" style="cursor: pointer;">
+            <i class="nc-icon nc-tile-56"></i>
+            <p>Testimonial Statuses</p>
           </a>
         </li>
         <li >

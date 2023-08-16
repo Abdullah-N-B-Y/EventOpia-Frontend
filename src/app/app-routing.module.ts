@@ -11,6 +11,10 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { UserGuard } from './user-guard.guard';
 import { EventsComponent } from './user/events/events.component';
 import { MyEventsComponent } from './user/my-events/my-events.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
+import { UserGuard } from './user-guard.guard';
+import { EventsComponent } from './user/events/events.component';
+import { MyEventsComponent } from './user/my-events/my-events.component';
 
 const routes: Routes = [
     {
@@ -45,7 +49,8 @@ const routes: Routes = [
     {
         path: 'user',
         loadChildren: () => UserModule,
-    },
+      canActivate: [UserGuard]
+  },
     {
         path: 'testimonial',
         component: TestimonialComponent,

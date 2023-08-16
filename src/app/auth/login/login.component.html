@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-md-4 content-center">
             <div class="card card-login card-plain">
-                <form class="form" [formGroup]="loginForm">
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="header header-primary text-center">
                         <div class="logo mb-3">
                             <img src="../../assets/home-assets/img/logo3.png" alt="" />
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="footer text-center">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block" (click)="login()">Login</button>
+                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block" >Login</button>
                     </div>
                     <div class="text-center">
                         <h6>
