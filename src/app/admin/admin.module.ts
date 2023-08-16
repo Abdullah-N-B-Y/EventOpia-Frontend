@@ -26,7 +26,7 @@ import { ManagePageComponent } from './manage-page/manage-page.component';
     AcceptEventComponent,
     StatisticsComponent,
     ReportComponent,
-    TestimonialComponent,,
+    TestimonialComponent,
     SearchEventsComponent,
     ManagePageComponent
   ],

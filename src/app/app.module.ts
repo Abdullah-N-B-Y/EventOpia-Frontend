@@ -37,7 +37,6 @@ import { MyEventsComponent } from './my-events/my-events.component';
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
     MatDialogModule
-    AdminModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

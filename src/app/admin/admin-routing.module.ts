@@ -58,12 +58,12 @@ const routes: Routes = [
   {
     path:'managePages',
     component:ManagePageComponent
-  }  {
+  },
+  {
     path: 'testimonial',
     component: TestimonialComponent,
-  },
-;
-
+  }
+];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
