@@ -29,7 +29,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
         GoogleMapsModule,
         ToastrModule.forRoot(),
         ToastNoAnimationModule.forRoot(),
-        MatDialogModule,
+        MatDialogModule
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent],

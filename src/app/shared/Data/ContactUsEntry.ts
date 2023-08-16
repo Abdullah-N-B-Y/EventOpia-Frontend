@@ -1,7 +1,7 @@
 import { User } from './User';
 
 export interface ContactUsEntry {
-  id: number;
+  id?: number;
   subject?: string;
   content?: string;
   email?: string;

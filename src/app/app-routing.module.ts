@@ -8,20 +8,21 @@ import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
 import { MyEventsComponent } from './my-events/my-events.component';
+import { UserModule } from './user/user.module';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: 'about',
-    component: AboutUsComponent,
+    component: AboutUsComponent
   },
   {
     path: 'contact',
-    component: ContactUsComponent,
+    component: ContactUsComponent
   },
   {
     path: 'admin',
@@ -30,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => AuthModule,
+    loadChildren: () => AuthModule
   },
   {
     path: 'events',
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'my-events',
     component: MyEventsComponent
   },
+  {
+    path:'user',
+    loadChildren:()=>UserModule
+  }
 ];
 
 @NgModule({
