@@ -33,6 +33,9 @@ export class SidebarComponent {
     openContactEntries() {
         this.router.navigate(['admin/contact-entries']);
     }
+    openTestimonialStatus() {
+        this.router.navigate(['admin/testimonialStatus']);
+    }
     logout() {
         localStorage.removeItem('jwtToken');
         localStorage.removeItem('UserId');

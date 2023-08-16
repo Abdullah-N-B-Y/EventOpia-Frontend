@@ -13,7 +13,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
-import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
+import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
+import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
 
 @NgModule({
@@ -25,16 +26,12 @@ import { TestimonialStatusComponent } from './testimonial-status/testimonial-sta
     ManageCategoriesComponent,
     ManageUsersComponent,
     AcceptEventComponent,
-    StatisticsComponent,
-    ReportComponent,
-    TestimonialComponent,
+    TestimonialStatusComponent,
     SearchEventsComponent,
     ManagePageComponent,
-    TestimonialStatusComponent,,
     ContactEntriesComponent,
     SearchEventsComponent,
     ManagePageComponent,
-    TestimonialStatusComponent,
   ],
   imports: [
     CommonModule,
