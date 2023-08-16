@@ -1,0 +1,40 @@
+
+<div class="wrapper "> 
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">  
+        <app-navbar></app-navbar>
+        <div class="content">
+            <section id="schedule" class="section-with-bg">
+                <div class="container wow fadeInUp">
+                    <div class="section-header">
+                        <h2>Event Acceptance</h2>
+                        <p>Here you will find users events requests</p>
+                    </div>
+                    <div class="tab-content row justify-content-center" *ngFor="let event of events" >
+                        <div role="tabpanel" class="col-lg-12 tab-pane fade show active" *ngIf="event.status == 'Pending'">
+                            <div class="row schedule-item">
+                                <div class="col-md-4">
+                                    <div class="speaker">
+                                        <img src="data:image/png;base64,{{event.retrievedImageFile}}" alt="{{event.name}}">
+                                    </div>
+                                    <h4>{{event.name}}
+                                        <p>{{event.eventDescription}}</p>
+                                    </h4>
+                                    <p>{{event.eventCapacity}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>{{event.startDate}}</p>
+                                    <p>{{event.endDate}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-danger" value="Active" (click)="acceptanceEvent(event.id, 'Active')">Accept</button>
+                                    <button class="btn btn-primary" value="Rejected" (click)="acceptanceEvent(event.id, 'Rejected')">Reject</button>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

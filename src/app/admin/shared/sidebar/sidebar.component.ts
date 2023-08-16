@@ -12,17 +12,17 @@ export class SidebarComponent {
   openDashboard(){
     this.router.navigate(['admin/home']);
   }
-  openManageEvents(){
-    this.router.navigate(['admin/manageevents']);
+  openManageCategories(){
+    this.router.navigate(['admin/manageCategories']);
   }
   openAcceptEvents(){
-    this.router.navigate(['admin/acceptevents']);
+    this.router.navigate(['admin/EventAcceptance']);
   }
-  openViewRegisteredUsers(){
-    this.router.navigate(['admin/home']);
+  manageUsers(){
+    this.router.navigate(['admin/manageUsers']);
   }
   openReports(){
-    this.router.navigate(['admin/reports']);
+    this.router.navigate(['admin/report']);
   }
   openManagePages(){
     this.router.navigate(['admin/managepages']);
