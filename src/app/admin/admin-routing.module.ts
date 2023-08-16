@@ -67,10 +67,6 @@ const routes: Routes = [
     path: 'contact-entries',
     component: ContactEntriesComponent,
 },
-{
-    path: 'testimonial',
-    component: TestimonialComponent,
-},
 ];
 
 @NgModule({

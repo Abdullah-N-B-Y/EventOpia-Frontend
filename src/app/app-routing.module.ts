@@ -7,46 +7,49 @@ import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
 import { UserModule } from './user/user.module';
-import { TestimonialComponent } from './testimonial/testimonial.component';import { UserGuard } from './user-guard.guard';
+import { TestimonialComponent } from './testimonial/testimonial.component';
+import { UserGuard } from './user-guard.guard';
+import { EventsComponent } from './user/events/events.component';
+import { MyEventsComponent } from './user/my-events/my-events.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'about',
-    component: AboutUsComponent,
-  },
-  {
-    path: 'contact',
-    component: ContactUsComponent,
-  },
-  {
-    path: 'admin',
-    loadChildren: () => AdminModule,
-    canActivate: [AdminGuard],
-  },
-  {
-    path: 'auth',
-    loadChildren: () => AuthModule,
-  },
-  {
-    path: 'events',
-    component: EventsComponent,
-  },
-  {
-    path: 'my-events',
-    component: MyEventsComponent,
-  },
-  {
-    path: 'user',
-    loadChildren: () => UserModule,
-  },
-  {
-    path: 'testimonial',
-    component: TestimonialComponent,
-  },
+    {
+        path: '',
+        component: HomeComponent,
+    },
+    {
+        path: 'about',
+        component: AboutUsComponent,
+    },
+    {
+        path: 'contact',
+        component: ContactUsComponent,
+    },
+    {
+        path: 'admin',
+        loadChildren: () => AdminModule,
+        canActivate: [AdminGuard],
+    },
+    {
+        path: 'auth',
+        loadChildren: () => AuthModule,
+    },
+    {
+        path: 'events',
+        component: EventsComponent,
+    },
+    {
+        path: 'my-events',
+        component: MyEventsComponent,
+    },
+    {
+        path: 'user',
+        loadChildren: () => UserModule,
+    },
+    {
+        path: 'testimonial',
+        component: TestimonialComponent,
+    },
 ];
 
 @NgModule({

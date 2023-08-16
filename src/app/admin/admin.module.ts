@@ -13,36 +13,30 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
-import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
-
+import { TestimonialComponent } from '../testimonial/testimonial.component';
+import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
+import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
 @NgModule({
-  declarations: [
-    ProfileComponent,
-    HomeDashboardComponent,
-    StatisticsComponent,
-    ReportComponent,
-    ManageCategoriesComponent,
-    ManageUsersComponent,
-    AcceptEventComponent,
-    StatisticsComponent,
-    ReportComponent,
-    TestimonialComponent,
-    SearchEventsComponent,
-    ManagePageComponent,
-    TestimonialStatusComponent,,
-    ContactEntriesComponent,
-    SearchEventsComponent,
-    ManagePageComponent,
-    TestimonialStatusComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    AdminRoutingModule,
-    NgChartsModule,
-  ],
+    declarations: [
+        ProfileComponent,
+        HomeDashboardComponent,
+        StatisticsComponent,
+        ReportComponent,
+        ManageCategoriesComponent,
+        ManageUsersComponent,
+        AcceptEventComponent,
+        StatisticsComponent,
+        ReportComponent,
+        TestimonialComponent,
+        SearchEventsComponent,
+        ManagePageComponent,
+        TestimonialStatusComponent,
+        ContactEntriesComponent,
+        SearchEventsComponent,
+        ManagePageComponent,
+        TestimonialStatusComponent,
+    ],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, AdminRoutingModule, NgChartsModule],
 })
 export class AdminModule {}
