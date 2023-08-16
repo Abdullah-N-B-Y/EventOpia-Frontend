@@ -10,14 +10,12 @@ import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-di
 import { ProfileService } from 'src/app/services/profile.service';
 import { profileImagePath } from 'src/constants/constants';
 
-
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class ProfileComponent implements OnInit{
-
+export class UserProfileComponent {
   user:User = {
     id: 0,
     username:'',
