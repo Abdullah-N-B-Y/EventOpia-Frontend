@@ -9,42 +9,46 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UserModule } from './user/user.module';
-
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'about',
-    component: AboutUsComponent
+    component: AboutUsComponent,
   },
   {
     path: 'contact',
-    component: ContactUsComponent
+    component: ContactUsComponent,
   },
   {
     path: 'admin',
     loadChildren: () => AdminModule,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'auth',
-    loadChildren: () => AuthModule
+    loadChildren: () => AuthModule,
   },
   {
     path: 'events',
-    component: EventsComponent
+    component: EventsComponent,
   },
   {
     path: 'my-events',
-    component: MyEventsComponent
+    component: MyEventsComponent,
   },
   {
-    path:'user',
-    loadChildren:()=>UserModule
-  }
+    path: 'user',
+    loadChildren: () => UserModule,
+  },
+  {
+    path: 'testimonial',
+    component: TestimonialComponent,
+  },
 ];
 
 @NgModule({

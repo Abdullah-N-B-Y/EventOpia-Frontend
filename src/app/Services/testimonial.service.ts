@@ -19,4 +19,12 @@ export class TestimonialService {
       headers,
     });
   }
+
+  GetAllTestimonials(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetAllTestimonials`);
+  }
+
+  UpdateTestimonial(testimonial: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/UpdateTestimonial`, testimonial);
+  }
 }

@@ -7,9 +7,10 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
-import { TestimonialComponent } from './testimonial/testimonial.component';
+import { TestimonialComponent } from '../testimonial/testimonial.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
+import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
 
 const routes: Routes = [
   {
@@ -28,41 +29,40 @@ const routes: Routes = [
     path: 'statistics',
     component: StatisticsComponent,
   },
-  { path: 'report',
-    component: ReportComponent
-  },
+  { path: 'report', component: ReportComponent },
   {
-    path:'manageCategories',
-    component: ManageCategoriesComponent
+    path: 'manageCategories',
+    component: ManageCategoriesComponent,
   },
   {
     path: 'report',
-    component: ReportComponent
+    component: ReportComponent,
   },
   {
     path: 'statistic',
-    component: StatisticsComponent
+    component: StatisticsComponent,
   },
   {
-    path:'manageUsers',
-    component:ManageUsersComponent
+    path: 'manageUsers',
+    component: ManageUsersComponent,
   },
   {
-    path:'EventAcceptance',
-    component:AcceptEventComponent
+    path: 'EventAcceptance',
+    component: AcceptEventComponent,
   },
   {
     path: 'search-events',
-    component: SearchEventsComponent
+    component: SearchEventsComponent,
   },
   {
-    path:'managePages',
-    component:ManagePageComponent
-  }  {
-    path: 'testimonial',
-    component: TestimonialComponent,
+    path: 'managePages',
+    component: ManagePageComponent,
   },
-;
+  {
+    path: 'testimonialStatus',
+    component: TestimonialStatusComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

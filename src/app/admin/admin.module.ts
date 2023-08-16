@@ -11,9 +11,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
-import { TestimonialComponent } from './testimonial/testimonial.component';import { SearchEventsComponent } from './search-events/search-events.component';
+import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
-
+import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { ManagePageComponent } from './manage-page/manage-page.component';
     AcceptEventComponent,
     StatisticsComponent,
     ReportComponent,
-    TestimonialComponent,,
     SearchEventsComponent,
-    ManagePageComponent
+    ManagePageComponent,
+    TestimonialStatusComponent,
   ],
   imports: [
     CommonModule,

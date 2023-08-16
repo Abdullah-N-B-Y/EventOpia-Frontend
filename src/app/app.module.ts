@@ -17,6 +17,7 @@ import { EventsComponent } from './events/events.component';
 import { JwtInterceptor } from './interceptors/jwt-interceptor'; // Make sure to import JwtInterceptor
 import { AdminModule } from './admin/admin.module';
 import { MyEventsComponent } from './my-events/my-events.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { MyEventsComponent } from './my-events/my-events.component';
     HomeComponent,
     AboutUsComponent,
     ContactUsComponent,
-    EventsComponent, MyEventsComponent,
+    EventsComponent,
+    MyEventsComponent,
+    TestimonialComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
     GoogleMapsModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
     AdminModule,
   ],
   providers: [

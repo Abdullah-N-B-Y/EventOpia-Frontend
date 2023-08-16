@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import jwtDecode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
-import { TestimonialService } from '../../services/testimonial.service';
+import { TestimonialService } from '../services/testimonial.service';
 
 @Component({
   selector: 'app-testimonial',
