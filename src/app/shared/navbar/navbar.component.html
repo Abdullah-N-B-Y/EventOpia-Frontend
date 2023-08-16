@@ -7,8 +7,6 @@
 <header id="header">
     <div class="container">
         <div id="logo" class="pull-left">
-            <!-- Uncomment below if you prefer to use a text logo -->
-            <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
             <a href="#intro" class="scrollto"><img src="../../assets/home-assets/img/logo3.png" alt="" title="" /></a>
         </div>
 
@@ -19,12 +17,11 @@
                 <li *ngIf="token"><a (click)="openEvents()">Events</a></li>
                 <li *ngIf="token"><a (click)="openMyEvents()">My Events</a></li>
                 <li><a (click)="openTestimonial()">Testimonial</a></li>
-                <!-- <li><a href="#faq" style="color: #fff;">Why Us</a></li> -->
                 <li><a (click)="openContact()">Contact</a></li>
                 <li><a *ngIf="token" (click)="logout()">logout</a></li>
                 <li class="buy-tickets">
                     <a (click)="openProfile()"
-                        ><i class="fa-solid fa-user"></i> <span *ngIf="token">  Profile</span><span *ngIf="!token">  Login</span></a
+                        ><i class="fa-solid fa-user"></i> <span *ngIf="token">  {{username}}</span><span *ngIf="!token">  Login</span></a
                     >
                 </li>
             </ul>

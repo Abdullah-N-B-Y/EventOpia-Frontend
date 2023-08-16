@@ -10,22 +10,8 @@
 
     <app-about-us [displayTemplate]="false"></app-about-us>
     <app-contact-us [displayTemplate]="false"></app-contact-us>
+    <app-testimonial [displayTemplate]="false"></app-testimonial>
 
-    <section id="schedule" class="section-with-bg">
-        <div class="container wow fadeInUp">
-            <div class="section-header">
-                <h2>Testimonials</h2>
-                <div class="row">
-                    <div class="col-md-4" *ngFor="let testimonial of approvedTestimonials">
-                        <div class="testimonial">
-                            <h3>{{ testimonial.content }}</h3>
-                            <p>{{ testimonial.creationDate }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section id="subscribe">
         <div class="container wow fadeInUp">
             <div class="section-header">

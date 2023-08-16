@@ -14,8 +14,10 @@ import { createFormDataFromObject } from '../shared/utilities/createFormDataFrom
 export class ProfileService {
     constructor(private http: HttpClient) {}
 
-    updateProfile(body: any): Observable<boolean> {
-        return this.http.put(endPointURL + 'Profile/UpdateProfile', body).pipe(
+    updateProfile(body: Profile): Observable<boolean> {
+        let formData: FormData = new FormData();
+        formData = createFormDataFromObject(body);
+        return this.http.put(endPointURL + 'Profile/UpdateProfile', formData).pipe(
             map((resp: any) => {
                 console.log('Profile updated successfully', resp);
                 return true;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../../services/report.service';
-import { NgChartsModule } from 'ng2-charts';
 import { ChartType } from 'chart.js';
 @Component({
   selector: 'app-report',
