@@ -32,7 +32,10 @@ export class ManagePageComponent {
         content2: new FormControl(''),
     });
 
-    page: Page = { id: 0 };
+    page: Page = {
+        id: 0,
+        retrievedImageFile: ''
+    };
     pages:any;
     ngOnInit(): void {
         this.pageService.getAllPages().subscribe(
@@ -149,7 +152,21 @@ export class ManagePageComponent {
     @ViewChild('editPageDailog') editPageDailog!: TemplateRef<any>;
     openEditPageDialog(id: number) {
         this.editedPageById = id;
-        const dialogRef = this.dialog.open(this.editPageDailog);
+        this.pageService.getPageById(this.editedPageById).subscribe(
+            (res: any) => {
+                this.page = res;
+                this.editPageForm.patchValue({
+                    content1: this.page.content1,
+                    content2: this.page.content2,
+                });
+                const dialogRef = this.dialog.open(this.editPageDailog);
+            },
+            (err) => {
+                console.log('err=> ' + err);
+            }
+        );
+        // this.editPageForm.controls['content1'].setValue(this.page.content1);
+        
     }
 
     @ViewChild('detailsPageDailog') detailsPageDailog!: TemplateRef<any>;

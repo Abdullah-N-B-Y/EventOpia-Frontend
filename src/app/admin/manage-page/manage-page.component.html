@@ -1,5 +1,5 @@
 <div class="wrapper "> 
-    <app-sidebar></app-sidebar>
+    <app-sidebar [activeItem]="'manage-pages'"></app-sidebar>
     <div class="main-panel">  
     <app-navbar></app-navbar>
     <div class="content">
@@ -12,11 +12,10 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4 col-md-6" *ngFor="let page of pages">
-            <div class="speaker">
-                <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
-                <img src="data:image/png;base64,{{page.retrievedImageFile}}" alt="Speaker 1" class="img-fluid">
-                <div class="details">
+        <div class="col-lg-4 col-md-6" *ngFor="let page of pages" style="min-height: 500 rem;">
+            <div class="speaker" style="min-height: 500 rem;">
+                <img src="data:image/png;base64,{{page.retrievedImageFile}}" alt="Speaker 1" class="img-fluid" style="min-height: 500 rem;">
+                <div class="details" style="min-height: 100 rem;">
                     <h3><a href="speaker-details.html">{{page.content1}}</a></h3>
                     <p>{{page.content2}}</p>
                 </div>

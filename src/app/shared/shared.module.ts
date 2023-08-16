@@ -6,17 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { DynamicDialogesModule } from './dynamic-dialoges/dynamic-dialoges.module';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
     declarations: [NavbarComponent, FooterComponent],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatInputModule,
-        DynamicDialogesModule,
-    ],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatInputModule, DynamicDialogesModule, GoogleMapsModule],
     exports: [
         NavbarComponent,
         FooterComponent,
@@ -25,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
         MatInputModule,
         HttpClientModule,
         DynamicDialogesModule,
+        GoogleMapsModule,
     ],
 })
 export class SharedModule {}

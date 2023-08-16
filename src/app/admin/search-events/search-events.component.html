@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [activeItem]="'search-events'"></app-sidebar>
     <div class="main-panel">
         <app-navbar></app-navbar>
         <div class="content pb-5 pt-3 mb-5">
@@ -120,10 +120,6 @@
                                     <p class="card-text text-center">
                                         {{ event.eventDescription }}
                                     </p>
-                                    <!-- <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary custom-button">Status: {{event.status}}</button>
-                                    <button class="btn btn-primary custom-button" [disabled]="event.status!=='active'" (click)="openPayDialog(event)">Pay</button>
-                                </div> -->
                                 </div>
                             </div>
                         </div>

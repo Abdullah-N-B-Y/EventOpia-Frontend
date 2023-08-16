@@ -3,13 +3,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthModule } from './auth/auth.module';
-import { EventsComponent } from './events/events.component';
 import { AdminModule } from './admin/admin.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin-guard.guard';
-import { MyEventsComponent } from './my-events/my-events.component';
 import { UserModule } from './user/user.module';
-import { TestimonialComponent } from './testimonial/testimonial.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';import { UserGuard } from './user-guard.guard';
 
 const routes: Routes = [
   {
@@ -52,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

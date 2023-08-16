@@ -13,7 +13,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
-import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
+import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +27,11 @@ import { TestimonialStatusComponent } from './testimonial-status/testimonial-sta
     AcceptEventComponent,
     StatisticsComponent,
     ReportComponent,
+    TestimonialComponent,
+    SearchEventsComponent,
+    ManagePageComponent,
+    TestimonialStatusComponent,,
+    ContactEntriesComponent,
     SearchEventsComponent,
     ManagePageComponent,
     TestimonialStatusComponent,

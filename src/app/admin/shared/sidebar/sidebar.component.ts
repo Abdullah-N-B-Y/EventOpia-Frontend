@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
     constructor(private router: Router) {}
+    @Input() activeItem: string = 'statistic';
     openDashboard() {
-        this.router.navigate(['admin/home']);
+        this.router.navigate(['admin/statistic']);
     }
     openManageCategories() {
         this.router.navigate(['admin/manageCategories']);
@@ -28,6 +29,9 @@ export class SidebarComponent {
     }
     openSearchEvents() {
         this.router.navigate(['admin/search-events']);
+    }
+    openContactEntries() {
+        this.router.navigate(['admin/contact-entries']);
     }
     logout() {
         localStorage.removeItem('jwtToken');

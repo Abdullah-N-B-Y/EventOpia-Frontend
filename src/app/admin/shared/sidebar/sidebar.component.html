@@ -1,60 +1,63 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-      <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+      <a href="https://www.creative-tim.com" class="simple-text logo">
         <div class="logo-image-small">
-          <!-- <img src="../assets/img/logo-small.png"> -->
+          <img src="../../../../assets/home-assets/img/logo3.png">
         </div>
-        <!-- <p>CT</p> -->
       </a>
-      <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
-      </a>
+
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="active">
+        <li [ngClass]="{'active': activeItem === 'statistic'}">
           <a (click)="openDashboard()" style="cursor: pointer;">
             <i class="nc-icon nc-bank"></i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'manage-categories'}">
           <a (click)="openManageCategories()" style="cursor: pointer;">
             <i class="nc-icon nc-pin-3"></i>
             <p>Manage Categories</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'accept-events'}">
           <a (click)="openAcceptEvents()" style="cursor: pointer;">
             <i class="nc-icon nc-bell-55"></i>
             <p>Accept Events</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'manage-users'}">
           <a (click)="manageUsers()" style="cursor: pointer;">
             <i class="nc-icon nc-single-02"></i>
             <p>Users</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'reports'}">
           <a (click)="openReports()" style="cursor: pointer;">
             <i class="nc-icon nc-tile-56"></i>
             <p>Reports</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'manage-pages'}">
           <a (click)="openManagePages()" style="cursor: pointer;">
             <i class="nc-icon nc-tile-56"></i>
             <p>Manage Pages</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'search-events'}">
           <a (click)="openSearchEvents()" style="cursor: pointer;">
             <i class="nc-icon nc-zoom-split"></i>
             <p>Search Events</p>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': activeItem === 'contact-entries'}">
+          <a (click)="openContactEntries()" style="cursor: pointer;">
+            <i class="nc-icon nc-tile-56"></i>
+            <p>Contact Us Entries</p>
+          </a>
+        </li>
+        <li >
           <a (click)="logout()" style="cursor: pointer;">
             <i class="nc-icon nc-button-power"></i>
             <p>Logout</p>

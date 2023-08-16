@@ -11,6 +11,7 @@ import { TestimonialComponent } from '../testimonial/testimonial.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
 import { TestimonialStatusComponent } from './testimonial-status/testimonial-status.component';
+import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,14 @@ const routes: Routes = [
     path: 'testimonialStatus',
     component: TestimonialStatusComponent,
   },
+  {
+    path: 'contact-entries',
+    component: ContactEntriesComponent,
+},
+{
+    path: 'testimonial',
+    component: TestimonialComponent,
+},
 ];
 
 @NgModule({

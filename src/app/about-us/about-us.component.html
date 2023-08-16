@@ -1,7 +1,8 @@
-<app-navbar></app-navbar>
-<section id="intro">
+<app-navbar *ngIf="displayTemplate"></app-navbar>
+<section id="intro" [style.background]="'url(' + getDataURL(page.retrievedImageFile) + ') top center !important'">
     <div class="intro-container wow fadeIn">
-        <h1 class="mb-4 pb-0">EventOpia<br><span>About Us</span> page</h1>
+        <h1 class="mb-4 pb-0" *ngIf="displayTemplate">EventOpia<br><span>About Us</span> page</h1>
+        <h1 class="mb-4 pb-0" *ngIf="!displayTemplate">EventOpia<br><span>About Us</span></h1>
         <p class="mb-4 pb-0">{{page.content1}}</p>
         <p class="mb-4 pb-0">{{page.content2}}</p>
     </div>
@@ -53,4 +54,4 @@
         </div>
     </div>
 </section>
-<app-footer></app-footer>
+<app-footer *ngIf="displayTemplate"></app-footer>
