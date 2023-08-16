@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestimonialService {
   private baseUrl = 'https://localhost:7189/api/Testimonial';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  createTestimonial(testimonial: any): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/CreateNewTestimonial`, testimonial);
+  createTestimonial(testimonial: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(`${this.baseUrl}/CreateNewTestimonial`, testimonial, {
+      headers,
+    });
   }
-
-  // Add other methods for getting, updating, and deleting testimonials
 }

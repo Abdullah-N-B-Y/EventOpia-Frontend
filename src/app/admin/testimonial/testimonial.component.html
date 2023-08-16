@@ -1,13 +1,24 @@
-<div>
-  <h2>Add Testimonial</h2>
-  <form [formGroup]="testimonialForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="content">Content:</label>
-      <textarea id="content" formControlName="content"></textarea>
-      <div *ngIf="testimonialForm.get('content')?.hasError('maxlength')">
-        Content cannot exceed 500 characters.
-      </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="testimonialForm"
+        class="bg-light p-4 rounded shadow"
+      >
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea
+            formControlName="content"
+            id="content"
+            class="form-control"
+            rows="5"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Submit Testimonial
+        </button>
+      </form>
     </div>
-    <button type="submit" [disabled]="testimonialForm.invalid">Submit</button>
-  </form>
+  </div>
 </div>

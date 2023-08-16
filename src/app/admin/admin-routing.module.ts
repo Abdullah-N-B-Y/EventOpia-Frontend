@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ProfileComponent } from './profile/profile.component';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { ReportComponent } from './report/report.component';
@@ -8,8 +7,6 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { ReportComponent } from './report/report.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 
 const routes: Routes = [
@@ -21,10 +18,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeDashboardComponent,
   },
-  {
-    path: 'manageevents',
-    component: ManageEventsComponent,
-  },
+  // {
+  //   path: 'manageevents',
+  //   component: manageeventscomponent,
+  // },
   {
     path: 'statistics',
     component: StatisticsComponent,
@@ -51,7 +48,8 @@ const routes: Routes = [
   {
     path:'EventAcceptance',
     component:AcceptEventComponent
-  }
+  },
+  {
     path: 'testimonial',
     component: TestimonialComponent,
   },

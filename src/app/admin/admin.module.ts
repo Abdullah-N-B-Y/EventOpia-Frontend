@@ -15,16 +15,13 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
-    
     ProfileComponent,
     HomeDashboardComponent,
     StatisticsComponent,
     ReportComponent,
     ManageCategoriesComponent,
     ManageUsersComponent,
-    AcceptEventComponent
-  ],
-    ManageEventsComponent,
+    AcceptEventComponent,
     StatisticsComponent,
     ReportComponent,
     TestimonialComponent,
