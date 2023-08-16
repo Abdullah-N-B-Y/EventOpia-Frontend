@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ProfileComponent } from './profile/profile.component';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { ReportComponent } from './report/report.component';
@@ -8,6 +7,7 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
 import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
@@ -51,10 +51,13 @@ const routes: Routes = [
     },
     {
         path: 'contact-entries',
-        component: ContactEntriesComponent
+        component: ContactEntriesComponent,
+    },
+    {
+        path: 'testimonial',
+        component: TestimonialComponent,
     },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

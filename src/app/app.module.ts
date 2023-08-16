@@ -12,11 +12,9 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventsComponent } from './user/events/events.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MyEventsComponent } from './user/my-events/my-events.component';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, AboutUsComponent, ContactUsComponent],

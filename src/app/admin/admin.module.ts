@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
-import { SearchEventsComponent } from './search-events/search-events.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';import { SearchEventsComponent } from './search-events/search-events.component';
 import { ManagePageComponent } from './manage-page/manage-page.component';
 import { ContactEntriesComponent } from './contact-entries/contact-entries.component';
 
@@ -25,6 +25,9 @@ import { ContactEntriesComponent } from './contact-entries/contact-entries.compo
     ManageCategoriesComponent,
     ManageUsersComponent,
     AcceptEventComponent,
+    StatisticsComponent,
+    ReportComponent,
+    TestimonialComponent,
     SearchEventsComponent,
     ManagePageComponent,
     ContactEntriesComponent

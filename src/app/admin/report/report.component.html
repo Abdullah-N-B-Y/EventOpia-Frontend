@@ -5,7 +5,7 @@
     <app-navbar></app-navbar>
     <div class="content">
       <div>
-        <h2 class="mb-5">Benefits Report</h2>
+        <h2 class="mb-3">Benefits Report</h2>
         <form (ngSubmit)="onSubmit()" class="form-inline mb-2">
           <label for="startDate">Start Date:</label>
           <input
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mb-5">
         <div *ngIf="reportFetched">
           <div
             style="display: flex; flex-direction: column; align-items: center"
