@@ -1,0 +1,135 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <div class="content pb-5 pt-3 mb-5">
+            <section id="speakers" class="wow fadeInUp">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>All Events</h2>
+                        <p>Here you will find all the events and search them by date</p>
+                    </div>
+                    <form [formGroup]="eventFilterForm" class="mb-5">
+                        <div class="row d-flex justify-content-center mb-3">
+                            <div class="col-3 form-control">
+                                <label for="startDate" class="form-label">Start Date:</label>
+                                <input
+                                    type="date"
+                                    class="custom-input"
+                                    id="startDate"
+                                    name="startDate"
+                                    formControlName="startDate"
+                                    required="" />
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-3">
+                            <div class="col-3 form-control">
+                                <label for="endDate" class="form-label">End Date:</label>
+                                <input type="date" class="custom-input" id="endDate" name="endDate" formControlName="endDate" required />
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-3">
+                            <div class="col-3 form-control">
+                                <label class="form-label">Event Filter:</label>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="eventFilter"
+                                        id="all"
+                                        value="all"
+                                        formControlName="eventFilter" />
+                                    <label class="form-check-label" for="all">All</label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="eventFilter"
+                                        id="pending"
+                                        value="pending"
+                                        formControlName="eventFilter" />
+                                    <label class="form-check-label" for="pending">Pending</label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="eventFilter"
+                                        id="paid"
+                                        value="paid"
+                                        formControlName="eventFilter" />
+                                    <label class="form-check-label" for="paid">Paid</label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="eventFilter"
+                                        id="accepted"
+                                        value="accepted"
+                                        formControlName="eventFilter" />
+                                    <label class="form-check-label" for="accepted">Accepted</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center mb-3">
+                            <button type="submit" class="btn btn-primary custom-button m-3" (click)="onSubmit()">Search</button>
+                            <button class="btn btn-primary custom-button m-3" (click)="resetForm()">Reset</button>
+                        </div>
+                    </form>
+                    <div class="section-header"></div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-5" *ngFor="let event of shownEvents">
+                            <div class="card w-100 h-100 info-content" id="myElement">
+                                <img [src]="getDataURL(event.retrievedImageFile)" class="card-img-top w-100" alt="..." height="300rem" />
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">
+                                                {{ event.name }}
+                                            </h5>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title secondary-color">
+                                                {{ event.startDate | date : 'MMM d' }}
+                                                -
+                                                {{ event.endDate | date : 'MMM d' }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title secondary-color">
+                                                {{ event.address }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">
+                                                Capacity:
+                                                {{ event.eventCapacity }}
+                                            </h5>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title secondary-color">${{ event.attendingCost }}</h5>
+                                        </div>
+                                    </div>
+
+                                    <p class="card-text text-center">
+                                        {{ event.eventDescription }}
+                                    </p>
+                                    <!-- <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary custom-button">Status: {{event.status}}</button>
+                                    <button class="btn btn-primary custom-button" [disabled]="event.status!=='active'" (click)="openPayDialog(event)">Pay</button>
+                                </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

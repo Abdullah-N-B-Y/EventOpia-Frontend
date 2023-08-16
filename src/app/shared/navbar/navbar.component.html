@@ -1,24 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <header id="header">
     <div class="container">
   
       <div id="logo" class="pull-left">
         <!-- Uncomment below if you prefer to use a text logo -->
         <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-        <a href="#intro" class="scrollto"><img src="../../assets/home-assets/img/logo.png" alt="" title=""></a>
+        <a href="#intro" class="scrollto"><img src="../../assets/home-assets/img/logo3.png" alt="" title=""></a>
       </div>
   
       <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#speakers">Speakers</a></li>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#venue">Venue</a></li>
-          <li><a href="#hotels">Hotels</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#sponsors">Sponsors</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="buy-tickets"><a href="#buy-tickets">Buy Tickets</a></li>
+        <ul class="nav-menu white-links hand-curser">
+          <li><a (click)="openHome()">Home</a></li>
+          <li><a (click)="openAbout()">About us</a></li>
+          <li *ngIf="token"><a (click)="openEvents()">Events</a></li>
+          <li *ngIf="token"><a (click)="openMyEvents()">My Events</a></li>
+          <li><a (click)="openTestimonial()">Testimonial</a></li>
+          <li><a href="#faq" style="color: #fff;">Why Us</a></li>
+          <li><a (click)="openContact()">Contact</a></li>
+          <li class="buy-tickets"><a (click)="openProfile()"><i class="fa-solid fa-user"></i></a></li>
         </ul>
       </nav>
     </div>

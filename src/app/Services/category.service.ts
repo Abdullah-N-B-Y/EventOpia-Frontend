@@ -12,15 +12,15 @@ export class CategoryService {
     private serviceURL = endPointURL + 'Category/';
   constructor(private http: HttpClient) { }
   
-  categories:any = [{}]
-  getAllCategories(): void {
-    this.http.get<Category[]>(this.serviceURL + 'GetAllCategories').subscribe(
-      (res: Category[]) => {
-          this.categories = res;
-      },
-      (err) => {
-          console.log(err);
-      }
+  
+  getAllCategories(): Observable<any> {
+    return this.http.get<Category[]>(this.serviceURL + 'GetAllCategories').pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err: any) => {
+        return err;
+      })
     );
   }
 
@@ -35,7 +35,6 @@ export class CategoryService {
     );
   }
 
-  category:Category={};
   getCategoryByName(name: string): Observable<Object>{
     return this.http.get(this.serviceURL + `GetCategoryByName/${name}`).pipe(
       map((resp: any) => {

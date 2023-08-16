@@ -8,6 +8,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AcceptEventComponent } from './accept-event/accept-event.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
+import { SearchEventsComponent } from './search-events/search-events.component';
+import { ManagePageComponent } from './manage-page/manage-page.component';
 
 const routes: Routes = [
   {
@@ -50,10 +52,17 @@ const routes: Routes = [
     component:AcceptEventComponent
   },
   {
+    path: 'search-events',
+    component: SearchEventsComponent
+  },
+  {
+    path:'managePages',
+    component:ManagePageComponent
+  }  {
     path: 'testimonial',
     component: TestimonialComponent,
   },
-];
+;
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

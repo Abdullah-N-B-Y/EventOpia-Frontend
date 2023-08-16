@@ -1,6 +1,6 @@
 export interface EventWithDetailsDTO {
     id?: number;
-    name?: string | null;
+    name: string;
     attendingCost?: number | null;
     startDate: Date;
     endDate: Date;

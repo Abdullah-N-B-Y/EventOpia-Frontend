@@ -1,7 +1,7 @@
 import { User } from './User';
 
 export interface Booking {
-  id: number;
+  id?: number;
   bookingDate?: Date | null; 
   userId?: number | null; 
   eventId?: number | null; 

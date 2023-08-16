@@ -1,0 +1,119 @@
+<div class="wrapper "> 
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">  
+    <app-navbar></app-navbar>
+    <div class="content">
+        <button (click)="openCreatePageDialog()" disabled class="btn btn-primary col-3">Add new Page</button>
+<section id="speakers" class="wow fadeInUp">
+    <div class="container">
+    <div class="section-header">
+        <h2>System Pages</h2>
+        <p>Here you will find system pages</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let page of pages">
+            <div class="speaker">
+                <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
+                <img src="data:image/png;base64,{{page.retrievedImageFile}}" alt="Speaker 1" class="img-fluid">
+                <div class="details">
+                    <h3><a href="speaker-details.html">{{page.content1}}</a></h3>
+                    <p>{{page.content2}}</p>
+                </div>
+            </div>
+            <div class="row" style="justify-content: center;margin-top: -30px;">
+                <a (click)="openEditPageDialog(page.id)" class="btn btn-primary col-3">Edit</a>
+                <a (click)="deletePage(page.id)" class="btn btn-danger col-3">Delete</a>
+                <a (click)="opendetailsPageDialog(page.id)" class="btn btn-primary col-3">Details</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+      </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #addPageDailog>
+    <form [formGroup]="pageForm">
+    <div style="padding:15px">
+      <div class="row">
+        <div class="col-md-12 pr-1" style="text-align: center;border:1px dashed #000">
+            <div class="form-group">
+              <label >Click to upload Page background</label>
+              <input type="file"(change)="onFileChange($event)"accept="image/*" style="cursor: pointer;"/>
+            </div>
+        </div>
+        <div class="col-md-12 pr-1">
+          <div class="form-group">
+            <label>Page Content 1</label>
+            <input type="text" class="form-control" placeholder="Content 1..." formControlName="Content1">
+          </div>
+        </div>
+        <div class="col-md-12 pl-1">
+          <div class="form-group">
+            <label>Page Content 2</label>
+            <textarea type="text" class="form-control" placeholder="Content 2..." formControlName="Content2"></textarea>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!pageForm.valid" (click)="createPage()">Create</button>
+    </div>
+    </form>
+</ng-template>
+
+<ng-template #editPageDailog>
+    <form [formGroup]="editPageForm">
+    <div style="padding:15px">
+      <div class="row">
+        <div class="col-md-12 pr-1" style="text-align: center;border:1px dashed #000">
+            <div class="form-group">
+              <label >Click to upload Page background</label>
+              <input type="file"(change)="onFileChange($event)"accept="image/*" style="cursor: pointer;"/>
+            </div>
+        </div>
+        <div class="col-md-12 pl-1">
+          <div class="form-group">
+            <label>Content 1</label>
+            <textarea class="form-control" placeholder="Content 1..." formControlName="content1"></textarea>
+          </div>
+        </div>
+        <div class="col-md-12 pl-1">
+          <div class="form-group">
+            <label>Content 2</label>
+            <textarea class="form-control" placeholder="Content 2..." formControlName="content2"></textarea>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!editPageForm.valid" (click)="editPage()">Edit</button>
+    </div>
+    </form>
+</ng-template>
+
+<ng-template #detailsPageDailog>
+    <div style="padding:15px">
+      <div class="row">
+        <div class="col-md-12 pr-1" style="text-align: center;">
+            <div class="form-group">
+                <img src="data:image/png;base64,{{page.retrievedImageFile}}" alt="Page" class="img-fluid" style="width: 250px;height: 250px;border-radius: 20px;">
+            </div>
+        </div>
+        <div class="col-md-6 pr-1">
+          <div class="form-group">
+            <label>Page Content 1</label>
+            <input type="text" class="form-control" placeholder="Content 1..." [disabled]="true" [value]="page.content1">
+          </div>
+        </div>
+        <div class="col-md-12 pl-1">
+            <div class="form-group">
+              <label>Page Content 2</label>
+              <textarea type="text" class="form-control" placeholder="Page Content 2..." [disabled]="true" [value]="page.content2"></textarea>
+            </div>
+        </div>
+      </div>
+    </div>
+</ng-template>

@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<section id="venue">
+<section id="venue" style="padding-top: 8rem">
     <div class="container-fluid">
         <div class="section-header">
             <h2>Events</h2>
@@ -7,12 +7,25 @@
             <div class="row d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" (click)="enterAddMode()">Add your own event</button>
             </div>
+            <div class="row d-flex justify-content-center mb-3 mt-3">
+                <div class="col-3 form-control">
+                    <input
+                        type="text"
+                        [(ngModel)]="searchName"
+                        (change)="onSearchNameChange()"
+                        class="custom-input"
+                        style="width: 50vh"
+                        name="searchName"
+                        placeholder="Search events by name.."
+                        style="font-size: 20px" />
+                </div>
+            </div>
         </div>
 
         <div class="row justify-content-center" style="height: 90vh">
             <div class="col-lg-10">
                 <google-map
-                    height="100%"
+                    height="90%"
                     width="100%"
                     [center]="center"
                     [zoom]="zoom"
@@ -70,13 +83,12 @@
                                 </p>
                                 <div class="d-flex justify-content-between">
                                     <button class="btn btn-primary custom-button">View event details</button>
-                                    <button class="btn btn-primary custom-button">Register</button>
+                                    <button class="btn btn-primary custom-button" (click)="openPayDialog()">Register</button>
                                 </div>
                             </div>
                         </div>
                     </map-info-window>
                 </google-map>
-
             </div>
         </div>
     </div>
@@ -85,6 +97,11 @@
 
 <ng-template #addEventDialog>
     <form [formGroup]="eventForm" style="padding: 15px">
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-center">
+                <h2 class="dialog-title">Enter new event details</h2>
+            </div>
+        </div>
         <div class="row mb-3">
             <div class="col-12">
                 <label for="name" class="font-weight-bold">Name:</label>
@@ -195,7 +212,7 @@
                 <label for="categoryId" class="font-weight-bold">Category:</label>
                 <select id="categoryId" class="form-control" formControlName="categoryId">
                     <option value="" disabled selected>Select a category</option>
-                    <option *ngFor="let category of categoryService.categories" [value]="category.id">{{ category.name }}</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                 </select>
                 <div
                     *ngIf="
@@ -229,6 +246,76 @@
             <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!eventForm.valid" (click)="onAddEventSubmit()">
                 Save
             </button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #payDialog>
+    <form [formGroup]="payForm" style="padding: 15px">
+        <div class="row mb-3">
+            <div class="col-12 d-flex justify-content-center">
+                <h2 class="dialog-title">Enter your bank details</h2>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="cardNumber" class="font-weight-bold">Card Number:</label>
+                <input type="text" id="cardNumber" class="form-control" formControlName="cardNumber" />
+                <div *ngIf="payForm.get('cardNumber')?.invalid && (payForm.get('cardNumber')?.dirty || payForm.get('cardNumber')?.touched)">
+                    <div class="text-danger" *ngIf="payForm.controls['cardNumber'].hasError('maxlength')">
+                        Card Number cannot exceed 20 characters.
+                    </div>
+                    <div class="text-danger" *ngIf="payForm.controls['cardNumber'].hasError('required')">Card Number is required.</div>
+                    <div class="text-danger" *ngIf="payForm.controls['cardNumber'].hasError('minlength')">
+                        Card Number cannot be less than 20 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="cardHolder" class="font-weight-bold">Card Holder:</label>
+                <input type="text" id="cardHolder" class="form-control" formControlName="cardHolder" />
+                <div *ngIf="payForm.get('cardHolder')?.invalid && (payForm.get('cardHolder')?.dirty || payForm.get('cardHolder')?.touched)">
+                    <div class="text-danger" *ngIf="payForm.controls['cardHolder'].hasError('required')">Card Holder is required.</div>
+                    <div class="text-danger" *ngIf="payForm.controls['cardHolder'].hasError('maxlength')">
+                        Card Holder must not exceed 100 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="expirationDate" class="font-weight-bold">Expiration Date:</label>
+                <input type="date" id="expirationDate" class="form-control" formControlName="expirationDate" />
+                <div
+                    *ngIf="
+                        payForm.get('expirationDate')?.invalid &&
+                        (payForm.get('expirationDate')?.dirty || payForm.get('expirationDate')?.touched)
+                    ">
+                    <div *ngIf="payForm.controls['expirationDate'].hasError('required')">Expiration Date is required.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="cvv" class="font-weight-bold">CVV:</label>
+                <input type="number" id="cvv" class="form-control" formControlName="cvv" />
+                <div *ngIf="payForm.get('cvv')?.invalid && (payForm.get('cvv')?.dirty || payForm.get('cvv')?.touched)">
+                    <div class="text-danger" *ngIf="payForm.controls['cvv'].hasError('required')">CVV is required.</div>
+                    <div class="text-danger" *ngIf="payForm.controls['cvv'].hasError('maxlength')">CVV cannot exceed 3 characters.</div>
+                    <div class="text-danger" *ngIf="payForm.controls['cvv'].hasError('minlength')">
+                        CVV cannot be less than 3 characters.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!payForm.valid" (click)="onPaySubmit()">Save</button>
         </div>
     </form>
 </ng-template>

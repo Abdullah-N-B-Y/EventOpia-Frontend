@@ -9,6 +9,11 @@ import { Category } from '../shared/Data/Category';
 import { Event_ } from '../shared/Data/Event_';
 import jwt_decode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { Bank } from '../shared/Data/Bank';
+import { PaymentDetailsDTO } from '../shared/DTO/PaymentDetailsDTO ';
+import { PaymentService } from '../services/payment.service';
+import { BookingService } from '../services/booking.service';
+import { Booking } from '../shared/Data/Booking';
 
 interface eventOnMap {
     event: EventWithDetailsDTO;
@@ -22,15 +27,15 @@ interface eventOnMap {
 })
 export class EventsComponent implements OnInit {
     isAddingEvent: boolean = false;
-    events: EventWithDetailsDTO[] | undefined;
-    lat: number = 0;
-    lng: number = 0;
+    events: EventWithDetailsDTO[] = [];
+    lat: number = 31.1;
+    lng: number = 35.9284;
     display: any;
     center: google.maps.LatLngLiteral = {
         lat: this.lat,
         lng: this.lng,
     };
-    zoom = 4;
+    zoom = 8;
     eventsOnMap: eventOnMap[] = [];
     focusedEvent: EventWithDetailsDTO = {
         id: 0,
@@ -55,36 +60,19 @@ export class EventsComponent implements OnInit {
     constructor(
         private eventService: EventService,
         private matDialog: MatDialog,
-        public categoryService: CategoryService,
-        private toastr: ToastrService
+        private categoryService: CategoryService,
+        private toastr: ToastrService,
+        private paymentService: PaymentService,
+        private bookingService: BookingService
     ) {}
 
     ngOnInit(): void {
-        this.eventService.getAllEventsWithDetails().subscribe(
+        this.eventService.getAllActiveEventsWithDetails().subscribe(
             (eventList: EventWithDetailsDTO[]) => {
                 console.log('eventList form backend');
                 console.log(eventList);
-                eventList.forEach((event) => {
-                    if (event !== null && event.latitude !== undefined && event.longitude !== undefined) {
-                        this.eventsOnMap.push({
-                            event: event,
-                            markerPosition: {
-                                lat: event.latitude,
-                                lng: event.longitude,
-                            },
-                        });
-                    } else {
-                        console.log('eventsOnMap: ' + this.eventsOnMap);
-                        console.log('event: ' + event);
-                        console.log('event.latitude: ' + event.latitude);
-                        console.log('event.longitude: ' + event.longitude);
-                    }
-                    let i = this.eventsOnMap.length - 1;
-                    this.lat = this.eventsOnMap[i].markerPosition.lat;
-                    this.lng = this.eventsOnMap[i].markerPosition.lng;
-                    console.log('lattitude: ' + this.lat);
-                    console.log('longitude: ' + this.lng);
-                });
+                this.events = eventList;
+                this.updateEventsOnMap();
             },
             (err) => {
                 console.log(err);
@@ -136,6 +124,7 @@ export class EventsComponent implements OnInit {
     @ViewChild('addEventDialog') addEventDialog!: TemplateRef<any>;
 
     openAddEventDialog() {
+        this.getAllCategories();
         const dialogConfig = new MatDialogConfig();
         dialogConfig.width = '500px'; // Set the desired width here
         const dialogRef = this.matDialog.open(this.addEventDialog, dialogConfig);
@@ -188,13 +177,113 @@ export class EventsComponent implements OnInit {
     enterAddMode() {
         this.isAddingEvent = true;
         this.toastr.info('Click on any location on the map to set where you want your event', 'Add Event', {
-            positionClass: 'toast-top-center', 
+            positionClass: 'toast-top-center',
         });
     }
 
     onFileChange(event: any): void {
         this.newEventImage = event.target.files[0];
     }
+    categories: Category[] = [];
+    private getAllCategories() {
+        this.categoryService.getAllCategories().subscribe(
+            (res: Category[]) => {
+                this.categories = res;
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
+    //////////////////////////////////////////////
+
+    payForm: FormGroup = new FormGroup({
+        cardNumber: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+        cardHolder: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+        expirationDate: new FormControl('', [Validators.required]),
+        cvv: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]),
+    });
+
+    @ViewChild('payDialog') payDialog!: TemplateRef<any>;
+
+    openPayDialog() {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.width = '500px'; // Set the desired width here
+        const dialogRef = this.matDialog.open(this.payDialog, dialogConfig);
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result != undefined) {
+                if (result == 'save') {
+                }
+            }
+        });
+    }
+
+    onPaySubmit() {
+        const userId: any = localStorage.getItem('UserId');
+        let bank: Bank = {
+            cardNumber: this.payForm.get('cardNumber')?.value,
+            cardHolder: this.payForm.get('cardHolder')?.value,
+            expirationDate: this.payForm.get('expirationDate')?.value,
+            cvv: this.payForm.get('cvv')?.value.toString(),
+        };
+        if (!userId || !this.focusedEvent.attendingCost) {
+            console.log(userId + ' - ');
+            return;
+        }
+        let paymentDetailsDTO: PaymentDetailsDTO = {
+            userId: userId,
+            eventId: this.focusedEvent.id,
+            paymentAmount: this.focusedEvent.attendingCost,
+            bank: bank,
+        };
+        console.log('new payment: ');
+        console.log(paymentDetailsDTO);
+        this.paymentService.payForRegisterEvent(paymentDetailsDTO).subscribe(
+            (res: any) => {
+                this.toastr.success('Payment Successful, an invoice was sent to you');
+                let booking: Booking = {
+                    bookingDate: new Date(),
+                    userId: userId,
+                    eventId: this.focusedEvent.id,
+                };
+                this.bookingService.registerForEvent(booking).subscribe(
+                    (res: any) => {
+                        console.log('registrations successful');
+                    },
+                    (err) => {
+                        console.log('booking error', err);
+                    }
+                );
+            },
+            (err) => {
+                console.log('in paymentService - payForRegisterEvent ', err);
+                this.toastr.error('Payment failed');
+            }
+        );
+    }
+
+    searchName: string = '';
+    updateEventsOnMap() {
+        console.log('eventsOnMap length= ' + this.eventsOnMap.length);
+        console.log('events length= ' + this.events.length);
+        this.eventsOnMap = [];
+        this.events.forEach((event) => {
+            if (event !== null && event.latitude !== undefined && event.longitude !== undefined) {
+                if (event.name.includes(this.searchName)) {
+                    this.eventsOnMap.push({
+                        event: event,
+                        markerPosition: {
+                            lat: event.latitude,
+                            lng: event.longitude,
+                        },
+                    });
+                }
+            }
+        });
+    }
+    onSearchNameChange() {
+        console.log('eventsOnMap length= ' + this.eventsOnMap.length);
+        console.log('events length= ' + this.events.length);
+        this.updateEventsOnMap();
+    }
 }
-
-

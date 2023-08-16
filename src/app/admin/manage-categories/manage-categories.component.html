@@ -1,123 +1,147 @@
-<div class="wrapper "> 
+<div class="wrapper">
     <app-sidebar></app-sidebar>
-    <div class="main-panel">  
-    <app-navbar></app-navbar>
-    <div class="content">
-        <a (click)="openCreateCategoryDialog()" class="btn btn-primary col-3">Add new Category</a>
-<section id="speakers" class="wow fadeInUp">
-    <div class="container">
-    <div class="section-header">
-        <h2>Categories</h2>
-        <p>Here you will find our categories</p>
-    </div>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <div class="content">
+            <a (click)="openCreateCategoryDialog()" class="btn btn-primary col-3">Add new Category</a>
+            <section id="speakers" class="wow fadeInUp">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Categories</h2>
+                        <p>Here you will find our categories</p>
+                    </div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6" *ngFor="let category of categoryService.categories">
-            <div class="speaker">
-                <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
-                <img src="data:image/png;base64,{{category.retrievedImageFile}}" alt="Speaker 1" class="img-fluid">
-                <div class="details">
-                    <h3><a href="speaker-details.html">{{category.name}}</a></h3>
-                    <p>{{category.description}}</p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6" *ngFor="let category of categories">
+                            <div class="speaker">
+                                <!-- <img [src]="event.imagePath" alt="Speaker 1" class="img-fluid"> -->
+                                <img src="data:image/png;base64,{{ category.retrievedImageFile }}" alt="Speaker 1" class="img-fluid" />
+                                <div class="details">
+                                    <h3>
+                                        <a href="speaker-details.html">{{ category.name }}</a>
+                                    </h3>
+                                    <p>{{ category.description }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="justify-content: center; margin-top: -30px">
+                                <a (click)="openEditCategoryDialog(category.id)" class="btn btn-primary col-3">Edit</a>
+                                <a (click)="deleteCategory(category.id)" class="btn btn-danger col-3">Delete</a>
+                                <a (click)="opendetailsCategoryDialog(category.id)" class="btn btn-primary col-3">Details</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row" style="justify-content: center;margin-top: -30px;">
-                <a (click)="openEditCategoryDialog(category.id)" class="btn btn-primary col-3">Edit</a>
-                <a (click)="deleteCategory(category.id)" class="btn btn-danger col-3">Delete</a>
-                <a (click)="opendetailsCategoryDialog(category.id)" class="btn btn-primary col-3">Details</a>
-            </div>
+            </section>
         </div>
-    </div>
-    </div>
-</section>
-
-      </div>
     </div>
 </div>
 
-
-
-
 <ng-template #addCategoryDailog>
     <form [formGroup]="categoryForm">
-    <div style="padding:15px">
-      <div class="row">
-        <div class="col-md-12 pr-1" style="text-align: center;border:1px dashed #000">
-            <div class="form-group">
-              <label >Click to upload Category image</label>
-              <input type="file"(change)="onFileChange($event)"accept="image/*" style="cursor: pointer;"/>
+        <div style="padding: 15px">
+            <div class="row">
+                <div class="col-md-12 pr-1" style="text-align: center; border: 1px dashed #000">
+                    <div class="form-group">
+                        <label>Click to upload Category image</label>
+                        <input type="file" (change)="onFileChange($event)" accept="image/*" style="cursor: pointer" />
+                    </div>
+                </div>
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <input type="text" class="form-control" placeholder="name..." formControlName="categoryName" />
+                        <span class="text-danger" *ngIf="categoryForm.controls['categoryName'].hasError('required')"
+                            >Category name is required</span
+                        >
+                        <span class="text-danger" *ngIf="categoryForm.controls['categoryName'].hasError('minlength')"
+                            >Category name is invalid</span
+                        >
+                    </div>
+                </div>
+                <div class="col-md-12 pl-1">
+                    <div class="form-group">
+                        <label>Descreption</label>
+                        <textarea type="text" class="form-control" placeholder="description..." formControlName="description"></textarea>
+                        <span class="text-danger" *ngIf="categoryForm.controls['description'].hasError('required')"
+                            >Description is required</span
+                        >
+                    </div>
+                </div>
             </div>
+            <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!categoryForm.valid" (click)="createCategory()">
+                Create
+            </button>
         </div>
-        <div class="col-md-12 pr-1">
-          <div class="form-group">
-            <label>Category Name</label>
-            <input type="text" class="form-control" placeholder="name..." formControlName="categoryName">
-            <span class="text-danger" *ngIf="categoryForm.controls['categoryName'].hasError('required')">Category name is required</span>
-            <span class="text-danger" *ngIf="categoryForm.controls['categoryName'].hasError('minlength')">Category name is invalid</span>
-          </div>
-        </div>
-        <div class="col-md-12 pl-1">
-          <div class="form-group">
-            <label>Descreption</label>
-            <textarea type="text" class="form-control" placeholder="description..." formControlName="description"></textarea>
-            <span class="text-danger" *ngIf="categoryForm.controls['description'].hasError('required')">Description is required</span>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!categoryForm.valid" (click)="createCategory()">Create</button>
-    </div>
     </form>
 </ng-template>
 
 <ng-template #editCategoryDailog>
     <form [formGroup]="editCategoryForm">
-    <div style="padding:15px">
-      <div class="row">
-        <div class="col-md-12 pr-1" style="text-align: center;border:1px dashed #000">
-            <div class="form-group">
-              <label >Click to upload Category image</label>
-              <input type="file"(change)="onFileChange($event)"accept="image/*" style="cursor: pointer;"/>
+        <div style="padding: 15px">
+            <div class="row">
+                <div class="col-md-12 pr-1" style="text-align: center; border: 1px dashed #000">
+                    <div class="form-group">
+                        <label>Click to upload Category image</label>
+                        <input type="file" (change)="onFileChange($event)" accept="image/*" style="cursor: pointer" />
+                    </div>
+                </div>
+                <div class="col-md-12 pl-1">
+                    <div class="form-group">
+                        <label>Descreption</label>
+                        <textarea type="text" class="form-control" placeholder="description..." formControlName="description"></textarea>
+                        <span class="text-danger" *ngIf="editCategoryForm.controls['description'].hasError('required')"
+                            >Description is required</span
+                        >
+                    </div>
+                </div>
             </div>
+            <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!editCategoryForm.valid" (click)="editCategory()">
+                Edit
+            </button>
         </div>
-        <div class="col-md-12 pl-1">
-          <div class="form-group">
-            <label>Descreption</label>
-            <textarea type="text" class="form-control" placeholder="description..." formControlName="description"></textarea>
-            <span class="text-danger" *ngIf="editCategoryForm.controls['description'].hasError('required')">Description is required</span>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!editCategoryForm.valid" (click)="editCategory()">Edit</button>
-    </div>
     </form>
 </ng-template>
 
 <ng-template #detailsCategoryDailog>
-    <div style="padding:15px">
-      <div class="row">
-        <div class="col-md-12 pr-1" style="text-align: center;">
-            <div class="form-group">
-                <img src="data:image/png;base64,{{category.retrievedImageFile}}" alt="Speaker 1" class="img-fluid" style="width: 250px;height: 250px;border-radius: 20px;">
+    <div style="padding: 15px">
+        <div class="row">
+            <div class="col-md-12 pr-1" style="text-align: center">
+                <div class="form-group">
+                    <img
+                        src="data:image/png;base64,{{ category.retrievedImageFile }}"
+                        alt="Speaker 1"
+                        class="img-fluid"
+                        style="width: 250px; height: 250px; border-radius: 20px" />
+                </div>
+            </div>
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" class="form-control" placeholder="name..." [disabled]="true" [value]="category.name" />
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label>Creation date</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="description..."
+                        [disabled]="true"
+                        [value]="category.creationDate" />
+                </div>
+            </div>
+            <div class="col-md-12 pl-1">
+                <div class="form-group">
+                    <label>Descreption</label>
+                    <textarea
+                        type="text"
+                        class="form-control"
+                        placeholder="description..."
+                        [disabled]="true"
+                        [value]="category.description"></textarea>
+                </div>
             </div>
         </div>
-        <div class="col-md-6 pr-1">
-          <div class="form-group">
-            <label>Category Name</label>
-            <input type="text" class="form-control" placeholder="name..." [disabled]="true" [value]="category.name">
-          </div>
-        </div>
-        <div class="col-md-6 pl-1">
-            <div class="form-group">
-              <label>Creation date</label>
-              <input type="text" class="form-control" placeholder="description..." [disabled]="true" [value]="category.creationDate">
-            </div>
-        </div>
-        <div class="col-md-12 pl-1">
-            <div class="form-group">
-              <label>Descreption</label>
-              <textarea type="text" class="form-control" placeholder="description..." [disabled]="true" [value]="category.description"></textarea>
-            </div>
-        </div>
-      </div>
     </div>
 </ng-template>

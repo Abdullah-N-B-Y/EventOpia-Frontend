@@ -1,0 +1,9 @@
+.white-links{
+    color:#fff;
+}
+.hand-curser{
+    cursor: pointer;
+}
+ul li a:hover{
+    color: #f82249;
+}

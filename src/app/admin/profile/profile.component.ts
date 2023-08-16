@@ -8,7 +8,6 @@ import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
 import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
 import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
 import { ProfileService } from 'src/app/services/profile.service';
-import { HttpClient } from '@angular/common/http';
 import { profileImagePath } from 'src/constants/constants';
 
 

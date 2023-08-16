@@ -1,5 +1,5 @@
 export interface Bank {
-  id: number;
+  id?: number;
   cardNumber?: string;
   cardHolder?: string;
   expirationDate?: Date | null; 
