@@ -173,15 +173,9 @@ export class ProfileComponent implements OnInit{
     return Array.from({ length: 5 }, (_, i) => i);
   }
 
-  file:any;
-  handleFileInput(e: any){
-    this.file = e.target.files[0];
-    let formData = new FormData();
-    formData.append('file',this.file);
-    this.profile.updateProfileImage(this.userId,formData);
-    this.profile.getProfileImage(this.userId).subscribe(((res: any) => {
-      this.file = res;
-      console.log(res)
-    }))
+  selectedImage: File | undefined;
+  onFileChange(event: any): void {
+    this.selectedImage = event.target.files[0];
   }
+  
 }

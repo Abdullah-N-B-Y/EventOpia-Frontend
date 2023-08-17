@@ -1,8 +1,212 @@
+<<<<<<< HEAD
+<div class="wrapper ">
+  <app-sidebar [activeItem]="'manage-profile'"></app-sidebar>
+  <div class="main-panel">
+      <app-navbar></app-navbar>
+
+      <div class="content">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="image">
+              <img src="../../../assets/dashboard-assets/img/damir-bosnjak.jpg" alt="...">
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="card-body">
+              <div class="author">
+                <img src="data:image/png;base64,{{ userProfile.retrievedImageFile }}" alt="Speaker 1" class="img-fluid" />
+                         
+                    <!-- Hidden file input triggered by the image click -->
+                    <input type="file" (change)="onFileChange($event)" accept="image/*" style="cursor: pointer" />
+                  
+                <a href="#">
+                  <!-- Display the user's profile image -->
+                
+                  <h5 class="title">{{userProfile.firstName}} {{userProfile.lastName}}</h5>
+                </a>
+                <div class="star-rating">
+                  <span class="fa fa-star" *ngFor="let starIndex of getStarArray()" [ngClass]="{'checked': starIndex < rate}"></span>
+                </div>
+              </div>
+              <br>
+              <p class="description text-center">
+                {{userProfile.bio}}
+              </p>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="button-container">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 col-6 ml-auto">
+                    <h5><small>Followers</small><br>*0</h5>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                    <h5><small>Following</small><br>*0</h5>
+                  </div>
+                  <div class="col-lg-4 mr-auto">
+                    <h5><small>My events</small><br>*0</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Team Members</h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled team-members">
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="../../../assets/dashboard-assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      DJ Khaled
+                      <br />
+                      <span class="text-muted"><small>Offline</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                      <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="../../../assets/dashboard-assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      Creative Tim
+                      <br />
+                      <span class="text-success"><small>Available</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                      <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="../../../assets/dashboard-assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-ms-7 col-7">
+                      Flume
+                      <br />
+                      <span class="text-danger"><small>Busy</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                      <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Edit Profile</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="text" class="form-control" [disabled]="true" [value]="email">
+                    </div>
+                  </div>
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>First name</label>
+                      <input type="text" class="form-control" [(ngModel)]="userProfile.firstName" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Last name</label>
+                      <input type="email" class="form-control" [(ngModel)]="userProfile.lastName" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>Phone number</label>
+                      <input type="text" class="form-control" [(ngModel)]="userProfile.phoneNumber" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Date of birth</label>
+                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="dateOfBirth" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">gender</label>
+                      <input type="email" class="form-control" [disabled]="true" [value]="userProfile.gender">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Bio</label>
+                      <textarea class="form-control textarea" [(ngModel)]="userProfile.bio" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()">Update Profile</button>
+                  </div>
+                </div>
+              </form>
+              <br>
+              <form >
+                <div class="row">
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input type="text" class="form-control" [disabled]="true"  [value]="user.username">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Password</label>
+                      <input type="text" class="form-control" [disabled]="true" value="********">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round" (click)="openChangePasswordDailog()">Change password</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+=======
 <div class="wrapper">
     <app-sidebar [activeItem]="'manage-profile'"></app-sidebar>
     <div class="main-panel">
         <app-navbar></app-navbar>
         <app-user-profile [displayTemplate]="false"></app-user-profile>
+>>>>>>> fc3c0c6d4c06fbfb22de9ab1a09008def2d7e03f
     </div>
 </div>
 
