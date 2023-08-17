@@ -15,13 +15,11 @@
             <br>
             <div class="card-body">
               <div class="author">
-                <img class="avatar border-gray" 
-                       [src]="profileImagePath+userId" 
-                       alt="Profile Image"
-                       (click)="uploadImageInput.click()">
-                       
-                  <!-- Hidden file input triggered by the image click -->
-                  <input type="file" #uploadImageInput (change)="handleFileInput($event)" accept="image/*" style="display: none;">
+                <img src="data:image/png;base64,{{ userProfile.retrievedImageFile }}" alt="Speaker 1" class="img-fluid" />
+                         
+                    <!-- Hidden file input triggered by the image click -->
+                    <input type="file" (change)="onFileChange($event)" accept="image/*" style="cursor: pointer" />
+                  
                 <a href="#">
                   <!-- Display the user's profile image -->
                 

@@ -15,13 +15,16 @@ export class ProfileService {
     constructor(private http: HttpClient) {}
 
     updateProfile(body: any): Observable<boolean> {
-        return this.http.put(endPointURL + 'Profile/UpdateProfile', body).pipe(
+        let formData = new FormData();
+        formData = createFormDataFromObject(body);
+        return this.http.put<Profile>(endPointURL + 'Profile/UpdateProfile', formData).pipe(
             map((resp: any) => {
                 console.log('Profile updated successfully', resp);
                 return true;
             }),
             catchError((err) => {
-                console.error('Error updating profile', err.messageReceivers);
+                console.log('Error updating profile');
+                console.error(err);
                 return of(false);
             })
         );
@@ -86,7 +89,32 @@ export class ProfileService {
                 }
             );
     }
-    getProfileImage(id: number): Observable<File> {
-        return this.http.get<File>(endPointURL + `Profile/GetProfileImage/${id}`);
+
+    getProfileByPhoneNumber(phonNumber: string): Observable<Profile> {
+            return new Observable<Profile>((observer) => {
+                this.http.get<Profile>(endPointURL + `Profile/GetProfileByPhoneNumber/${phonNumber}`).subscribe(
+                    (response: Profile) => {
+                        console.log(response);
+                        observer.next(response);
+                        observer.complete();
+                    },
+                    (error: any) => {
+                        console.error('An error occurred:', error);
+                        observer.error(error);
+                    }
+                );
+            });
+    }
+    getProfileByPhoneNumber2(phonNumber: string): Observable<boolean> {
+        return this.http.get(endPointURL + `Profile/GetProfileByPhoneNumber/${phonNumber}`).pipe(
+            map((resp: any) => {
+                console.log('Getting profile succ', resp);
+                return true;
+            }),
+            catchError((err) => {
+                console.error('Error getting profile', err.messageReceivers);
+                return of(false);
+            })
+        );
     }
 }

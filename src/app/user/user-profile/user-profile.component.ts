@@ -8,7 +8,6 @@ import { UpdatePasswordDTO } from 'src/app/shared/DTO/UpdatePasswordDTO';
 import { SucceededDialogComponent } from 'src/app/shared/dynamic-dialoges/succeeded-dialog/succeeded-dialog.component';
 import { FailedDialogComponent } from 'src/app/shared/dynamic-dialoges/failed-dialog/failed-dialog.component';
 import { ProfileService } from 'src/app/services/profile.service';
-import { profileImagePath } from 'src/constants/constants';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,9 +15,16 @@ import { profileImagePath } from 'src/constants/constants';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-  user:User = {
+  
+  token?:any | string = localStorage.getItem('jwtToken');
+  decodedToken: User | null = null;
+  userId:any | number;
+
+  rate:any;
+  dateOfBirth:any;
+
+  user:User={
     id: 0,
-    username:'',
     bookings: [],
     categories: [],
     contactUsEntries: [],
@@ -31,63 +37,48 @@ export class UserProfileComponent {
     role: null,
     testimonials: [],
     comments: []
-  };
-  userProfile:Profile={
-    id: 1,
-    firstName:'',
-    profilesettings: []
-  };
+  }
+  profile:Profile={
+    id: 0
+  }
+  
+  profileForm:FormGroup= new FormGroup({
+    firstName: new FormControl('',Validators.required),
+    lastName: new FormControl('',Validators.required),
+    phoneNumber: new FormControl('',Validators.required),
+    bio: new FormControl('',Validators.required),
+  })
 
-  rate:any;
-  dateOfBirth:string='';
-  email?:string = '';
-  profileImagePath:string='';
-
-  token1?:any | string = localStorage.getItem('jwtToken');
-  decodedToken: User | null = null;
-  userId:any | number;
-
-  constructor(public profile:ProfileService, private dialog:MatDialog){ }
+  constructor(public profileService:ProfileService, private dialog:MatDialog){ }
   ngOnInit(): void {
-    if (this.token1) {
-      this.decodedToken = jwt_decode(this.token1) as User;
-
+    if(this.token){
+      this.decodedToken = jwt_decode(this.token);
       if (this.decodedToken) {
-        this.userId = this.decodedToken['UserId']; // Use PascalCase here
-
-        this.profile.getUserById(this.userId).subscribe((pUser: User) => {
-          this.user = pUser;
-          this.email = pUser.email;
-        }, err => {
-          console.log(err.status);
+        this.userId = this.decodedToken['UserId'];
+        this.profileService.getUserById(this.userId).subscribe((res)=>{
+          this.user = res;
+        },(err)=>{
+          console.log('err gitting user by user id => '+err.messageReceivers);
         });
-    
-        this.profile.getProfileByUserId(this.userId).subscribe((pProfile: Profile) => {
-          this.userProfile = pProfile;
-          
-          this.rate = pProfile.rate;
-          if (this.userProfile && this.userProfile.dateOfBirth) {
-            const parsedDate = new Date(this.userProfile.dateOfBirth);
-            
-            if (!isNaN(parsedDate.getTime())) {
-                const year = parsedDate.getFullYear();
-                const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0');
-                const day = parsedDate.getDate().toString().padStart(2, '0');
-        
-                const formattedDate = `${year}-${month}-${day}`;
-                this.dateOfBirth = formattedDate;
-            } else {
-                console.log("Invalid date format.");
-            }
+        this.profileService.getProfileByUserId(this.userId).subscribe((res)=>{
+          this.profile = res;
+          this.rate = this.profile.rate;
+          this.dateOfBirth = this.profile.dateOfBirth;
+          if(this.profile) {
+            this.profileForm.patchValue({
+              firstName: this.profile.firstName,
+              lastName: this.profile.lastName,
+              phoneNumber: this.profile.phoneNumber,
+              bio: this.profile.bio
+            });
           }
-          this.profileImagePath = profileImagePath;
-        }, err => {
-          console.log(err.status);
+        },(err)=>{
+          console.log('err gitting user by user id => '+err.messageReceivers);
         });
       }
     }
   }
-  
+
   passwordForm : FormGroup = new FormGroup({
     oldPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
     newPassword : new FormControl('',[Validators.required,Validators.minLength(8)]),
@@ -101,30 +92,39 @@ export class UserProfileComponent {
   }
 
   updateProfile(){
-    this.profile.updateProfile(this.userProfile).subscribe((success: boolean) => {
-      if(success)
-      {
-        const dialogRef = this.dialog.open(SucceededDialogComponent);
-        setTimeout(() => {
-          dialogRef.close();
-        }, 3000);
+   if(this.profileForm){
+      this.profile.firstName = this.profileForm.controls['firstName'].value;
+      this.profile.lastName = this.profileForm.controls['lastName'].value;
+      this.profile.phoneNumber = this.profileForm.controls['phoneNumber'].value;
+      this.profile.bio = this.profileForm.controls['bio'].value;
+
+      console.log('This in update profile this.profile');
+      console.log(this.profile);
+
+      this.profileService.updateProfile(this.profile).subscribe((res:boolean)=>{
+        if (res) {
+          const dialogRef = this.dialog.open(SucceededDialogComponent);
+          setTimeout(() => {
+              dialogRef.close();
+          }, 3000);
+      } else {
+          const dialogRef = this.dialog.open(FailedDialogComponent);
+          setTimeout(() => {
+              dialogRef.close();
+          }, 3000);
       }
-      else
-      {
-        const dialogRef = this.dialog.open(FailedDialogComponent);
-        setTimeout(() => {
-          dialogRef.close();
-        }, 3000);
-      }
-    });
-  }
+      },(err)=>{
+
+      })
+   }
+}
   changePassword(){
     const token = localStorage.getItem('jwtToken');
-    if (this.token1) {
+    if (this.token) {
       this.passwordDTO.OldPassword = this.passwordForm.controls['oldPassword'].value;
       this.passwordDTO.NewPassword = this.passwordForm.controls['newPassword'].value;
       this.passwordDTO.ConfirmPassword = this.passwordForm.controls['confirmPassword'].value;
-      this.profile.changePassword(this.passwordDTO, this.userId).subscribe((success: boolean) => {
+      this.profileService.changePassword(this.passwordDTO, this.userId).subscribe((success: boolean) => {
         if(success)
         {
           const dialogRef = this.dialog.open(SucceededDialogComponent);
@@ -165,20 +165,13 @@ export class UserProfileComponent {
     })
    }
  
-
    getStarArray(): number[] {
     return Array.from({ length: 5 }, (_, i) => i);
   }
 
-  file:any;
-  handleFileInput(e: any){
-    this.file = e.target.files[0];
-    let formData = new FormData();
-    formData.append('file',this.file);
-    this.profile.updateProfileImage(this.userId,formData);
-    this.profile.getProfileImage(this.userId).subscribe(((res: any) => {
-      this.file = res;
-      console.log(res)
-    }))
+  selectedImage: File | undefined;
+  onFileChange(event: any): void {
+    this.selectedImage = event.target.files[0];
   }
+
 }
