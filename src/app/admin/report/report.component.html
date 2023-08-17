@@ -1,121 +1,95 @@
 <div class="wrapper">
-  <app-sidebar [activeItem]="'reports'"></app-sidebar>
-
-  <div class="main-panel">
-    <app-navbar></app-navbar>
-    <div class="content">
-      <div>
-        <h2 class="mb-3">Benefits Report</h2>
-        <form (ngSubmit)="onSubmit()" class="form-inline mb-2">
-          <label for="startDate">Start Date:</label>
-          <input
-            type="date"
-            id="startDate"
-            name="startDate"
-            class="form-control mr-5"
-            [(ngModel)]="startDate"
-          />
-          <br />
-          <label for="endDate">End Date:</label>
-          <input
-            type="date"
-            id="endDate"
-            name="endDate"
-            class="form-control mr-5"
-            [(ngModel)]="endDate"
-          />
-          <br />
-          <button class="btn btn-info" type="submit">Get Report</button>
-        </form>
-      </div>
-    </div>
-    <div class="row ml-2">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Your Report</h4>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="text-primary">
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th class="text-right">Monthly Benefits</th>
-                  <th class="text-right">Annual Benefits</th>
-                </thead>
-                <tbody *ngIf="reportFetched">
-                  <tr>
-                    <td>
-                      {{ startDate }}
-                    </td>
-                    <td>
-                      {{ endDate }}
-                    </td>
-                    <td class="text-right">
-                      {{ monthlyBenefits }}
-                    </td>
-                    <td class="text-right">
-                      {{ annualBenefits }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+    <app-sidebar [activeItem]="'reports'"></app-sidebar>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <div class="content">
+            <div>
+                <h2 class="mb-3">Benefits Report</h2>
+                <form (ngSubmit)="onSubmit()" class="form-inline mb-2">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control mr-5" [(ngModel)]="startDate" />
+                    <br />
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control mr-5" [(ngModel)]="endDate" />
+                    <br />
+                    <button class="btn btn-info" type="submit">Get Report</button>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-5">
-        <div *ngIf="reportFetched">
-          <div
-            style="display: flex; flex-direction: column; align-items: center"
-          >
-            <h2>Benefits Report</h2>
-            <div style="width: 80%">
-              <canvas
-                baseChart
-                [datasets]="benefitsData"
-                [labels]="benefitsLabels"
-                [type]="benefitsChartType"
-              ></canvas>
+        <div class="row ml-2">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Your Report</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th class="text-right">Monthly Benefits</th>
+                                    <th class="text-right">Annual Benefits</th>
+                                </thead>
+                                <tbody *ngIf="reportFetched">
+                                    <tr>
+                                        <td>
+                                            {{ startDate }}
+                                        </td>
+                                        <td>
+                                            {{ endDate }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ monthlyBenefits }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ annualBenefits }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-md-4 mb-5">
+                <div *ngIf="reportFetched">
+                    <div style="display: flex; flex-direction: column; align-items: center">
+                        <h2>Benefits Report</h2>
+                        <div style="width: 80%">
+                            <canvas baseChart [datasets]="benefitsData" [labels]="benefitsLabels" [type]="benefitsChartType"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <footer class="footer footer-black footer-white">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="footer-nav">
+                        <ul>
+                            <li>
+                                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                            </li>
+                            <li>
+                                <a href="https://www.creative-tim.com/blog" target="_blank">Blog</a>
+                            </li>
+                            <li>
+                                <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="credits ml-auto">
+                        <span class="copyright">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            , made with <i class="fa fa-heart heart"></i> by Creative Tim
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-    <footer class="footer footer-black footer-white">
-      <div class="container-fluid">
-        <div class="row">
-          <nav class="footer-nav">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com" target="_blank"
-                  >Creative Tim</a
-                >
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/blog" target="_blank"
-                  >Blog</a
-                >
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license" target="_blank"
-                  >Licenses</a
-                >
-              </li>
-            </ul>
-          </nav>
-          <div class="credits ml-auto">
-            <span class="copyright">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              , made with <i class="fa fa-heart heart"></i> by Creative Tim
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 </div>

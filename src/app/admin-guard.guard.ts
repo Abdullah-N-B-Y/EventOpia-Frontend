@@ -16,8 +16,8 @@ export class AdminGuard implements CanActivate {
                 if (roleId === '1') {
                     return true;
                 } else {
-                  this.toastr.error('You do not have access to this page.', 'Access Denied');
-                  //this.router.navigate(['']);
+                    this.toastr.error('You do not have access to this page.', 'Access Denied');
+                    this.router.navigate(['']);
                     return false;
                 }
             }

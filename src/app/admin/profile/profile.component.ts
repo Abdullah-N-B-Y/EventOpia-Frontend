@@ -11,6 +11,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { profileImagePath } from 'src/constants/constants';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../services/page.service';
 import { Page } from '../shared/Data/Page';
+import { TestimonialService } from '../services/testimonial.service';
 
 @Component({
     selector: 'app-home',
@@ -8,10 +9,12 @@ import { Page } from '../shared/Data/Page';
     styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-    constructor(private homePage: PageService) {}
+    approvedTestimonials: any[] = [];
+
+    constructor(private homePage: PageService, private testimonialService: TestimonialService) {}
     page: Page = {
-      id: 1,
-      retrievedImageFile: ''
+        id: 1,
+        retrievedImageFile: '',
     };
     ngOnInit(): void {
         this.homePage.getPageById(1).subscribe(
@@ -20,6 +23,18 @@ export class HomeComponent implements OnInit {
             },
             (err) => {
                 console.log(`err=> ${err.message}`);
+            }
+        );
+        this.fetchTestimonials();
+    }
+
+    fetchTestimonials(): void {
+        this.testimonialService.GetAllTestimonials().subscribe(
+            (response: any[]) => {
+                this.approvedTestimonials = response.filter((t) => t.status === 'Approved');
+            },
+            (error) => {
+                console.error('Error fetching testimonials:', error);
             }
         );
     }

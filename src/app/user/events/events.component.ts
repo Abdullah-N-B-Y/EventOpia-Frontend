@@ -226,6 +226,9 @@ export class EventsComponent implements OnInit {
             expirationDate: this.payForm.get('expirationDate')?.value,
             cvv: this.payForm.get('cvv')?.value.toString(),
         };
+        if (bank.expirationDate && bank.expirationDate < new Date()) {
+            this.toastr.error("Card is expired");
+        }
         if (!userId || !this.focusedEvent.attendingCost) {
             console.log(userId + ' - ');
             return;

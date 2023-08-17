@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
                 let hasProfile: boolean;
                 this.profileService.getProfileByUserId(parseInt(userId, 10)).subscribe((res) => {
                     if (roleId === '1') this.router.navigate(['/admin/statistic']);
-                    else if (roleId === '2') this.router.navigate(['/user/home']);
+                    else if (roleId === '2') this.router.navigate(['']);
                 }, err => {
                     if (err.status === 404)
                         this.openAddProfileDialog();

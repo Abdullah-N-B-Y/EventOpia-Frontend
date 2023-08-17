@@ -1,0 +1,143 @@
+<div class="wrapper">
+  <app-sidebar [activeItem]="'testimonialStatus'"></app-sidebar>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="container-fluid pt-5">
+      <h2 class="mt-5">Testimonial List</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="mb-3">Pending Testimonials</h4>
+          <div class="row">
+            <div
+              class="col-md-6 mb-3"
+              *ngFor="let testimonial of pendingTestimonials"
+            >
+              <div class="card bg-info text-white">
+                <div class="card-body">
+                  <h5 class="card-title text-white">
+                    {{ testimonial.content }}
+                  </h5>
+                  <p class="card-text text-dark">
+                    {{ testimonial.status }}
+                  </p>
+                  <button
+                    class="btn btn-success"
+                    (click)="changeStatus(testimonial, 'Approved')"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="changeStatus(testimonial, 'Rejected')"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <h4 class="mb-3">Approved Testimonials</h4>
+          <div class="row">
+            <div
+              class="col-md-6 mb-3"
+              *ngFor="let testimonial of approvedTestimonials"
+            >
+              <div class="card bg-secondary text-white">
+                <div class="card-body">
+                  <h5 class="card-title text-white">
+                    {{ testimonial.content }}
+                  </h5>
+                  <p class="card-text text-success">
+                    {{ testimonial.status }}
+                  </p>
+                  <button
+                    class="btn btn-danger"
+                    (click)="changeStatus(testimonial, 'Rejected')"
+                  >
+                    Reject
+                  </button>
+                  <button
+                    class="btn btn-secondary"
+                    (click)="changeStatus(testimonial, 'Pending')"
+                  >
+                    Set as Pending
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <h4 class="mb-3">Rejected Testimonials</h4>
+          <div class="row">
+            <div
+              class="col-md-6 mb-3"
+              *ngFor="let testimonial of rejectedTestimonials"
+            >
+              <div class="card bg-dark text-white">
+                <div class="card-body">
+                  <h5 class="card-title text-white">
+                    {{ testimonial.content }}
+                  </h5>
+                  <p class="card-text text-danger">
+                    {{ testimonial.status }}
+                  </p>
+                  <button
+                    class="btn btn-success"
+                    (click)="changeStatus(testimonial, 'Approved')"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    class="btn btn-secondary"
+                    (click)="changeStatus(testimonial, 'Pending')"
+                  >
+                    Set as Pending
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer footer-black footer-white">
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="footer-nav">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com" target="_blank"
+                  >Creative Tim</a
+                >
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/blog" target="_blank"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license" target="_blank"
+                  >Licenses</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="credits ml-auto">
+            <span class="copyright">
+              ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              , made with <i class="fa fa-heart heart"></i> by Creative Tim
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -13,7 +13,7 @@ export interface Profile {
   rate?: number | null;
   userId?: number | null;
   receivedImageFile?: File | null; // Assuming File is a TypeScript interface for IFormFile
-  retrievedImageFile?: Uint8Array | File | null; // Assuming Uint8Array is the TypeScript equivalent of byte[]
+  retrievedImageFile?: string; // Assuming Uint8Array is the TypeScript equivalent of byte[]
   profilesettings?: ProfileSetting[];
   user?: User | null;
 }

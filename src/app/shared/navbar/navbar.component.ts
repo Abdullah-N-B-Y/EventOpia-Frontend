@@ -10,6 +10,7 @@ export class NavbarComponent {
     constructor(private router: Router) {}
     token?: any = localStorage.getItem('jwtToken');
     roleId?: any = localStorage.getItem('UserId');
+    username?: any = localStorage.getItem('Username');
     openProfile() {
         this.token == null
             ? this.router.navigate(['auth/login'])

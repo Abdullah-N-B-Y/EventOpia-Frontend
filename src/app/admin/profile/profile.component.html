@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="wrapper ">
   <app-sidebar [activeItem]="'manage-profile'"></app-sidebar>
   <div class="main-panel">
@@ -199,60 +200,60 @@
           </div>
         </div>
       </div>
+=======
+<div class="wrapper">
+    <app-sidebar [activeItem]="'manage-profile'"></app-sidebar>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <app-user-profile [displayTemplate]="false"></app-user-profile>
+>>>>>>> fc3c0c6d4c06fbfb22de9ab1a09008def2d7e03f
     </div>
-    <footer class="footer footer-black  footer-white ">
-      <div class="container-fluid">
-        <div class="row">
-          <nav class="footer-nav">
-            <ul>
-              <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-              <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
-              <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
-            </ul>
-          </nav>
-          <div class="credits ml-auto">
-            <span class="copyright">
-              © <script>
-                document.write(new Date().getFullYear())
-              </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 </div>
-
 
 <ng-template #changePasswordDailog>
-<form [formGroup]="passwordForm">
-<div style="padding:15px">
-  <div class="row">
-    <div class="col-md-4 pr-1">
-      <div class="form-group">
-        <label>Old Password</label>
-        <input type="password" class="form-control" placeholder="********" formControlName="oldPassword">
-        <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('required')">Old password is required</span>
-        <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('minlength')">Password is invalid</span>
-      </div>
-    </div>
-    <div class="col-md-4 pl-1">
-      <div class="form-group">
-        <label>New Password</label>
-        <input type="password" class="form-control" placeholder="********" formControlName="newPassword">
-        <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('required')">New password is required</span>
-        <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('minlength')">New password is weak</span>
-      </div>
-    </div>
-    <div class="col-md-4 pl-1">
-      <div class="form-group">
-        <label>Confirme Password</label>
-        <input type="password" class="form-control" placeholder="********" formControlName="confirmPassword" (change)="checkReapetedPassword()">
-        <span class="text-danger" *ngIf="passwordForm.controls['confirmPassword'].hasError('misMatch')">Not matched</span>
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!passwordForm.valid" (click)="changePassword()">Save</button>
-</div>
-</form>
+    <form [formGroup]="passwordForm">
+        <div style="padding: 15px">
+            <div class="row">
+                <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label>Old Password</label>
+                        <input type="password" class="form-control" placeholder="********" formControlName="oldPassword" />
+                        <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('required')"
+                            >Old password is required</span
+                        >
+                        <span class="text-danger" *ngIf="passwordForm.controls['oldPassword'].hasError('minlength')"
+                            >Password is invalid</span
+                        >
+                    </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" placeholder="********" formControlName="newPassword" />
+                        <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('required')"
+                            >New password is required</span
+                        >
+                        <span class="text-danger" *ngIf="passwordForm.controls['newPassword'].hasError('minlength')"
+                            >New password is weak</span
+                        >
+                    </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                        <label>Confirme Password</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            placeholder="********"
+                            formControlName="confirmPassword"
+                            (change)="checkReapetedPassword()" />
+                        <span class="text-danger" *ngIf="passwordForm.controls['confirmPassword'].hasError('misMatch')">Not matched</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary m-1" mat-dialog-close="save" [disabled]="!passwordForm.valid" (click)="changePassword()">
+                Save
+            </button>
+        </div>
+    </form>
 </ng-template>
