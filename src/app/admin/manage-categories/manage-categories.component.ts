@@ -27,6 +27,7 @@ export class ManageCategoriesComponent implements OnInit {
     });
 
     editCategoryForm: FormGroup = new FormGroup({
+        categoryName: new FormControl('', [Validators.required, Validators.minLength(4)]),
         description: new FormControl('', Validators.required),
     });
 
@@ -92,27 +93,30 @@ export class ManageCategoriesComponent implements OnInit {
             this.categoryService.getCategoryById(this.editedCategoryId).subscribe(
                 (res: any) => {
                     this.category = res;
+                    this.category.receivedImageFile = this.selectedImage;
+                    this.category.description = this.editCategoryForm.get('description')?.value;
+                    this.category.name = this.editCategoryForm.get('categoryName')?.value;
+
+                    this.categoryService.editCategory(this.category).subscribe((success: boolean) => {
+                        if (success) {
+                            const dialogRef = this.dialog.open(SucceededDialogComponent);
+                            setTimeout(() => {
+                                dialogRef.close();
+                            }, 3000);
+                        } else {
+                            const dialogRef = this.dialog.open(FailedDialogComponent);
+                            setTimeout(() => {
+                                dialogRef.close();
+                            }, 3000);
+                        }
+                    });
                 },
                 (err) => {
                     console.log('err=> ' + err);
                 }
             );
 
-            this.category.description = this.editCategoryForm.get('description')?.value;
-
-            this.categoryService.editCategory(this.category).subscribe((success: boolean) => {
-                if (success) {
-                    const dialogRef = this.dialog.open(SucceededDialogComponent);
-                    setTimeout(() => {
-                        dialogRef.close();
-                    }, 3000);
-                } else {
-                    const dialogRef = this.dialog.open(FailedDialogComponent);
-                    setTimeout(() => {
-                        dialogRef.close();
-                    }, 3000);
-                }
-            });
+            
         }
     }
 
@@ -150,6 +154,18 @@ export class ManageCategoriesComponent implements OnInit {
 
     @ViewChild('editCategoryDailog') editCategoryDailog!: TemplateRef<any>;
     openEditCategoryDialog(id: number) {
+        this.categoryService.getCategoryById(id).subscribe(
+            (res: any) => {
+                this.category = res;
+                this.editCategoryForm.patchValue({
+                    categoryName: this.category.name,
+                    description: this.category.description
+                });
+            },
+            (err) => {
+                console.log('err=> ' + err);
+            }
+        );
         this.editedCategoryId = id;
         const dialogRef = this.dialog.open(this.editCategoryDailog);
     }

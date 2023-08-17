@@ -66,7 +66,7 @@ export class UserService {
   GetAllRegisteredUsersDetails(): void {
     this.http.get<User[]>(this.serviceURL + 'GetAllRegisteredUsersDetails').subscribe(
       (res: User[]) => {
-          this.users = res;
+          this.users = res.filter((x) => x.username !== 'Admin');
       },
       (err) => {
           console.log(err);
